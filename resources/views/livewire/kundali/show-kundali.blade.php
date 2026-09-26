@@ -228,11 +228,13 @@
                         Generate the complete astrologer-style reading of this chart — every house,
                         every graha, the yogas and doshas, the dasha timeline and the remedies.
                     </p>
-                    <button type="button" disabled
-                            class="mt-4 cursor-not-allowed rounded bg-[#b5643f] px-6 py-3 text-sm font-medium text-white opacity-60">
+                    <a href="{{ route('kundalis.reading', $kundali) }}" wire:navigate
+                       class="mt-4 inline-block rounded bg-[#b5643f] px-6 py-3 text-sm font-medium text-white hover:bg-[#9d5436] transition">
                         View Full Details of this Kundali
-                    </button>
-                    <p class="mt-2 text-xs text-gray-400">Interpretation engine arrives in the next phase.</p>
+                    </a>
+                    <p class="mt-2 text-xs text-gray-400">
+                        Pilot corpus: Lagna, 1st, 7th and 10th Bhavas, plus the current dasha.
+                    </p>
                 </div>
             </div>
         </div>
