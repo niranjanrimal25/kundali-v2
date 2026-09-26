@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kundali App — Requirements Q&amp;A Record</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f1ea;font-family:Georgia,'Times New Roman',serif;color:#2b2520;line-height:1.65;">
+
+<div style="max-width:900px;margin:0 auto;background:#fffdf8;box-shadow:0 0 40px rgba(0,0,0,0.08);">
+
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#4a2c5a 0%,#7b3f61 60%,#b5643f 100%);color:#fff;padding:44px 48px 38px;">
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:.75;margin-bottom:10px;">Requirements Record</div>
+    <h1 style="margin:0 0 10px;font-size:34px;font-weight:normal;letter-spacing:.5px;">Kundali App — Questions &amp; Answers</h1>
+    <div style="font-size:14px;opacity:.85;">Every question raised during scoping, with your recorded answer.</div>
+    <div style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;opacity:.8;">
+      Date: 26 September 2026 &nbsp;·&nbsp; Rounds: 3 &nbsp;·&nbsp; Questions: 12 &nbsp;·&nbsp; Status: Scoping complete
+    </div>
+  </div>
+
+  <!-- Summary bar -->
+  <div style="background:#f0ebe1;padding:20px 48px;border-bottom:1px solid #e0d8c8;font-size:14px;">
+    <strong style="color:#4a2c5a;">Final stack:</strong>
+    Laravel 13 &nbsp;·&nbsp; Livewire 3 &nbsp;·&nbsp; MySQL &nbsp;·&nbsp; Swiss Ephemeris &nbsp;·&nbsp; Lahiri + Whole Sign &nbsp;·&nbsp; English &nbsp;·&nbsp; Zero cost
+  </div>
+
+  <div style="padding:40px 48px 50px;">
+
+  <!-- ROUND 1 -->
+  <div style="margin:0 0 14px;">
+    <span style="display:inline-block;background:#4a2c5a;color:#fff;font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;padding:6px 14px;border-radius:2px;">ROUND 1 — CORE ASTROLOGY ENGINE</span>
+  </div>
+
+  <!-- Q1 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 01</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Which calculation engine should I build on?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Swiss Ephemeris via CLI / PHP extension</strong><br><span style="color:#6b6157;">Highest accuracy (arc-second). Needs a binary on the server. Free under AGPL.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">Pure PHP (VSOP87 / ELP2000) — no binaries, deploys anywhere, ~1 arcsec</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">Let the agent decide the trade-off</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Swiss Ephemeris
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 02</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Which astrological conventions should be the default?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Lahiri ayanamsa + Whole Sign houses</strong><br><span style="color:#6b6157;">Standard Nepali / Indian Parashari setup.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">KP system (Krishnamurti ayanamsa + Placidus)</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">Configurable in settings, multiple ayanamsas</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Lahiri ayanamsa + Whole Sign houses
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 03</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">How deep should the “Full Details” reading go?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">Core reading — houses, grahas, Lagna, Nakshatra, current Dasha</td></tr>
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Full astrologer report</strong><br><span style="color:#6b6157;">Core + yogas, doshas (Mangal, Kaal Sarp), Sade Sati, D9 Navamsa, aspects, dignity &amp; Digbala, life-area predictions, remedies.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td>
+          <td style="padding:7px 0;color:#9a9186;">Core first, extend in phases</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Full astrologer report
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #c9a227;background:#fffdf4;margin:0 0 30px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 04 &nbsp;—&nbsp; <span style="color:#b58900;">UNCLEAR, RE-ASKED IN ROUND 2</span></div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">“A few build-scope points — pick what matters most to you.”</div>
+    <div style="font-family:Arial,sans-serif;font-size:13.5px;color:#6b6157;margin-bottom:14px;">
+      Offered: visual chart priority / multi-user + saved Kundalis / single simple login / AI narration hook.
+    </div>
+    <div style="padding:11px 14px;background:#fdf6e0;border-left:3px solid #c9a227;font-family:Arial,sans-serif;font-size:13px;color:#6a5310;">
+      <strong>Your answer:</strong> “I did not get this question.” &nbsp;→&nbsp; Question was poorly worded; split into four plain questions in Round 2.
+    </div>
+  </div>
+
+  <!-- ROUND 2 -->
+  <div style="margin:0 0 14px;">
+    <span style="display:inline-block;background:#4a2c5a;color:#fff;font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;padding:6px 14px;border-radius:2px;">ROUND 2 — APPLICATION SCOPE</span>
+  </div>
+
+  <!-- Q5 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 05</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">How should the birth chart look on screen?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">North Indian (diamond) only</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">South Indian (fixed grid) only</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Both, with a toggle</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#eef2f8;border-left:3px solid #5a7ba6;font-family:Arial,sans-serif;font-size:13px;color:#2f4360;">
+      <strong>Your answer (custom):</strong> “Both with a toggle, but default is North Indian.”
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 06</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Who will use this app?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Only me — one login</strong><br><span style="color:#6b6157;">Single account, no public registration.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Multiple users with their own saved charts</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Single admin login
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 07</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Should generated Kundalis be saved for later?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Yes — save every Kundali to the database</strong><br><span style="color:#6b6157;">Re-openable history of everyone whose chart was generated.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">No, generate and discard</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Save + PDF download</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Save to database
+      <span style="color:#7d7367;">(PDF export retained as a Phase 8 extra in the spec)</span>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 30px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 08</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Place of birth — manual coordinates or automatic lookup?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Type latitude &amp; longitude manually</td></tr>
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Free place-name lookup filling lat/long automatically</strong><br><span style="color:#6b6157;">Offline GeoNames city database — also supplies the timezone. Zero cost.</span></td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Automatic lookup
+    </div>
+  </div>
+
+  <!-- ROUND 3 -->
+  <div style="margin:0 0 14px;">
+    <span style="display:inline-block;background:#4a2c5a;color:#fff;font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;padding:6px 14px;border-radius:2px;">ROUND 3 — TECHNICAL DEFAULTS</span>
+  </div>
+
+  <!-- Q9 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 09</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Laravel frontend stack?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Plain Laravel + Blade + Tailwind</td></tr>
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Laravel + Livewire</strong><br><span style="color:#6b6157;">Reactive UI — live place autocomplete and instant chart-style toggle without writing JavaScript.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Inertia + Vue/React SPA</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Livewire
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 10</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Database?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">SQLite</td></tr>
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">MySQL / MariaDB</strong></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">PostgreSQL</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> MySQL
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 18px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 11</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Timezone handling — the single biggest accuracy risk</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">Auto from place lookup, historically accurate</strong><br><span style="color:#6b6157;">Correctly applies Nepal’s +5:30 before 1986 and +5:45 after, plus DST elsewhere.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Pick the offset manually each time</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> Automatic with historical accuracy
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div style="border:1px solid #e3dccd;border-left:4px solid #b5643f;background:#fff;margin:0 0 34px;padding:22px 26px;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:#a08a6a;letter-spacing:1.5px;margin-bottom:8px;">QUESTION 12</div>
+    <div style="font-size:19px;color:#3a2b45;margin-bottom:16px;">Reading language to build first?</div>
+    <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+      <tr><td style="padding:7px 0;width:26px;vertical-align:top;color:#7aa06a;">&#10003;</td>
+          <td style="padding:7px 0;"><strong style="color:#2b5016;">English only for now</strong><br><span style="color:#6b6157;">Structured so Nepali can be added later via Laravel translation files.</span></td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Nepali only</td></tr>
+      <tr><td style="padding:7px 0;color:#cfc6b6;">&#9675;</td><td style="padding:7px 0;color:#9a9186;">Both, switchable</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:11px 14px;background:#f2f6ef;border-left:3px solid #7aa06a;font-family:Arial,sans-serif;font-size:13px;color:#3d4a33;">
+      <strong>Your answer:</strong> English first
+    </div>
+  </div>
+
+  <!-- DECISIONS TABLE -->
+  <h2 style="font-size:22px;color:#4a2c5a;font-weight:normal;border-bottom:2px solid #e3dccd;padding-bottom:10px;margin:40px 0 18px;">Consolidated Decisions</h2>
+  <table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13.5px;">
+    <tr style="background:#4a2c5a;color:#fff;">
+      <th style="text-align:left;padding:11px 14px;font-weight:normal;letter-spacing:1px;font-size:12px;">AREA</th>
+      <th style="text-align:left;padding:11px 14px;font-weight:normal;letter-spacing:1px;font-size:12px;">DECISION</th>
+    </tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Framework</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Laravel 13</strong> (PHP 8.3+)</td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Frontend</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Livewire 3</strong> + Tailwind</td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Database</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>MySQL / MariaDB</strong></td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Ephemeris</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Swiss Ephemeris</strong> (AGPL, arc-second)</td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Ayanamsa</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Lahiri / Chitrapaksha</strong></td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">House system</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Whole Sign</strong> (Parashari)</td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Chart style</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>North Indian default</strong>, South Indian toggle</td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Access</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Single admin login</strong></td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Persistence</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>All Kundalis saved</strong>, re-openable history</td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Place input</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Offline GeoNames lookup</strong> → lat/lng/timezone</td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Timezone</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Historically accurate</strong> (Nepal 1986 shift handled)</td></tr>
+    <tr><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Reading depth</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>Full report</strong> — yogas, doshas, D9, dasha, remedies</td></tr>
+    <tr style="background:#faf7f0;"><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;color:#6b6157;">Language</td><td style="padding:10px 14px;border-bottom:1px solid #eae3d5;"><strong>English</strong>, i18n-ready for Nepali</td></tr>
+    <tr><td style="padding:10px 14px;color:#6b6157;">Budget</td><td style="padding:10px 14px;"><strong style="color:#2b5016;">Rs. 0</strong> — no APIs, no keys, no subscriptions</td></tr>
+  </table>
+
+  <!-- INSTALL -->
+  <h2 style="font-size:22px;color:#4a2c5a;font-weight:normal;border-bottom:2px solid #e3dccd;padding-bottom:10px;margin:40px 0 18px;">Installation Commands</h2>
+  <p style="font-family:Arial,sans-serif;font-size:13.5px;color:#6b6157;margin:0 0 14px;">
+    Laravel 13 released 17 March 2026, latest 13.33.0. Laravel 11 reached EOL in March 2026 and Laravel 12’s bug-fix window closed in August 2026 — Laravel 13 is the only supported choice for a new build. Requires PHP 8.3–8.5.
+  </p>
+  <pre style="background:#2b2520;color:#e8e0d0;padding:22px 24px;font-family:'Courier New',monospace;font-size:13px;line-height:1.75;overflow-x:auto;margin:0 0 12px;"><span style="color:#8a9a7a;"># 1. Verify PHP — must be 8.3 or newer</span>
+php -v
+
+<span style="color:#8a9a7a;"># 2. Create the project, pinned to Laravel 13</span>
+composer create-project laravel/laravel kundali <span style="color:#d4a373;">"13.*"</span>
+cd kundali
+
+<span style="color:#8a9a7a;"># 3. Livewire 3 + Breeze auth</span>
+composer require livewire/livewire
+composer require laravel/breeze --dev
+php artisan breeze:install livewire
+
+<span style="color:#8a9a7a;"># 4. Frontend build + database</span>
+npm install &amp;&amp; npm run build
+php artisan migrate
+
+<span style="color:#8a9a7a;"># 5. Confirm version</span>
+php artisan --version</pre>
+  <pre style="background:#2b2520;color:#e8e0d0;padding:22px 24px;font-family:'Courier New',monospace;font-size:13px;line-height:1.75;overflow-x:auto;margin:0 0 10px;"><span style="color:#8a9a7a;"># Push to Git</span>
+git init &amp;&amp; git add . &amp;&amp; git commit -m <span style="color:#d4a373;">"Initial Laravel 13 setup for Kundali app"</span>
+git branch -M main
+git remote add origin &lt;your-repo-url&gt;
+git push -u origin main</pre>
+  <p style="font-family:Arial,sans-serif;font-size:12.5px;color:#8a8175;margin:0;">
+    Project name: <strong>kundali</strong>. Laravel’s default .gitignore already excludes .env, vendor/ and node_modules/ — leave those uncommitted.
+  </p>
+
+  <!-- NEXT -->
+  <h2 style="font-size:22px;color:#4a2c5a;font-weight:normal;border-bottom:2px solid #e3dccd;padding-bottom:10px;margin:40px 0 18px;">Still Open</h2>
+  <ul style="font-family:Arial,sans-serif;font-size:13.5px;color:#4a423a;margin:0;padding-left:22px;line-height:2;">
+    <li>Nepali (Devanagari) translation of the interpretation corpus</li>
+    <li>Bikram Sambat ↔ Gregorian converter for the date input</li>
+    <li>PDF export of the full reading</li>
+    <li>Optional LLM prose-polishing hook (architecture already supports it)</li>
+    <li>Transit / Gochar predictions and extra divisional charts (D10, D7)</li>
+  </ul>
+
+  </div>
+
+  <div style="background:#2b2520;color:#9a9186;padding:20px 48px;font-family:Arial,sans-serif;font-size:12px;">
+    Kundali App — Requirements Q&amp;A Record · 26 September 2026 · Companion document to SPEC.md
+  </div>
+
+</div>
+</body>
+</html>

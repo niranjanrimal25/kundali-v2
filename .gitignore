@@ -25,3 +25,11 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Compiled Swiss Ephemeris binary (platform-specific).
+# Rebuild with: php artisan jyotish:install-ephemeris
+/bin/swetest
+
+# Uncompressed city extract (the .gz is the committed source)
+/storage/app/geo/cities.tsv
+/storage/app/swisseph-build

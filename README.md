@@ -1,58 +1,200 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Kundali — Vedic Birth Chart & Horoscope Reading
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel application that generates astronomically accurate Vedic birth
+charts (Kundali) and, from them, a full astrologer-style horoscope reading.
 
-## About Laravel
+Every component is free and open source. There are no paid APIs, no API
+keys, and no subscriptions — the astronomy runs locally against Swiss
+Ephemeris and place lookup runs against an offline GeoNames extract.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Layer | Choice |
+|---|---|
+| Framework | Laravel 13 (PHP 8.3–8.5) |
+| Frontend | Livewire 3 + Tailwind CSS |
+| Database | MySQL / MariaDB |
+| Astronomy | Swiss Ephemeris (AGPL) — arc-second accuracy |
+| Ayanamsa | Lahiri / Chitrapaksha |
+| House system | Whole Sign (classical Parashari) |
+| Place data | GeoNames (CC BY 4.0), 122,028 places offline |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Architecture
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The system is three strictly separated layers. The interpretation layer
+never touches astronomy, which keeps calculations independently testable.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```
+  Birth data (name, date, time, place, lat/lng)
+        │
+        ▼
+  LAYER 1 — Astronomy            app/Services/Astrology/Ephemeris/
+    local civil time → historical UTC offset → Julian Day
+    → sidereal longitudes of 9 grahas + Ascendant
+        │
+        ▼
+  LAYER 2 — Vedic mathematics    app/Services/Astrology/ChartCalculator.php
+    Rashi · Nakshatra + pada · Bhava · dignity · Digbala
+    combustion · retrogradity · aspects · lordships
+    Navamsa (D9) · Vimshottari Dasha tree
+        │
+        ▼  ChartFacts (a plain, cacheable array)
+        │
+  LAYER 3 — Interpretation       (Phase 5–7, in progress)
+    rule engine → conflict resolution → narrative composer
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Key files
 
-## Contributing
+| Path | Responsibility |
+|---|---|
+| `app/Services/Astrology/TimeResolver.php` | Historical timezone → UTC |
+| `app/Services/Astrology/Ephemeris/SwissEphemeris.php` | Swiss Ephemeris driver |
+| `app/Services/Astrology/ChartCalculator.php` | All Vedic derivations |
+| `app/Services/Astrology/VimshottariDasha.php` | 120-year dasha tree |
+| `app/Services/Astrology/ChartRenderer.php` | North/South Indian SVG charts |
+| `app/Services/Astrology/Support/Zodiac.php` | Signs, lords, dignities, aspects |
+| `app/Services/Astrology/Support/Nakshatras.php` | The 27 lunar mansions |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Why the timezone code matters
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Timezone handling — not the ephemeris — is the number one cause of wrong
+Kundalis. A four-minute error shifts the Lagna by about one degree; a
+one-hour error can move it into an adjacent sign and invalidate the whole
+reading.
 
-## Security Vulnerabilities
+`TimeResolver` therefore resolves offsets through PHP's IANA database so
+historical transitions are applied automatically:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Nepal** — UTC+5:30 before 1986-01-01, UTC+5:45 after
+- **India** — UTC+5:30, with wartime DST in 1941–1945
+- **Everywhere else** — correct DST for the era in question
 
-## License
+When a birth predates the current offset for its location, the UI shows an
+explicit notice so the value can be sanity-checked against the birth
+certificate.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Setup
+
+### Prerequisites
+
+- PHP **8.3+** with `mbstring`, `xml`, `curl`, `zip`, `intl`, `bcmath`, `pdo_mysql`
+- Composer 2
+- Node 18+
+- MySQL 8 / MariaDB 10.6+
+- `git`, `make` and a C compiler (to build the ephemeris binary)
+
+### Install
+
+```bash
+git clone https://github.com/niranjanrimal25/kundali-v2.git
+cd kundali-v2
+
+composer install
+npm install && npm run build
+
+cp .env.example .env
+php artisan key:generate
+```
+
+Set your database credentials in `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_DATABASE=kundali
+DB_USERNAME=your_user
+DB_PASSWORD=your_password
+```
+
+Build the Swiss Ephemeris binary (once per machine — the compiled binary
+is platform-specific and therefore not committed):
+
+```bash
+php artisan jyotish:install-ephemeris
+```
+
+Create the schema and seed the admin account plus the place database:
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+Run it:
+
+```bash
+php artisan serve
+```
+
+Default login (override with `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env`
+before seeding):
+
+```
+admin@kundali.test
+password
+```
+
+---
+
+## Configuration
+
+Astrological conventions live in `config/jyotish.php` and can be overridden
+from `.env`:
+
+```env
+JYOTISH_AYANAMSA=lahiri        # lahiri | raman | krishnamurti | fagan_bradley | yukteshwar
+JYOTISH_HOUSE_SYSTEM=W         # W = Whole Sign, P = Placidus, K = Koch, E = Equal
+JYOTISH_NODE=true              # true = True Node, mean = Mean Node
+```
+
+---
+
+## Tests
+
+```bash
+php artisan test
+```
+
+69 tests / 598 assertions, covering:
+
+- **Timezone correctness** — the Nepal 1986 transition, IST, DST, southern hemisphere
+- **Astronomy** — Lahiri ayanamsa value, Whole Sign house assignment, Rahu/Ketu opposition
+- **Vedic rules** — exaltation, debilitation, Digbala, special aspects, lordships
+- **Dasha** — balance at birth, sequence order, sub-periods tiling without gaps
+- **Determinism** — identical input always yields an identical chart
+- **Sensitivity** — birth time and latitude genuinely affect the Lagna
+- **Application flow** — autocomplete, validation, caching, authorisation, deletion
+
+---
+
+## Project status
+
+| Phase | Scope | Status |
+|---|---|---|
+| 1 | Scaffold, auth, schema, city database | Done |
+| 2 | Swiss Ephemeris + timezone engine + tests | Done |
+| 3 | Vedic math layer → ChartFacts | Done |
+| 4 | SVG charts (North/South), planet & house tables | Done |
+| 5 | Interpretation rule corpus | Next |
+| 6 | Narrative composer + full reading page | Next |
+| 7 | Yogas, doshas, Sade Sati, remedies | Planned |
+| 8 | Cross-validation, PDF export | Planned |
+
+See `SPEC.md` for the full specification and `QUESTIONS-AND-ANSWERS.html`
+for the recorded requirements decisions.
+
+---
+
+## Credits & licences
+
+- **Swiss Ephemeris** — Astrodienst AG, AGPL-3.0
+- **GeoNames** — geographical database, CC BY 4.0
+- **Laravel** — MIT

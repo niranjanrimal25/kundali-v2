@@ -1,15 +1,20 @@
 <?php
 
+use App\Livewire\Kundali\CreateKundali;
+use App\Livewire\Kundali\KundaliIndex;
+use App\Livewire\Kundali\ShowKundali;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/dashboard');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', KundaliIndex::class)->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+    Route::get('kundalis', KundaliIndex::class)->name('kundalis.index');
+    Route::get('kundalis/create', CreateKundali::class)->name('kundalis.create');
+    Route::get('kundalis/{kundali}', ShowKundali::class)->name('kundalis.show');
+
+    Route::view('profile', 'profile')->name('profile');
+});
 
 require __DIR__.'/auth.php';
