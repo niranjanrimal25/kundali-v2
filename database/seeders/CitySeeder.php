@@ -21,11 +21,15 @@ class CitySeeder extends Seeder
 {
     public function run(): void
     {
-        // The extract is stored gzipped (2.4 MB instead of 8.4 MB) and
+        // Seed data lives in database/data/ rather than storage/, because
+        // Laravel's storage/app/.gitignore excludes everything by default
+        // and would silently keep this file out of the repository.
+        //
+        // The extract is stored gzipped (2.3 MB instead of 8.4 MB) and
         // streamed through PHP's compression wrapper, so it never needs
         // to be decompressed to disk.
-        $gzPath = storage_path('app/geo/cities.tsv.gz');
-        $plainPath = storage_path('app/geo/cities.tsv');
+        $gzPath = database_path('data/cities.tsv.gz');
+        $plainPath = database_path('data/cities.tsv');
 
         if (file_exists($gzPath)) {
             $handle = gzopen($gzPath, 'r');

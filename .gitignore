@@ -31,5 +31,5 @@ Thumbs.db
 /bin/swetest
 
 # Uncompressed city extract (the .gz is the committed source)
-/storage/app/geo/cities.tsv
+/database/data/cities.tsv
 /storage/app/swisseph-build
