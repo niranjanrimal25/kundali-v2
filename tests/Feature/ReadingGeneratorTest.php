@@ -45,7 +45,7 @@ class ReadingGeneratorTest extends TestCase
     #[Test]
     public function it_seeds_the_full_rule_corpus(): void
     {
-        $this->assertDatabaseCount('interpretation_rules', 421);
+        $this->assertDatabaseCount('interpretation_rules', 601);
 
         // Every bhava needs its complete lord-placement and sign layers.
         foreach (range(1, 12) as $house) {
@@ -68,7 +68,7 @@ class ReadingGeneratorTest extends TestCase
             );
         }
 
-        $this->assertDatabaseCount('interpretation_rules', 421);
+        $this->assertDatabaseCount('interpretation_rules', 601);
     }
 
     #[Test]

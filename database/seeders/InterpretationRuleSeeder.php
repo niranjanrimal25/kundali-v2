@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Rules\AspectRules;
+use Database\Seeders\Rules\ConjunctionRules;
 use Database\Seeders\Rules\CoreRules;
 use Database\Seeders\Rules\HouseSignRules;
 use Database\Seeders\Rules\LordPlacementRules;
+use Database\Seeders\Rules\NakshatraRules;
 use Database\Seeders\Rules\PlanetHouseRules;
+use Database\Seeders\Rules\PlanetSignRules;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +48,10 @@ class InterpretationRuleSeeder extends Seeder
             HouseSignRules::all(),
             PlanetHouseRules::all(),
             LordPlacementRules::all(),
+            PlanetSignRules::all(),
+            ConjunctionRules::all(),
+            AspectRules::all(),
+            NakshatraRules::all(),
         );
 
         $rows = array_map(fn ($r) => $this->clean($r), $rows);

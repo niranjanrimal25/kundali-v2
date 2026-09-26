@@ -103,7 +103,10 @@ class ReadingGenerator
 
             $modifiers = $this->modifiersFor($lagnesh, $rules);
 
-            $paragraphs[] = $composer->planetSentence($lagnesh['name'], $lordText, $modifiers);
+            $paragraphs[] = trim(
+                $composer->planetSentence($lagnesh['name'], $lordText, $modifiers)
+                .' '.$this->signSentence($lagnesh, $rules)
+            );
         }
 
         // 3. Moon: mind, emotion, nakshatra temperament.
@@ -118,6 +121,13 @@ class ReadingGenerator
             Zodiac::PLANETS_SANSKRIT[$moon['nakshatra']['lord']] ?? $moon['nakshatra']['lord'],
             strtolower($moon['nakshatra']['gana'])
         );
+
+        // Janma nakshatra temperament — weighted as heavily as the Lagna.
+        $nakRule = $rules->first('nakshatra', (string) $moon['nakshatra']['index']);
+
+        if ($nakRule) {
+            $paragraphs[] = $this->sentence($nakRule->text);
+        }
 
         // 4. Structural summary: how the chart is weighted.
         $paragraphs[] = $this->chartBalance($facts);
@@ -195,11 +205,11 @@ class ReadingGenerator
             $modifiers = $this->modifiersFor($planet, $rules);
 
             if ($rule) {
-                $paragraphs[] = $composer->planetSentence(
+                $paragraphs[] = trim($composer->planetSentence(
                     $name,
                     $this->trimText($rule->text),
                     $modifiers
-                );
+                ).' '.$this->signSentence($planet, $rules));
                 $described++;
 
                 continue;
@@ -222,6 +232,25 @@ class ReadingGenerator
             $described++;
         }
 
+        // Two or more grahas sharing a bhava is a third thing, not two
+        // separate placements. Describe every pair present.
+        $occupants = array_values($data['occupants']);
+
+        if (count($occupants) >= 2) {
+            for ($i = 0; $i < count($occupants); $i++) {
+                for ($j = $i + 1; $j < count($occupants); $j++) {
+                    $rule = $rules->first(
+                        'conjunction',
+                        RuleRepository::conjunctionKey($occupants[$i], $occupants[$j])
+                    );
+
+                    if ($rule) {
+                        $paragraphs[] = $this->sentence($rule->text);
+                    }
+                }
+            }
+        }
+
         if ($data['occupants'] === []) {
             $paragraphs[] = sprintf(
                 'No graha occupies this bhava, so its affairs are read primarily through its lord %s and through '
@@ -235,7 +264,9 @@ class ReadingGenerator
         $aspecting = $this->aspectsOnto($house, $facts);
 
         if ($aspecting !== []) {
-            $paragraphs[] = $this->aspectSentence($aspecting, $house, $facts);
+            foreach ($this->aspectSentence($aspecting, $house, $facts, $rules) as $line) {
+                $paragraphs[] = $line;
+            }
         }
 
         return [
@@ -319,7 +350,12 @@ class ReadingGenerator
     {
         $modifiers = [];
 
-        if ($rule = $rules->first('dignity', $planet['dignity'])) {
+        // Graha-in-sign already encodes dignity and is emitted as its own
+        // sentence by signSentence(); fall back to the generic dignity
+        // wording only where that pair is unwritten.
+        $hasSignRule = $rules->first('planet_sign', $planet['name'].':'.$planet['sign']) !== null;
+
+        if (! $hasSignRule && $rule = $rules->first('dignity', $planet['dignity'])) {
             // Neutral dignity adds nothing worth saying.
             if ($planet['dignity'] !== 'neutral') {
                 $modifiers[] = $rule->text;
@@ -372,8 +408,40 @@ class ReadingGenerator
         return $aspecting;
     }
 
-    private function aspectSentence(array $aspecting, int $house, array $facts): string
+    private function aspectSentence(array $aspecting, int $house, array $facts, ?RuleRepository $rules = null): array
     {
+        // With a rule corpus available, each graha's drishti is described
+        // in its own terms rather than lumped into benefic/malefic.
+        if ($rules !== null) {
+            $described = [];
+
+            foreach ($aspecting as $name) {
+                $rule = $rules->first('aspect', $name);
+
+                if ($rule === null) {
+                    continue;
+                }
+
+                $described[] = sprintf(
+                    'the drishti of %s %s',
+                    $facts['planets'][$name]['sanskrit'],
+                    $this->trimText($rule->text)
+                );
+            }
+
+            if ($described !== []) {
+                $out = [];
+
+                // One per sentence: these fragments contain their own full
+                // stops, so joining two with "and" produces a run-on.
+                foreach ($described as $one) {
+                    $out[] = $this->sentence('Here '.$one);
+                }
+
+                return $out;
+            }
+        }
+
         $benefics = [];
         $malefics = [];
 
@@ -403,7 +471,7 @@ class ReadingGenerator
             );
         }
 
-        return ucfirst(implode(', while ', $parts)).'.';
+        return [ucfirst(implode(', while ', $parts)).'.'];
     }
 
     /** A structural read on how the chart's weight is distributed. */
@@ -478,6 +546,39 @@ class ReadingGenerator
         };
 
         return $n.$suffix;
+    }
+
+    /**
+     * How this graha behaves in the sign it occupies, as a standalone
+     * sentence. Returns null where the pair has no rule yet.
+     */
+    private function signSentence(array $planet, RuleRepository $rules): ?string
+    {
+        $rule = $rules->first('planet_sign', $planet['name'].':'.$planet['sign']);
+
+        if ($rule === null) {
+            return null;
+        }
+
+        return $this->sentence(sprintf(
+            '%s is %s',
+            $planet['sanskrit'],
+            $this->trimText($rule->text)
+        ));
+    }
+
+    /** Capitalise and terminate a rule fragment used as a whole sentence. */
+    private function sentence(string $text): string
+    {
+        $text = trim(preg_replace('/\s+/', ' ', $text));
+
+        if ($text === '') {
+            return '';
+        }
+
+        $text = mb_strtoupper(mb_substr($text, 0, 1)).mb_substr($text, 1);
+
+        return rtrim($text, '.').'.';
     }
 
     private function trimText(string $text): string

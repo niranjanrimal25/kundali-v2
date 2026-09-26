@@ -44,6 +44,18 @@ class RuleRepository
         return $this->index[$type.'|'.$key] ?? [];
     }
 
+    /**
+     * Canonical, order-independent key for a graha pair, so a lookup
+     * never depends on which graha the caller reached first.
+     */
+    public static function conjunctionKey(string $a, string $b): string
+    {
+        $pair = [$a, $b];
+        sort($pair);
+
+        return implode('+', $pair);
+    }
+
     /** The single strongest fragment for a condition, or null. */
     public function first(string $type, string $key): ?object
     {
