@@ -1,7 +1,6 @@
 @php
     $facts = $this->facts();
     $sections = $this->sections();
-    $covered = \App\Services\Astrology\Interpretation\ReadingGenerator::COVERED_HOUSES;
 @endphp
 
 <div class="py-8">
@@ -44,12 +43,12 @@
             </div>
         </div>
 
-        {{-- Pilot scope notice --}}
+        {{-- Scope notice --}}
         <div class="border-x border-[#e3dccd] bg-amber-50 px-8 py-3 text-xs text-amber-900">
-            <strong>Pilot reading.</strong>
-            The interpretation corpus currently covers the Lagna and the
-            {{ collect($covered)->map(fn ($h) => $h . match($h % 10) { 1 => 'st', 2 => 'nd', 3 => 'rd', default => 'th' })->join(', ', ' and ') }}
-            Bhavas. The remaining houses, yogas, doshas and remedies follow once this sample is approved.
+            <strong>Scope.</strong>
+            This reading covers the Lagna, all twelve Bhavas and the running
+            Vimshottari dasha. Yogas, doshas, Sade Sati and remedial measures
+            are analysed in a later release.
         </div>
 
         {{-- The reading --}}

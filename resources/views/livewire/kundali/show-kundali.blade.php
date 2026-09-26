@@ -233,7 +233,7 @@
                         View Full Details of this Kundali
                     </a>
                     <p class="mt-2 text-xs text-gray-400">
-                        Pilot corpus: Lagna, 1st, 7th and 10th Bhavas, plus the current dasha.
+                        Lagna, all twelve Bhavas and the running dasha, read in full.
                     </p>
                 </div>
             </div>

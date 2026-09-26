@@ -43,12 +43,12 @@ class ReadingGeneratorTest extends TestCase
     }
 
     #[Test]
-    public function it_seeds_the_pilot_rule_corpus(): void
+    public function it_seeds_the_full_rule_corpus(): void
     {
-        $this->assertDatabaseCount('interpretation_rules', 124);
+        $this->assertDatabaseCount('interpretation_rules', 421);
 
-        // The layer that matters most must be present for all three houses.
-        foreach ([1, 7, 10] as $house) {
+        // Every bhava needs its complete lord-placement and sign layers.
+        foreach (range(1, 12) as $house) {
             $this->assertGreaterThanOrEqual(
                 12,
                 \DB::table('interpretation_rules')
@@ -57,7 +57,18 @@ class ReadingGeneratorTest extends TestCase
                     ->count(),
                 "House {$house} is missing lord-placement rules"
             );
+
+            $this->assertSame(
+                12,
+                \DB::table('interpretation_rules')
+                    ->where('condition_type', 'house_sign')
+                    ->where('condition_key', 'like', $house.':%')
+                    ->count(),
+                "House {$house} is missing house-sign rules"
+            );
         }
+
+        $this->assertDatabaseCount('interpretation_rules', 421);
     }
 
     #[Test]
@@ -68,7 +79,11 @@ class ReadingGeneratorTest extends TestCase
         $keys = array_column($sections, 'key');
 
         $this->assertSame(
-            ['overview', 'house_1', 'house_7', 'house_10', 'dasha'],
+            array_merge(
+                ['overview'],
+                array_map(fn ($h) => "house_{$h}", range(1, 12)),
+                ['dasha'],
+            ),
             $keys
         );
 

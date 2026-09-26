@@ -19,8 +19,8 @@ use Carbon\Carbon;
  */
 class ReadingGenerator
 {
-    /** Houses covered by the current rule corpus. */
-    public const COVERED_HOUSES = [1, 7, 10];
+    /** Houses covered by the current rule corpus — all twelve bhavas. */
+    public const COVERED_HOUSES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     public function __construct(
         private readonly KundaliService $kundaliService,
@@ -187,21 +187,39 @@ class ReadingGenerator
         }
 
         // 3. Occupants, each with their dignity/condition modifiers.
+        $described = 0;
+
         foreach ($data['occupants'] as $name) {
             $planet = $facts['planets'][$name];
             $rule = $rules->first('planet_house', "{$name}:{$house}");
+            $modifiers = $this->modifiersFor($planet, $rules);
 
-            if (! $rule) {
+            if ($rule) {
+                $paragraphs[] = $composer->planetSentence(
+                    $name,
+                    $this->trimText($rule->text),
+                    $modifiers
+                );
+                $described++;
+
                 continue;
             }
 
-            $modifiers = $this->modifiersFor($planet, $rules);
-
+            // No rule for this combination yet. Never emit nothing —
+            // state the placement factually so the section still reads
+            // as a complete piece of writing.
             $paragraphs[] = $composer->planetSentence(
                 $name,
-                $this->trimText($rule->text),
+                sprintf(
+                    '%s occupies this bhava in %s at %s, in the nakshatra %s',
+                    $planet['sanskrit'],
+                    $planet['sign_name'],
+                    $planet['degree_formatted'],
+                    $planet['nakshatra']['name']
+                ),
                 $modifiers
             );
+            $described++;
         }
 
         if ($data['occupants'] === []) {
