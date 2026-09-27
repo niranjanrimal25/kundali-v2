@@ -14,6 +14,7 @@ use Database\Seeders\Rules\LordPlacementRules;
 use Database\Seeders\Rules\NakshatraRules;
 use Database\Seeders\Rules\PlanetHouseRules;
 use Database\Seeders\Rules\PlanetSignRules;
+use Database\Seeders\Rules\YogaRules;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -60,6 +61,7 @@ class InterpretationRuleSeeder extends Seeder
             DashaRules::all(),
             DignityRules::all(),
             DigbalaRules::all(),
+            YogaRules::all(),
         );
 
         $rows = array_map(fn ($r) => $this->clean($r), $rows);

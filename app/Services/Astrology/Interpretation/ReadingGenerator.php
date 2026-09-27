@@ -62,6 +62,7 @@ class ReadingGenerator
             $sections[] = $this->houseSection($house, $facts, $rules, $seed);
         }
 
+        $sections[] = $this->yogaSection($facts, $rules);
         $sections[] = $this->dashaSection($facts, $seed, $rules);
 
         return array_values(array_filter($sections));
@@ -283,6 +284,95 @@ class ReadingGenerator
     }
 
     /** Current dasha period, plainly stated. */
+    /**
+     * Yogas, doshas and the running Saturn transit.
+     *
+     * Every claim is stated with the factual basis the detector
+     * recorded, so a reader can check the reasoning rather than take
+     * the conclusion on trust. Where a dosha is cancelled, the
+     * cancellation is stated rather than the dosha left standing.
+     */
+    private function yogaSection(array $facts, RuleRepository $rules): array
+    {
+        $paragraphs = [];
+
+        $yogas = $facts['yogas'] ?? [];
+        $doshas = $facts['doshas'] ?? [];
+        $sadeSati = $facts['transits']['sade_sati'] ?? null;
+
+        if ($yogas === [] && $doshas === [] && $sadeSati === null) {
+            return [];
+        }
+
+        if ($yogas !== []) {
+            foreach ($yogas as $yoga) {
+                $rule = $rules->first('yoga', $yoga['key'].':'.$yoga['strength'])
+                    ?? $rules->first('yoga', $yoga['key'].':moderate');
+
+                if ($rule === null) {
+                    continue;
+                }
+
+                $paragraphs[] = $this->sentence($rule->text).' '.$yoga['basis'];
+            }
+        }
+
+        foreach ($doshas as $dosha) {
+            // A cancelled dosha is reported as cancelled, not suppressed
+            // and not left standing as a scare.
+            $key = $dosha['cancelled'] && $dosha['key'] === 'mangal_dosha'
+                ? 'mangal_dosha_mitigated'
+                : $dosha['key'];
+
+            $rule = $rules->first('dosha', $key);
+
+            if ($rule === null) {
+                continue;
+            }
+
+            // Order matters: state the finding, then the cancellation,
+            // then the verdict. The verdict refers back to the
+            // cancellation, so it cannot precede it.
+            $parts = [$dosha['basis']];
+
+            if ($dosha['cancellation']) {
+                $parts[] = $this->sentence($dosha['cancellation']);
+            }
+
+            $parts[] = $this->sentence($rule->text);
+
+            $paragraphs[] = trim(implode(' ', $parts));
+        }
+
+        if ($sadeSati) {
+            $rule = $rules->first('transit', $sadeSati['key']);
+
+            if ($rule) {
+                // The transit fragments already restate the placement, so
+                // appending the detector's basis would simply repeat it.
+                $paragraphs[] = $this->sentence($rule->text);
+            }
+        }
+
+        if ($paragraphs === []) {
+            return [];
+        }
+
+        return [
+            'key' => 'yogas',
+            'title' => 'Yogas, Doshas and Transits',
+            'subtitle' => sprintf(
+                '%d yoga%s · %d dosha%s%s',
+                count($yogas),
+                count($yogas) === 1 ? '' : 's',
+                count($doshas),
+                count($doshas) === 1 ? '' : 's',
+                $sadeSati ? ' · '.$sadeSati['name'] : ''
+            ),
+            'paragraphs' => $paragraphs,
+        ];
+    }
+
     private function dashaSection(array $facts, string $seed, RuleRepository $rules): array
     {
         $current = $facts['dasha']['current'];

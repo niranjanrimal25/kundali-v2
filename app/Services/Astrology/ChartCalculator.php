@@ -27,6 +27,8 @@ class ChartCalculator
         private readonly EphemerisInterface $ephemeris,
         private readonly TimeResolver $time,
         private readonly VimshottariDasha $dasha,
+        private readonly YogaDetector $yogas,
+        private readonly DoshaDetector $doshas,
     ) {}
 
     public function forKundali(Kundali $kundali): array
@@ -108,9 +110,48 @@ class ChartCalculator
 
             'dasha' => $this->dasha->build($moonLongitude, $utc),
 
-            'yogas' => [],   // populated by YogaDetector in Phase 7
-            'doshas' => [],  // populated by DoshaDetector in Phase 7
+            'yogas' => $this->yogas->detect($planets, $lagnaSign),
+            'doshas' => $this->doshas->detect($planets, $lagnaSign, $houses),
+            'transits' => $this->transits($planets),
         ];
+    }
+
+    /**
+     * Transit-dependent findings. Sade Sati is the only element of a
+     * standard reading that depends on where Shani is TODAY rather than
+     * at birth, so it is computed against the current ephemeris.
+     *
+     * A transit failure must never break a birth chart, so this degrades
+     * to an empty result rather than throwing.
+     */
+    private function transits(array $planets): array
+    {
+        try {
+            $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+
+            // Longitude/latitude are irrelevant for a planetary longitude;
+            // Greenwich is used simply because a location is required.
+            $raw = $this->ephemeris->calculate($now, 0.0, 0.0);
+
+            $saturn = $raw['planets']['Saturn']['longitude'] ?? null;
+
+            if ($saturn === null) {
+                return [];
+            }
+
+            $sadeSati = $this->doshas->sadeSati($planets, $saturn);
+
+            return [
+                'computed_at' => $now->format('Y-m-d'),
+                'saturn_longitude' => round($saturn, 6),
+                'saturn_sign' => Zodiac::SIGNS[(int) floor($saturn / 30) % 12],
+                'sade_sati' => $sadeSati,
+            ];
+        } catch (\Throwable $e) {
+            report($e);
+
+            return [];
+        }
     }
 
     /**
