@@ -62,7 +62,7 @@ class ReadingGenerator
             $sections[] = $this->houseSection($house, $facts, $rules, $seed);
         }
 
-        $sections[] = $this->dashaSection($facts, $seed);
+        $sections[] = $this->dashaSection($facts, $seed, $rules);
 
         return array_values(array_filter($sections));
     }
@@ -283,7 +283,7 @@ class ReadingGenerator
     }
 
     /** Current dasha period, plainly stated. */
-    private function dashaSection(array $facts, string $seed): array
+    private function dashaSection(array $facts, string $seed, RuleRepository $rules): array
     {
         $current = $facts['dasha']['current'];
 
@@ -322,6 +322,40 @@ class ReadingGenerator
                 $mahaPlanet['sign_name'],
                 $mahaPlanet['dignity'] === 'neutral' ? 'neutrally placed' : $mahaPlanet['dignity']
             );
+
+            // What this period actually delivers, from where its lord sits.
+            $mahaRule = $rules->first(
+                'dasha_lord_house',
+                $maha['lord'].':'.$mahaPlanet['house']
+            );
+
+            if ($mahaRule) {
+                $paragraphs[] = $this->sentence(
+                    $this->dashaLeadIn($mahaRule->text).$this->trimText($mahaRule->text)
+                );
+            }
+        }
+
+        // The antardasha is the sub-period actually being lived right now,
+        // and it modifies the mahadasha rather than replacing it.
+        $antarPlanet = $antar ? ($facts['planets'][$antar['lord']] ?? null) : null;
+
+        if ($antarPlanet) {
+            $antarRule = $rules->first(
+                'dasha_lord_house',
+                $antar['lord'].':'.$antarPlanet['house']
+            );
+
+            if ($antarRule) {
+                $paragraphs[] = $this->sentence(sprintf(
+                    'Within that, the running %s Antardasha draws on its own placement in the %s Bhava: %s. '
+                    .'The sub-period colours the larger one rather than overriding it, so where the two '
+                    .'disagree, expect the theme to surface briefly rather than settle',
+                    $antarPlanet['sanskrit'],
+                    $this->ordinal($antarPlanet['house']),
+                    $this->lowerFirstSafe($this->trimText($antarRule->text))
+                ));
+            }
         }
 
         $paragraphs[] = sprintf(
@@ -565,6 +599,57 @@ class ReadingGenerator
             $planet['sanskrit'],
             $this->trimText($rule->text)
         ));
+    }
+
+    /**
+     * Dasha fragments are written in three shapes: noun phrases
+     * ("a period of upheaval"), bare noun lists ("financial constraint
+     * and family responsibility") and verb phrases ("income dominates").
+     * Pick a lead-in that is grammatical for the shape at hand, so we
+     * never emit "During this period, a period of upheaval".
+     */
+    private function dashaLeadIn(string $text): string
+    {
+        $text = ltrim($text);
+
+        // "a period of upheaval" -> "This is a period of upheaval."
+        if (preg_match('/^(?:a|an|the|one of|among|this)\b/i', $text)) {
+            return 'This is ';
+        }
+
+        // "strongly favourable for earning" -> "The period is strongly ..."
+        if (preg_match('/^(?:strongly |highly |genuinely |especially )?(?:favourable|unfavourable|excellent|difficult|demanding|auspicious)\b/i', $text)) {
+            return 'The period is ';
+        }
+
+        // A bare noun list with no finite verb -> "The period brings ..."
+        $firstClause = preg_split('/[.;:]/', $text)[0];
+
+        $hasVerb = preg_match(
+            '/\b(?:is|are|come|comes|dominate|dominates|rise|rises|increase|increases|'
+            .'activated|indicated|bring|brings|turn|turns|arise|arises|grow|grows|'
+            .'feature|features|emerge|emerges|open|opens|fall|falls|surface|surfaces|'
+            .'set|sets|develop|develops|appear|appears|mark|marks|flourish|flourishes|'
+            .'improve|improves|occupy|occupies|expand|expands|go|goes|run|runs|'
+            .'resolve|resolves|defeated|delayed|weakened|tested|slowed|dissipate|'
+            .'dissipates|mount|mounts|thin|thins|clear|clears|shift|shifts|'
+            .'fluctuate|fluctuates|dissolve|dissolves|waver|wavers|warrant|warrants|'
+            .'occur|occurs|enter|enters|arrive|arrives|accompany|accompanies|'
+            .'can|may|will|becomes|become)\b/i',
+            $firstClause
+        );
+
+        return $hasVerb ? 'During this period, ' : 'The period brings ';
+    }
+
+    /** Lowercase a fragment's opening word, leaving proper nouns alone. */
+    private function lowerFirstSafe(string $text): string
+    {
+        if (preg_match('/^(?:[A-Z][a-z]+\s)?[A-Z]/', $text)) {
+            return $text;
+        }
+
+        return mb_strtolower(mb_substr($text, 0, 1)).mb_substr($text, 1);
     }
 
     /** Capitalise and terminate a rule fragment used as a whole sentence. */

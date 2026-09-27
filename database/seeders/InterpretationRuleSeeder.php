@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Rules\AspectRules;
 use Database\Seeders\Rules\ConjunctionRules;
 use Database\Seeders\Rules\CoreRules;
+use Database\Seeders\Rules\DashaRules;
 use Database\Seeders\Rules\HouseSignRules;
 use Database\Seeders\Rules\LordPlacementRules;
 use Database\Seeders\Rules\NakshatraRules;
@@ -52,6 +53,7 @@ class InterpretationRuleSeeder extends Seeder
             ConjunctionRules::all(),
             AspectRules::all(),
             NakshatraRules::all(),
+            DashaRules::all(),
         );
 
         $rows = array_map(fn ($r) => $this->clean($r), $rows);

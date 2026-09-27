@@ -7,6 +7,7 @@ use App\Models\Kundali;
 use App\Models\User;
 use App\Services\Astrology\Interpretation\NarrativeComposer;
 use App\Services\Astrology\Interpretation\ReadingGenerator;
+use App\Services\Astrology\Interpretation\RuleRepository;
 use Database\Seeders\InterpretationRuleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -45,7 +46,7 @@ class ReadingGeneratorTest extends TestCase
     #[Test]
     public function it_seeds_the_full_rule_corpus(): void
     {
-        $this->assertDatabaseCount('interpretation_rules', 601);
+        $this->assertDatabaseCount('interpretation_rules', 709);
 
         // Every bhava needs its complete lord-placement and sign layers.
         foreach (range(1, 12) as $house) {
@@ -68,7 +69,7 @@ class ReadingGeneratorTest extends TestCase
             );
         }
 
-        $this->assertDatabaseCount('interpretation_rules', 601);
+        $this->assertDatabaseCount('interpretation_rules', 709);
     }
 
     #[Test]
@@ -225,6 +226,42 @@ class ReadingGeneratorTest extends TestCase
             ->assertOk()
             ->assertSee('View Full Details of this Kundali')
             ->assertSee(route('kundalis.reading', $kundali), false);
+    }
+
+    #[Test]
+    public function every_dasha_fragment_reads_as_a_grammatical_sentence(): void
+    {
+        $rules = new RuleRepository('en');
+        $generator = app(ReadingGenerator::class);
+
+        $leadIn = new \ReflectionMethod($generator, 'dashaLeadIn');
+        $leadIn->setAccessible(true);
+
+        $planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+
+        foreach ($planets as $planet) {
+            foreach (range(1, 12) as $house) {
+                $rule = $rules->first('dasha_lord_house', "{$planet}:{$house}");
+
+                $this->assertNotNull($rule, "No dasha rule for {$planet} in house {$house}");
+
+                $sentence = $leadIn->invoke($generator, $rule->text).$rule->text;
+
+                // "During this period, a period of upheaval" is the failure
+                // mode this guards: a noun phrase given a verb-phrase lead-in.
+                $this->assertDoesNotMatchRegularExpression(
+                    '/^During this period, (?:a|an|the|one of|among)\b/i',
+                    $sentence,
+                    "Ungrammatical lead-in for {$planet}:{$house} — {$sentence}"
+                );
+
+                $this->assertDoesNotMatchRegularExpression(
+                    '/^The period brings (?:a|an|the|strongly|excellent)\b/i',
+                    $sentence,
+                    "Ungrammatical lead-in for {$planet}:{$house} — {$sentence}"
+                );
+            }
+        }
     }
 
     #[Test]
