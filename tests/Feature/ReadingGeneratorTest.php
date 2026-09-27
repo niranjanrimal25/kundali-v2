@@ -46,7 +46,7 @@ class ReadingGeneratorTest extends TestCase
     #[Test]
     public function it_seeds_the_full_rule_corpus(): void
     {
-        $this->assertDatabaseCount('interpretation_rules', 800);
+        $this->assertDatabaseCount('interpretation_rules', 908);
 
         // Every bhava needs its complete lord-placement and sign layers.
         foreach (range(1, 12) as $house) {
@@ -69,7 +69,7 @@ class ReadingGeneratorTest extends TestCase
             );
         }
 
-        $this->assertDatabaseCount('interpretation_rules', 800);
+        $this->assertDatabaseCount('interpretation_rules', 908);
     }
 
     #[Test]
@@ -260,6 +260,36 @@ class ReadingGeneratorTest extends TestCase
                     $sentence,
                     "Ungrammatical lead-in for {$planet}:{$house} — {$sentence}"
                 );
+            }
+        }
+    }
+
+    #[Test]
+    public function every_graha_has_a_house_specific_drishti_reading(): void
+    {
+        $rules = new RuleRepository('en');
+
+        $planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+        $seen = [];
+
+        foreach ($planets as $planet) {
+            foreach (range(1, 12) as $house) {
+                $rule = $rules->first('aspect_house', "{$planet}:{$house}");
+
+                $this->assertNotNull(
+                    $rule,
+                    "No house-specific drishti rule for {$planet} onto house {$house}"
+                );
+
+                // The whole point of this layer is that the same graha
+                // reads differently onto different bhavas.
+                $this->assertArrayNotHasKey(
+                    $planet.'|'.$rule->text,
+                    $seen,
+                    "{$planet} onto house {$house} duplicates another house's text"
+                );
+
+                $seen[$planet.'|'.$rule->text] = true;
             }
         }
     }

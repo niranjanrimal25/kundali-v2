@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Rules\AspectHouseRules;
 use Database\Seeders\Rules\AspectRules;
 use Database\Seeders\Rules\ConjunctionRules;
 use Database\Seeders\Rules\CoreRules;
@@ -54,6 +55,7 @@ class InterpretationRuleSeeder extends Seeder
             PlanetSignRules::all(),
             ConjunctionRules::all(),
             AspectRules::all(),
+            AspectHouseRules::all(),
             NakshatraRules::all(),
             DashaRules::all(),
             DignityRules::all(),

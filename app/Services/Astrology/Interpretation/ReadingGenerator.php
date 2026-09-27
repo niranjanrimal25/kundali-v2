@@ -466,7 +466,11 @@ class ReadingGenerator
             $described = [];
 
             foreach ($aspecting as $name) {
-                $rule = $rules->first('aspect', $name);
+                // Prefer the house-specific reading of this drishti; only
+                // fall back to the graha's general behaviour where the
+                // specific pair is unwritten.
+                $rule = $rules->first('aspect_house', $name.':'.$house)
+                    ?? $rules->first('aspect', $name);
 
                 if ($rule === null) {
                     continue;
