@@ -24,10 +24,16 @@
                         · {{ $kundali->birth_place }}
                     </p>
                 </div>
-                <a href="{{ route('kundalis.index') }}" wire:navigate
-                   class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
-                    ← All Kundalis
-                </a>
+                <div class="flex items-center gap-2">
+                    <a href="{{ route('kundalis.edit', $kundali) }}" wire:navigate
+                       class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
+                        Edit details
+                    </a>
+                    <a href="{{ route('kundalis.index') }}" wire:navigate
+                       class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
+                        ← All Kundalis
+                    </a>
+                </div>
             </div>
 
             <div class="mt-5 grid grid-cols-2 gap-4 border-t border-white/20 pt-4 text-sm sm:grid-cols-4">

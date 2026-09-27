@@ -50,6 +50,9 @@
                                class="text-lg text-[#4a2c5a] hover:underline" style="font-family:Georgia,serif;">
                                 {{ $kundali->name }}
                             </a>
+                            <a href="{{ route('kundalis.edit', $kundali) }}" wire:navigate
+                               class="text-xs text-gray-400 hover:text-[#4a2c5a]">Edit</a>
+
                             <button type="button"
                                     wire:click="delete({{ $kundali->id }})"
                                     wire:confirm="Delete the Kundali for {{ $kundali->name }}? This cannot be undone."
