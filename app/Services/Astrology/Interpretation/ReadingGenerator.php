@@ -389,9 +389,14 @@ class ReadingGenerator
         // wording only where that pair is unwritten.
         $hasSignRule = $rules->first('planet_sign', $planet['name'].':'.$planet['sign']) !== null;
 
-        if (! $hasSignRule && $rule = $rules->first('dignity', $planet['dignity'])) {
-            // Neutral dignity adds nothing worth saying.
-            if ($planet['dignity'] !== 'neutral') {
+        if (! $hasSignRule && $planet['dignity'] !== 'neutral') {
+            // Prefer the graha-specific reading of this dignity; it says
+            // what the strength or weakness actually costs, rather than
+            // repeating the same sentence for all nine grahas.
+            $rule = $rules->first('dignity_planet', $planet['name'].':'.$planet['dignity'])
+                ?? $rules->first('dignity', $planet['dignity']);
+
+            if ($rule) {
                 $modifiers[] = $rule->text;
             }
         }
@@ -410,13 +415,24 @@ class ReadingGenerator
 
         $digbala = $planet['digbala'];
         if ($digbala['applicable']) {
+            // Now four bands rather than two: the middle ground is worth
+            // saying when it is the graha's own directional statement.
             $key = match (true) {
                 $digbala['strength'] >= 0.84 => 'full',
-                $digbala['strength'] <= 0.16 => 'powerless',
-                default => null,
+                $digbala['strength'] >= 0.6 => 'strong',
+                $digbala['strength'] > 0.16 => 'weak',
+                default => 'powerless',
             };
 
-            if ($key && $rule = $rules->first('digbala', $key)) {
+            $rule = $rules->first('digbala_planet', $planet['name'].':'.$key);
+
+            // Fall back to the generic wording, which only covers the two
+            // extremes — the middle bands are not worth a generic sentence.
+            if ($rule === null && in_array($key, ['full', 'powerless'], true)) {
+                $rule = $rules->first('digbala', $key);
+            }
+
+            if ($rule) {
                 $modifiers[] = $rule->text;
             }
         }
