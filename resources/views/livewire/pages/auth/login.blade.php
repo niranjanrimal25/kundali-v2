@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\LoginForm;
+use App\Services\Auth\EmailOtpService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
@@ -17,6 +18,15 @@ new #[Layout('layouts.guest')] class extends Component
         $this->validate();
 
         $this->form->authenticate();
+
+        // Credentials were right, but the address is not yet verified.
+        if ($this->form->requiresVerification) {
+            session()->flash('status', 'Please verify your email address to continue. We have sent you a new code.');
+
+            $this->redirect(route('verification.otp'), navigate: true);
+
+            return;
+        }
 
         Session::regenerate();
 

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\User;
+use App\Services\Auth\EmailOtpService;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -21,6 +23,9 @@ class LoginForm extends Form
     #[Validate('boolean')]
     public bool $remember = false;
 
+    /** Set when credentials were correct but the email is unverified. */
+    public bool $requiresVerification = false;
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -30,7 +35,9 @@ class LoginForm extends Form
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only(['email', 'password']), $this->remember)) {
+        // Validate the credentials WITHOUT starting a session, so an
+        // unverified account is never logged in even momentarily.
+        if (! Auth::validate($this->only(['email', 'password']))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -39,6 +46,23 @@ class LoginForm extends Form
         }
 
         RateLimiter::clear($this->throttleKey());
+
+        $user = User::where('email', $this->email)->firstOrFail();
+
+        if (! $user->hasVerifiedEmail()) {
+            // Correct password, unverified address: issue a fresh code
+            // and divert to verification rather than granting access.
+            $this->requiresVerification = true;
+
+            app(EmailOtpService::class)->issue($user);
+
+            session()->put(EmailOtpService::sessionKey(), $user->id);
+            session()->put(EmailOtpService::rememberKey(), $this->remember);
+
+            return;
+        }
+
+        Auth::login($user, $this->remember);
     }
 
     /**

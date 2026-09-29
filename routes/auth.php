@@ -16,6 +16,11 @@ Route::middleware('guest')->group(function () {
 
     Volt::route('reset-password/{token}', 'pages.auth.reset-password')
         ->name('password.reset');
+
+    // Six-digit email verification. Deliberately in the guest group:
+    // the user is not authenticated until the code is confirmed.
+    Volt::route('verify-otp', 'pages.auth.verify-otp')
+        ->name('verification.otp');
 });
 
 Route::middleware('auth')->group(function () {
