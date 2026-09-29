@@ -98,7 +98,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <h1 class="text-lg font-semibold text-gray-900">Verify your email</h1>
+    <h1 class="text-2xl text-[#4a2c5a]">Verify your email</h1>
 
     <p class="mt-2 text-sm text-gray-600">
         We sent a {{ \App\Services\Auth\EmailOtpService::CODE_LENGTH }}-digit code to

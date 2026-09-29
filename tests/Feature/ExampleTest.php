@@ -2,20 +2,36 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * The root path is a redirect into the app, which in turn requires
-     * authentication — so a guest ends up at the login screen.
-     */
-    public function test_the_root_path_redirects_guests_to_login(): void
+    use RefreshDatabase;
+
+    public function test_guests_see_the_landing_page(): void
     {
         $this->get('/')
-            ->assertRedirect(route('dashboard'));
+            ->assertOk()
+            ->assertSee('Cast your chart');
+    }
 
-        $this->get(route('dashboard'))
-            ->assertRedirect(route('login'));
+    public function test_signed_in_users_are_sent_to_the_dashboard(): void
+    {
+        $this->actingAs(User::factory()->create())
+            ->get('/')
+            ->assertRedirect(route('dashboard'));
+    }
+
+    public function test_the_dashboard_renders_for_a_signed_in_user(): void
+    {
+        $user = User::factory()->create(['name' => 'Niranjan']);
+
+        $this->actingAs($user)
+            ->get(route('dashboard'))
+            ->assertOk()
+            ->assertSee('Namaste, Niranjan')
+            ->assertSee('New Kundali');
     }
 }

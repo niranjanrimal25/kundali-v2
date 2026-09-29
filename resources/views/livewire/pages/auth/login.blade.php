@@ -35,6 +35,9 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <h1 class="text-2xl text-[#4a2c5a]">Welcome back</h1>
+    <p class="mt-1 mb-6 text-sm text-gray-500">Sign in to your charts and readings.</p>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -66,7 +69,7 @@ new #[Layout('layouts.guest')] class extends Component
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-6 border-t border-[#ede5d6] pt-5">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                     {{ __('Forgot your password?') }}
@@ -78,4 +81,9 @@ new #[Layout('layouts.guest')] class extends Component
             </x-primary-button>
         </div>
     </form>
+
+    <p class="mt-6 text-center text-sm text-gray-500">
+        New here?
+        <a href="{{ route('register') }}" wire:navigate class="text-[#4a2c5a] underline hover:text-[#7b3f61]">Create an account</a>
+    </p>
 </div>

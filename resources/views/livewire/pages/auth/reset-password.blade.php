@@ -70,6 +70,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <h1 class="mb-6 text-2xl text-[#4a2c5a]">Choose a new password</h1>
     <form wire:submit="resetPassword">
         <!-- Email Address -->
         <div>

@@ -55,6 +55,11 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <h1 class="text-2xl text-[#4a2c5a]">Create your account</h1>
+    <p class="mt-1 mb-6 text-sm text-gray-500">
+        One account holds every chart you cast.
+    </p>
+
     <form wire:submit="register">
         <!-- Name -->
         <div>

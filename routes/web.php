@@ -7,10 +7,15 @@ use App\Livewire\Kundali\KundaliIndex;
 use App\Livewire\Kundali\ShowKundali;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/dashboard');
+// Guests get the landing page; signed-in users go straight to work.
+Route::get('/', function () {
+    return auth()->check()
+        ? redirect()->route('dashboard')
+        : view('welcome');
+})->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('dashboard', KundaliIndex::class)->name('dashboard');
+    Route::view('dashboard', 'dashboard')->name('dashboard');
 
     Route::get('kundalis', KundaliIndex::class)->name('kundalis.index');
     Route::get('kundalis/create', CreateKundali::class)->name('kundalis.create');
