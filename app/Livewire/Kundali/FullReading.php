@@ -4,10 +4,12 @@ namespace App\Livewire\Kundali;
 
 use App\Models\Kundali;
 use App\Services\Astrology\Interpretation\ReadingGenerator;
+use App\Services\Astrology\Interpretation\SimpleAnalysisGenerator;
 use App\Services\Astrology\KundaliService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class FullReading extends Component
@@ -15,6 +17,10 @@ class FullReading extends Component
     public Kundali $kundali;
 
     public string $locale = 'en';
+
+    /** 'full' = the long-form reading, 'simple' = the point-by-point view. */
+    #[Url(as: 'view')]
+    public string $view = 'full';
 
     public function mount(Kundali $kundali): void
     {
@@ -48,6 +54,18 @@ class FullReading extends Component
             $name,
             ['Content-Type' => 'application/pdf']
         );
+    }
+
+    public function setView(string $view): void
+    {
+        $this->view = in_array($view, ['full', 'simple'], true) ? $view : 'full';
+    }
+
+    /** The same corpus, laid out as grouped points rather than prose. */
+    #[Computed(persist: true)]
+    public function simple(): array
+    {
+        return app(SimpleAnalysisGenerator::class)->generate($this->facts(), $this->locale);
     }
 
     #[Computed]

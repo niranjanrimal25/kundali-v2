@@ -36,6 +36,7 @@ class OwnerCompositeRules
                 'condition_type' => 'composite',
                 'condition_key' => $key,
                 'section' => 'afflictions',
+                'category' => self::CATEGORY[$key] ?? 'health',
                 'polarity' => $polarity,
                 'weight' => 96,
                 'text' => $text,
@@ -59,6 +60,7 @@ class OwnerCompositeRules
                 'condition_type' => 'digbala_planet',
                 'condition_key' => 'Sun:powerless',
                 'section' => 'modifier',
+                'category' => 'health',
                 'polarity' => -1,
                 // Weight above DigbalaRules (80) so the owner's wording wins.
                 'weight' => 99,
@@ -71,6 +73,7 @@ class OwnerCompositeRules
                 'condition_type' => 'digbala_planet',
                 'condition_key' => 'Sun:full',
                 'section' => 'modifier',
+                'category' => 'career',
                 'polarity' => 2,
                 'weight' => 99,
                 'text' => 'holds full directional strength (Digbala) in the tenth, which is the most powerful position Surya can occupy',
@@ -80,6 +83,53 @@ class OwnerCompositeRules
             ],
         ];
     }
+
+    /**
+     * Life area each compound rule speaks to, for the summary grouping.
+     * Anything unlisted falls back to health, which is where the bulk of
+     * the supplied corpus sits.
+     */
+    private const CATEGORY = [
+        'sun_lord_afflicted' => 'health',
+        'sun_lagnesh_nodes_head' => 'health',
+        'sun_lagnesh_6_moon_venus' => 'health',
+        'sun_lagnesh_8_moon_venus' => 'health',
+        'third_lord_arm_fracture' => 'health',
+        'sun_rahu_stomach' => 'mind',
+        'sun_ketu_spiritual' => 'mind',
+        'sun_rahu_mercury_nerves' => 'mind',
+        'sun_rahu_mercury_low_degree' => 'mind',
+        'sun_saturn_trik' => 'health',
+        'sun_mars_fire_injury' => 'health',
+        'sun_12_mars_fire_injury' => 'health',
+        'sun_venus_reproductive' => 'health',
+        'mars_venus_reproductive' => 'health',
+        'sun_venus_reproductive_severe' => 'health',
+        'sun_mars_rahu_fire' => 'mind',
+        'moon_1st_fickle' => 'mind',
+        'moon_2_6_10_unstable' => 'mind',
+        'fourth_lord_chest' => 'health',
+        'sixth_lord_blood' => 'health',
+        'moon_12_fire_water' => 'mind',
+        'moon_aries_lagna_1st' => 'mind',
+        'moon_ketu_maternal' => 'relationships',
+        'moon_saturn_sorrow' => 'mind',
+        'moon_rahu_grandfather' => 'relationships',
+        'moon_saturn_venus_water' => 'health',
+        'moon_saturn_isolation' => 'relationships',
+        'moon_mars_blood' => 'health',
+        'moon_mars_blood_conjunct' => 'health',
+        'moon_mars_virgo_lagna' => 'health',
+        'moon_venus_mars_serious' => 'health',
+        'lagnesh_blood_urinary' => 'health',
+        'moon_cancer_heart_clot' => 'health',
+        'mars_afflicted_blood' => 'health',
+        'mars_afflicted_surgery' => 'health',
+        'mars_afflicted_pitta' => 'health',
+        'mars_afflicted_marrow' => 'health',
+        'mars_afflicted_anorectal' => 'health',
+        'mars_afflicted_mind' => 'mind',
+    ];
 
     private static function rules(): array
     {
@@ -131,12 +181,12 @@ class OwnerCompositeRules
             [
                 'sun_saturn_trik', -2,
                 'Surya and Shani share a difficult bhava. The classical reading is trouble in the nerves, the legs, the teeth, the ears and the hair',
-                ['planet' => 'Sun', 'in_house' => [6, 8, 7, 12], 'with_any' => ['Saturn']],
+                ['planet' => 'Sun', 'in_house' => [6, 8, 7, 12], 'influenced_by' => ['Saturn']],
             ],
             [
                 'sun_mars_fire_injury', -2,
                 'Surya rules the Lagna or the 2nd and shares a difficult bhava with Mangala. The classical indication is injury to the eye or forehead by a sharp implement, and harm from fire or electrical current',
-                ['planet' => 'Sun', 'lord_of' => [1, 2], 'in_house' => [6, 8, 7, 4], 'with_any' => ['Mars']],
+                ['planet' => 'Sun', 'lord_of' => [1, 2], 'in_house' => [6, 8, 7, 4], 'influenced_by' => ['Mars']],
             ],
             [
                 'sun_venus_reproductive', -2,
@@ -158,7 +208,7 @@ class OwnerCompositeRules
             [
                 'sun_12_mars_fire_injury', -2,
                 'Surya occupies the 12th in the company of Mangala. The classical indication is injury to the eye or forehead by a sharp implement, and harm from fire or electrical current',
-                ['planet' => 'Sun', 'in_house' => [12], 'with_any' => ['Mars']],
+                ['planet' => 'Sun', 'in_house' => [12], 'influenced_by' => ['Mars']],
             ],
             [
                 'mars_venus_reproductive', -2,
@@ -237,7 +287,7 @@ class OwnerCompositeRules
             [
                 'moon_saturn_isolation', -2,
                 'Chandra rules a difficult bhava and is joined or aspected by Shani. The classical reading is loneliness, and a sense of being let down by those around you',
-                ['planet' => 'Moon', 'lord_of' => [6, 8, 12, 10, 4, 2], 'with_any' => ['Saturn']],
+                ['planet' => 'Moon', 'lord_of' => [6, 8, 12, 10, 4, 2], 'influenced_by' => ['Saturn']],
             ],
             [
                 'moon_mars_blood', -2,

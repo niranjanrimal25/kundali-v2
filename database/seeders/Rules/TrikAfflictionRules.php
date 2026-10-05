@@ -43,6 +43,11 @@ class TrikAfflictionRules
                         'condition_type' => 'trik_affliction',
                         'condition_key' => "{$planet}:{$house}:{$facet}",
                         'section' => 'afflictions',
+                        'category' => match ($facet) {
+                            'physical' => 'health',
+                            'relations' => 'relationships',
+                            default => 'mind',
+                        },
                         'polarity' => $polarity,
                         'weight' => 92,
                         'text' => $text,

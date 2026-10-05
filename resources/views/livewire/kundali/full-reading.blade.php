@@ -50,6 +50,24 @@
             </div>
         </div>
 
+        {{-- View toggle: same corpus, two presentations --}}
+        <div class="flex gap-1 border-x border-t border-[#e3dccd] bg-[#fffdf8] px-8 pt-4">
+            <button wire:click="setView('full')"
+                    class="rounded-t-md border-b-2 px-4 py-2 text-sm transition
+                           {{ $view === 'full'
+                              ? 'border-[#4a2c5a] font-medium text-[#4a2c5a]'
+                              : 'border-transparent text-gray-500 hover:text-[#4a2c5a]' }}">
+                Full Reading
+            </button>
+            <button wire:click="setView('simple')"
+                    class="rounded-t-md border-b-2 px-4 py-2 text-sm transition
+                           {{ $view === 'simple'
+                              ? 'border-[#4a2c5a] font-medium text-[#4a2c5a]'
+                              : 'border-transparent text-gray-500 hover:text-[#4a2c5a]' }}">
+                Point-by-Point Analysis
+            </button>
+        </div>
+
         {{-- Scope notice: states which rule corpus produced this reading,
              so a thin report is never mistaken for a broken one. --}}
         @php($ruleMode = config('jyotish.rule_sources'))
@@ -68,6 +86,9 @@
         </div>
 
         {{-- The reading --}}
+        @if ($view === 'simple')
+            @include('livewire.kundali.partials.simple-analysis', ['simple' => $this->simple])
+        @else
         <article class="rounded-b border-x border-b border-[#e3dccd] bg-[#fffdf8] px-8 py-8 shadow-sm">
             @foreach ($sections as $section)
                 <section class="{{ $loop->first ? '' : 'mt-10 border-t border-[#ede5d6] pt-8' }}">
@@ -102,5 +123,6 @@
                 </button>
             </div>
         </article>
+        @endif
     </div>
 </div>

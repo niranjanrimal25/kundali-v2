@@ -75,7 +75,7 @@ class InterpretationRuleSeeder extends Seeder
         // Rules written by this project carry the default provenance;
         // owner-supplied rules declare their own.
         $rows = array_map(
-            fn ($r) => $r + ['provenance' => 'modern-synthesis', 'source' => null],
+            fn ($r) => $r + ['provenance' => 'modern-synthesis', 'source' => null, 'category' => null],
             $rows
         );
 

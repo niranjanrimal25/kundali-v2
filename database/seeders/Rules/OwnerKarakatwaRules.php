@@ -36,6 +36,12 @@ class OwnerKarakatwaRules
                     'condition_type' => 'karakatwa',
                     'condition_key' => "{$planet}:{$facet}",
                     'section' => 'karakatwa',
+                    'category' => match ($facet) {
+                        'body' => 'health',
+                        'relations' => 'relationships',
+                        'qualities' => 'mind',
+                        default => 'career',
+                    },
                     'polarity' => 0,
                     'weight' => 90,
                     'text' => $text,

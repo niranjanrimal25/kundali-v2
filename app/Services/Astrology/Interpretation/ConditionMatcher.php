@@ -36,6 +36,7 @@ class ConditionMatcher
         'planet', 'lord_of', 'in_house', 'in_sign', 'with_any', 'with_all',
         'aspected_by', 'lagna_sign', 'sign_in_house', 'not_in_house',
         'companion_lord_of', 'degree_below', 'lord_in_house',
+        'influenced_by',
     ];
 
     public function matches(array $conditions, array $facts): bool
@@ -137,6 +138,19 @@ class ConditionMatcher
 
         if (isset($conditions['aspected_by']) && ! $this->aspectedByAny($planet, (array) $conditions['aspected_by'], $facts)) {
             return false;
+        }
+
+        // The source says "with" to mean influence generally, which in
+        // practice covers a graha sharing the bhava OR casting drishti
+        // onto it. Treating it as conjunction only made rules miss the
+        // cases the owner's own worked example relies on.
+        if (isset($conditions['influenced_by'])) {
+            $others = (array) $conditions['influenced_by'];
+
+            if (! $this->conjunctAny($planet, $others, $facts)
+                && ! $this->aspectedByAny($planet, $others, $facts)) {
+                return false;
+            }
         }
 
         // Companions sharing the bhava must themselves rule given houses.

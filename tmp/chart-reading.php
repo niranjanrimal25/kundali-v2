@@ -100,6 +100,31 @@ foreach ($facts['planets'] as $n => $p) {
 }
 echo "\n";
 
+// Simple analysis view
+$simple = app(App\Services\Astrology\Interpretation\SimpleAnalysisGenerator::class)->generate($facts);
+
+echo "### 1. Chart Placement Overview\n\n";
+foreach ($simple['placements'] as $p) {
+    $g = implode(', ', array_map(fn ($x) => $x['sanskrit'].($x['combust'] ? '*' : ''), $p['grahas']));
+    printf("- %s%s House: %s (%s - %d) with %s\n",
+        $p['is_lagna'] ? 'Ascendant / Lagna - ' : '', $p['ordinal'],
+        $p['sign_name'], $p['sign_sanskrit'], $p['sign_number'], $g);
+}
+echo "\n### 2. Detailed Analysis Based On Your Rules\n\n";
+foreach ($simple['analysis'] as $g) {
+    echo "**{$g['letter']}. {$g['title']}**\n\n";
+    echo "- **{$g['heading']}:**\n";
+    foreach ($g['points'] as $pt) { echo "  - $pt\n"; }
+    echo "\n";
+}
+echo "### 3. Summary of Key Outcomes\n\n";
+foreach ($simple['summary'] as $i => $s) {
+    echo ($i + 1).". **{$s['label']}**\n";
+    foreach ($s['points'] as $pt) { echo "   - $pt\n"; }
+    echo "\n";
+}
+exit;
+
 $sections = app(ReadingGenerator::class)->generate($facts);
 
 foreach ($sections as $s) {

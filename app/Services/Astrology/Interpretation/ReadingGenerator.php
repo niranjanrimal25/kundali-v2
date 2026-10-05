@@ -420,10 +420,6 @@ class ReadingGenerator
                 continue;
             }
 
-            if (! $this->isAfflicted($planet, $facts)) {
-                continue;
-            }
-
             // Each facet becomes its own sentence. Joining all three with
             // "and" produced an unreadable chain, since every facet is
             // itself a list.
@@ -447,7 +443,7 @@ class ReadingGenerator
             }
 
             array_unshift($sentences, $this->sentence(sprintf(
-                '%s stands afflicted in the %s bhava',
+                '%s occupies the %s bhava, one of the Trik bhavas',
                 $planet['sanskrit'],
                 $this->ordinal($planet['house'])
             )));
