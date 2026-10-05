@@ -1318,5 +1318,102 @@
             "title": null,
             "text": "Mangala stands afflicted in the 12th. The classical reading is difficulty controlling impulse, aggression and high mental strain, together with insomnia, nightmares and irrational fear."
         }
+    },
+    {
+        "id": "SUN_KETU_HEAD_ACCIDENT",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 95,
+        "source": "Master rule set, Sun section",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun with Ketu",
+            "text": "Surya is placed with Ketu. The rule states that an accident will cause serious head injury."
+        }
+    },
+    {
+        "id": "SUN_STRONGEST_10TH",
+        "subject": "Sun",
+        "category": "career",
+        "priority": 70,
+        "source": "Master rule set, Sun house strength",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 10
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 10th",
+            "text": "Surya occupies the 10th house, where it is most powerful."
+        }
+    },
+    {
+        "id": "SUN_WEAK_4TH",
+        "subject": "Sun",
+        "category": "career",
+        "priority": 70,
+        "source": "Master rule set, Sun house strength",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 4
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 4th",
+            "text": "Surya occupies the 4th house, where it is weak, but this does not mean it is entirely inauspicious."
+        }
+    },
+    {
+        "id": "MARS_DIGBALA_10TH",
+        "subject": "Mars",
+        "category": "career",
+        "priority": 70,
+        "source": "Master rule set, Mars directional strength",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 10
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 10th",
+            "text": "Mangala occupies the 10th house, the south direction, where it holds full directional strength (Digbala)."
+        }
+    },
+    {
+        "id": "MARS_DIGHEENA_4TH",
+        "subject": "Mars",
+        "category": "career",
+        "priority": 70,
+        "source": "Master rule set, Mars directional weakness",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 4
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 4th",
+            "text": "Mangala occupies the 4th house, the north direction, where it is directionally weak (Digheena)."
+        }
     }
 ]

@@ -106,5 +106,221 @@
         "text": "land and property, weapons and sharp implements, and the fire element",
         "lead": "It also signifies",
         "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MERCURY_BODY",
+        "subject": "Mercury",
+        "facet": "body",
+        "category": "health",
+        "text": "the nervous system, the skin, speech, hearing, memory and the digestive tract",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_MERCURY_RELATIONS",
+        "subject": "Mercury",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "sisters, paternal aunts, maternal uncles and aunts, nephews and nieces, and business partners",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_MERCURY_QUALITIES",
+        "subject": "Mercury",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "reasoning and argument, decisiveness, clarity of communication, and the tendency to overthink",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_MERCURY_OTHER",
+        "subject": "Mercury",
+        "facet": "other",
+        "category": "career",
+        "text": "business judgement, financial transactions and commercial dealings",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_JUPITER_BODY",
+        "subject": "Jupiter",
+        "facet": "body",
+        "category": "health",
+        "text": "the liver, the gallbladder, body fat and cholesterol, the ears, and the digestive system",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_JUPITER_RELATIONS",
+        "subject": "Jupiter",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "gurus, teachers, priests, elders, children and grandparents",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_JUPITER_QUALITIES",
+        "subject": "Jupiter",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "religious feeling, knowledge and the pride that can attach to it, confidence, and moral judgement",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_JUPITER_OTHER",
+        "subject": "Jupiter",
+        "facet": "other",
+        "category": "career",
+        "text": "wealth given in charity, investment, and advice offered to others",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_VENUS_BODY",
+        "subject": "Venus",
+        "facet": "body",
+        "category": "health",
+        "text": "the kidneys, the urinary tract, the reproductive organs, hormones, eyesight and the nerves",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_VENUS_RELATIONS",
+        "subject": "Venus",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "the spouse, a lover or partner, female friends, the mother-in-law and siblings-in-law",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_VENUS_QUALITIES",
+        "subject": "Venus",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "desire and attraction, attachment to comfort and luxury, pride in appearance, and inclination to indulgence",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_VENUS_OTHER",
+        "subject": "Venus",
+        "facet": "other",
+        "category": "career",
+        "text": "expenditure on pleasure, beauty and refinement, and the indulgences that drain wealth",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_SATURN_BODY",
+        "subject": "Saturn",
+        "facet": "body",
+        "category": "health",
+        "text": "the joints and knees, the legs, the teeth, the nerves, and the processes of the bowel",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_SATURN_RELATIONS",
+        "subject": "Saturn",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "servants, employees and labourers, paternal uncles, elder brothers, in-laws and the elderly",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_SATURN_QUALITIES",
+        "subject": "Saturn",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "laziness and procrastination, pessimism, stubbornness, detachment, suspicion and sorrow",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_SATURN_OTHER",
+        "subject": "Saturn",
+        "facet": "other",
+        "category": "career",
+        "text": "long delay, chronic difficulty, isolation and the slow accumulation that follows endurance",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_RAHU_BODY",
+        "subject": "Rahu",
+        "facet": "body",
+        "category": "health",
+        "text": "conditions that resist diagnosis, poisoning, the intestines, the nerves, and disturbed sleep",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_RAHU_RELATIONS",
+        "subject": "Rahu",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "the maternal side, the paternal grandfather, in-laws, foreigners and people of another community",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_RAHU_QUALITIES",
+        "subject": "Rahu",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "deceit and diplomacy, suspicion, restlessness, delusion, and the urge to break rules",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_RAHU_OTHER",
+        "subject": "Rahu",
+        "facet": "other",
+        "category": "career",
+        "text": "gambling, unorthodox earning, intoxicants, and sudden gain or exposure",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_KETU_BODY",
+        "subject": "Ketu",
+        "facet": "body",
+        "category": "health",
+        "text": "the intestines, infection by parasites, the skin, the lower back and spine, the soles of the feet, and the nervous system",
+        "lead": "In the body it governs",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_KETU_RELATIONS",
+        "subject": "Ketu",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "nephews and nieces, grandchildren, household servants, and the maternal grandmother's line",
+        "lead": "Among people it stands for",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_KETU_QUALITIES",
+        "subject": "Ketu",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "detachment, loss of interest, mysteriousness, distrust, and a meditative indifference",
+        "lead": "In temperament it carries",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
+    },
+    {
+        "id": "KARAKA_KETU_OTHER",
+        "subject": "Ketu",
+        "facet": "other",
+        "category": "career",
+        "text": "ancestral property, sudden surgery, renunciation and withdrawal from worldly duty",
+        "lead": "It also signifies",
+        "source": "Distilled from the master Trik matrix rows supplied by the owner"
     }
 ]
