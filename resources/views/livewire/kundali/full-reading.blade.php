@@ -22,6 +22,19 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
+                    {{-- Language --}}
+                    <div class="flex overflow-hidden rounded border border-white/30">
+                        @foreach (\App\Livewire\Kundali\FullReading::LOCALES as $code => $label)
+                            <button wire:click="setLocale('{{ $code }}')"
+                                    class="px-2.5 py-1.5 text-xs transition
+                                           {{ $locale === $code
+                                              ? 'bg-[#e9c46a] font-medium text-[#33203f]'
+                                              : 'text-white/80 hover:bg-white/10' }}">
+                                {{ $label }}
+                            </button>
+                        @endforeach
+                    </div>
+
                     <button wire:click="downloadPdf" wire:loading.attr="disabled"
                             class="rounded bg-[#e9c46a] px-3 py-1.5 text-xs font-medium text-[#33203f] hover:bg-[#f0d089] disabled:opacity-60">
                         <span wire:loading.remove wire:target="downloadPdf">Download PDF</span>
@@ -51,6 +64,19 @@
         </div>
 
         <article class="rounded-b border-x border-b border-[#e3dccd] bg-[#fffdf8] px-8 py-8 shadow-sm">
+
+            {{-- Legend --}}
+            <div class="mb-6 flex flex-wrap items-center gap-4 rounded border border-[#ede5d6] bg-[#f9f6ef] px-4 py-2.5 text-xs text-gray-600">
+                <span class="font-medium text-[#4a2c5a]">Key:</span>
+                <span class="flex items-center gap-1.5">
+                    <span class="rounded bg-[#b5643f] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white">Rule</span>
+                    a rule from your rule base matched this placement
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <span class="rounded bg-[#9aa8c4] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white">Karakatwa</span>
+                    derived by composing significations with the bhava
+                </span>
+            </div>
 
             {{-- 1. Placements --}}
             <h2 class="text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">1. Chart Placement Overview</h2>
@@ -86,15 +112,24 @@
                                 No rule in the current rule base covers this placement.
                             </p>
                         @else
-                            <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-gray-700">
+                            {{-- Explicit rule matches read as the primary
+                                 findings; derived Karakatwa is tinted so the
+                                 two are never confused at a glance. --}}
+                            <ul class="mt-3 space-y-2 text-sm leading-relaxed">
                                 @foreach ($group['points'] as $point)
-                                    <li>
-                                        {{ $point['text'] }}
-                                        @if ($point['derived'])
-                                            <span class="ml-1 rounded bg-gray-100 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-gray-500"
-                                                  title="{{ $point['source'] }}">derived</span>
-                                        @endif
-                                    </li>
+                                    @if ($point['derived'])
+                                        <li class="flex gap-2 rounded border-l-[3px] border-[#9aa8c4] bg-[#eef1f7] px-3 py-2 text-gray-600">
+                                            <span class="mt-0.5 shrink-0 rounded bg-[#9aa8c4] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white"
+                                                  title="{{ $point['source'] }}">Karakatwa</span>
+                                            <span>{{ $point['text'] }}</span>
+                                        </li>
+                                    @else
+                                        <li class="flex gap-2 rounded border-l-[3px] border-[#b5643f] bg-[#fdf3ec] px-3 py-2 text-gray-800">
+                                            <span class="mt-0.5 shrink-0 rounded bg-[#b5643f] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white"
+                                                  title="{{ $point['source'] }}">Rule</span>
+                                            <span>{{ $point['text'] }}</span>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         @endif

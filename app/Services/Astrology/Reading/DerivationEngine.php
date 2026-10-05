@@ -22,8 +22,29 @@ class DerivationEngine
      * @param  array  $karakatwa  rows from resources/rules/karakatwa.json
      * @return list<array> findings in the same shape RuleEngine returns
      */
-    public function derive(array $payload, array $karakatwa, array $explicitSubjects = []): array
+    /** Sentence frames, per locale. Only these are translated; the
+     *  karakatwa and bhava texts come from the rule base already
+     *  translated. */
+    private const FRAMES = [
+        'en' => [
+            'body' => '%s governs %s. Sitting in the %s bhava, which rules %s, it draws those parts of the body into the affairs of this house.',
+            'mind' => '%s carries %s. In the %s bhava these qualities are expressed through %s.',
+            'relations' => '%s stands for %s, and its placement in the %s bhava colours how those relationships run.',
+            'other' => '%s also signifies %s, which the %s bhava brings into play.',
+        ],
+        'ne' => [
+            'body' => '%s ले %s लाई प्रतिनिधित्व गर्दछ। %s भावमा बसेकाले, जुन %s को कारक हो, यी शारीरिक अंगहरू यस भावका विषयहरूसँग जोडिन्छन्।',
+            'mind' => '%s ले %s बोक्दछ। %s भावमा यी गुणहरू %s मार्फत प्रकट हुन्छन्।',
+            'relations' => '%s ले %s लाई जनाउँछ, र %s भावमा रहेको यसको स्थितिले ती सम्बन्धहरूलाई प्रभाव पार्दछ।',
+            'other' => '%s ले %s लाई पनि जनाउँछ, जसलाई %s भावले सक्रिय बनाउँछ।',
+        ],
+    ];
+
+    public function derive(array $payload, array $karakatwa, array $explicitSubjects = [], string $locale = 'en'): array
     {
+        $frames = self::FRAMES[$locale] ?? self::FRAMES['en'];
+        $vocab = new Vocabulary($locale);
+
         $bySubject = [];
 
         foreach ($karakatwa as $row) {
@@ -48,11 +69,11 @@ class DerivationEngine
                     'health',
                     "KARAKA_DERIVED_{$graha}_BODY_H{$planet['house']}",
                     sprintf(
-                        '%s governs %s. Sitting in the %s bhava, which rules %s, it draws those parts of the body into the affairs of this house.',
-                        $planet['sanskrit'],
+                        $frames['body'],
+                        $vocab->graha($graha, $planet['sanskrit']),
                         $this->trim($bySubject[$graha]['body']['text']),
-                        $this->ordinal($planet['house']),
-                        $house['significations']
+                        $vocab->ordinal($planet['house']),
+                        $vocab->significations($planet['house'], $house['significations'])
                     )
                 );
             }
@@ -64,11 +85,11 @@ class DerivationEngine
                     'mind',
                     "KARAKA_DERIVED_{$graha}_MIND_H{$planet['house']}",
                     sprintf(
-                        '%s carries %s. In the %s bhava these qualities are expressed through %s.',
-                        $planet['sanskrit'],
+                        $frames['mind'],
+                        $vocab->graha($graha, $planet['sanskrit']),
                         $this->trim($bySubject[$graha]['qualities']['text']),
-                        $this->ordinal($planet['house']),
-                        $house['label'] === '' ? 'this house' : mb_strtolower($house['label'])
+                        $vocab->ordinal($planet['house']),
+                        $vocab->houseLabel($planet['house'], mb_strtolower($house['label']))
                     )
                 );
             }
@@ -80,8 +101,8 @@ class DerivationEngine
                     'relationships',
                     "KARAKA_DERIVED_{$graha}_REL_H{$planet['house']}",
                     sprintf(
-                        '%s stands for %s, and its placement in the %s bhava colours how those relationships run.',
-                        $planet['sanskrit'],
+                        $frames['relations'],
+                        $vocab->graha($graha, $planet['sanskrit']),
                         $this->trim($bySubject[$graha]['relations']['text']),
                         $this->ordinal($planet['house'])
                     )
@@ -95,8 +116,8 @@ class DerivationEngine
                     'career',
                     "KARAKA_DERIVED_{$graha}_OTHER_H{$planet['house']}",
                     sprintf(
-                        '%s also signifies %s, which the %s bhava brings into play.',
-                        $planet['sanskrit'],
+                        $frames['other'],
+                        $vocab->graha($graha, $planet['sanskrit']),
                         $this->trim($bySubject[$graha]['other']['text']),
                         $this->ordinal($planet['house'])
                     )

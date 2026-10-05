@@ -76,16 +76,16 @@
     <div style="page-break-after: always;"></div>
 
     {{-- Reading --}}
-    <h2>1. Chart Placement Overview</h2>
+    <h2>{{ $report['labels']['s1'] ?? '1. Chart Placement Overview' }}</h2>
     @foreach ($report['placements'] as $p)
         <p>
-            <strong>@if ($p['isLagna'])Ascendant / Lagna &mdash; @endif{{ $p['ordinal'] }} House:</strong>
-            {{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }}) with
+            <strong>@if ($p['isLagna']){{ $report['labels']['lagna'] }} &mdash; @endif{{ $p['ordinal'] }} {{ $report['labels']['house'] }}:</strong>
+            {{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }}) {{ $report['labels']['with'] }}
             @foreach ($p['grahas'] as $g){{ $g['sanskrit'] }}@if ($g['combust'])*@endif{{ ! $loop->last ? ', ' : '' }}@endforeach
         </p>
     @endforeach
 
-    <h2>2. Detailed Analysis Based On Your Rules</h2>
+    <h2>{{ $report['labels']['s2'] ?? '2. Detailed Analysis Based On Your Rules' }}</h2>
     @foreach ($report['groups'] as $group)
         <p><strong>{{ $group['letter'] }}. {{ $group['title'] }}</strong></p>
         <div class="st">{{ $group['heading'] }}</div>
@@ -97,7 +97,7 @@
     @endforeach
 
     @if ($report['summary'] !== [])
-        <h2>3. Summary of Key Outcomes</h2>
+        <h2>{{ $report['labels']['s3'] ?? '3. Summary of Key Outcomes' }}</h2>
         @foreach ($report['summary'] as $i => $bucket)
             <p><strong>{{ $i + 1 }}. {{ $bucket['label'] }}</strong></p>
             @foreach ($bucket['points'] as $point)

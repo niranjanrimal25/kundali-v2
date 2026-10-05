@@ -17,6 +17,58 @@ namespace App\Services\Astrology\Reading;
  */
 class ReportAggregator
 {
+    private string $locale = 'en';
+
+    private Vocabulary $vocab;
+
+    private const LABELS = [
+        'en' => [
+            'conjunction' => 'Conjunction of %s (%s House)',
+            'placement' => 'Placement of %s (%s)',
+            'heading' => '%s in the %s House (%s - %d)',
+            'lords' => 'Bhava Lord Placements',
+            'lordsHeading' => 'Rules that depend on where a bhava lord sits',
+            's1' => '1. Chart Placement Overview',
+            's2' => '2. Detailed Analysis Based On Your Rules',
+            's3' => '3. Summary of Key Outcomes',
+            'none' => 'No rule in the current rule base covers this placement.',
+            'lagna' => 'Ascendant / Lagna',
+            'with' => 'with',
+        ],
+        'ne' => [
+            'conjunction' => '%s को युति (%s भाव)',
+            'placement' => '%s को स्थिति (%s)',
+            'heading' => '%s %s भावमा (%s - %d)',
+            'lords' => 'भावेशको स्थिति',
+            'lordsHeading' => 'भावेश कहाँ बसेको छ भन्नेमा आधारित नियमहरू',
+            's1' => '१. ग्रह स्थिति सारांश',
+            's2' => '२. तपाईंका नियम अनुसार विस्तृत विश्लेषण',
+            's3' => '३. मुख्य नतिजाहरूको सारांश',
+            'none' => 'हालको नियम आधारमा यस स्थितिलाई समेट्ने कुनै नियम छैन।',
+            'lagna' => 'लग्न',
+            'with' => 'सँग',
+        ],
+    ];
+
+    private const CATEGORY_LABELS_NE = [
+        'health' => 'स्वास्थ्य र शरीर',
+        'mind' => 'मन र स्वभाव',
+        'relationships' => 'सम्बन्धहरू',
+        'career' => 'पेसा र अर्थ',
+    ];
+
+    private function label(string $key): string
+    {
+        return self::LABELS[$this->locale][$key] ?? self::LABELS['en'][$key];
+    }
+
+    private function categoryLabel(string $key): string
+    {
+        return $this->locale === 'ne'
+            ? (self::CATEGORY_LABELS_NE[$key] ?? self::CATEGORY_LABELS[$key])
+            : self::CATEGORY_LABELS[$key];
+    }
+
     public const CATEGORY_LABELS = [
         'health' => 'Health & Body',
         'mind' => 'Mind & Temperament',
@@ -27,8 +79,11 @@ class ReportAggregator
     /**
      * @param  list<array>  $findings  from RuleEngine + DerivationEngine
      */
-    public function build(array $payload, array $findings): array
+    public function build(array $payload, array $findings, string $locale = 'en'): array
     {
+        $this->locale = $locale;
+        $this->vocab = new Vocabulary($locale);
+
         $placements = $this->placements($payload);
         $groups = $this->groups($payload, $findings);
         $summary = $this->summary($findings);
@@ -38,6 +93,16 @@ class ReportAggregator
             'groups' => $groups,
             'summary' => $summary,
             'markdown' => $this->markdown($placements, $groups, $summary),
+            'labels' => [
+                's1' => $this->label('s1'),
+                's2' => $this->label('s2'),
+                's3' => $this->label('s3'),
+                'lagna' => $this->label('lagna'),
+                'house' => $this->vocab->houseWord(),
+                'with' => $this->label('with'),
+                'none' => $this->label('none'),
+            ],
+            'locale' => $locale,
             'stats' => [
                 'explicit' => count(array_filter($findings, fn ($f) => ! $f['derived'])),
                 'derived' => count(array_filter($findings, fn ($f) => $f['derived'])),
@@ -57,14 +122,14 @@ class ReportAggregator
 
             $out[] = [
                 'house' => $house['number'],
-                'ordinal' => $this->ordinal($house['number']),
+                'ordinal' => $this->vocab->ordinal($house['number']),
                 'isLagna' => $house['number'] === 1,
-                'signName' => $house['signName'],
+                'signName' => $this->vocab->sign($house['signName']),
                 'signSanskrit' => $house['signSanskrit'],
                 'signNumber' => $house['signNumber'],
                 'grahas' => array_map(fn ($g) => [
                     'name' => $g,
-                    'sanskrit' => $payload['planet'][$g]['sanskrit'],
+                    'sanskrit' => $this->vocab->graha($g, $payload['planet'][$g]['sanskrit']),
                     'combust' => $payload['planet'][$g]['combust'],
                     'retrograde' => $payload['planet'][$g]['retrograde'],
                 ], $house['occupants']),
@@ -86,7 +151,7 @@ class ReportAggregator
             }
 
             $occupants = $house['occupants'];
-            $names = array_map(fn ($g) => $payload['planet'][$g]['sanskrit'], $occupants);
+            $names = array_map(fn ($g) => $this->vocab->graha($g, $payload['planet'][$g]['sanskrit']), $occupants);
 
             $points = [];
 
@@ -110,12 +175,12 @@ class ReportAggregator
             $groups[] = [
                 'letter' => chr(65 + $letter++),
                 'title' => count($occupants) > 1
-                    ? 'Conjunction of '.$this->listify($names).' ('.$this->ordinal($house['number']).' House)'
-                    : 'Placement of '.$names[0].' ('.$occupants[0].')',
+                    ? sprintf($this->label('conjunction'), $this->listify($names), $this->vocab->ordinal($house['number']))
+                    : sprintf($this->label('placement'), $names[0], $this->vocab->graha($occupants[0], $occupants[0])),
                 'heading' => sprintf(
-                    '%s in the %s House (%s - %d)',
+                    $this->label('heading'),
                     $this->listify($names),
-                    $this->ordinal($house['number']),
+                    $this->vocab->ordinal($house['number']),
                     $house['signSanskrit'],
                     $house['signNumber']
                 ),
@@ -140,8 +205,8 @@ class ReportAggregator
         if ($lordPoints !== []) {
             $groups[] = [
                 'letter' => chr(65 + $letter),
-                'title' => 'Bhava Lord Placements',
-                'heading' => 'Rules that depend on where a bhava lord sits',
+                'title' => $this->label('lords'),
+                'heading' => $this->label('lordsHeading'),
                 'house' => null,
                 'points' => $lordPoints,
             ];
@@ -169,7 +234,7 @@ class ReportAggregator
 
             $out[] = [
                 'key' => $key,
-                'label' => $label,
+                'label' => $this->categoryLabel($key),
                 'points' => array_values(array_unique($buckets[$key])),
             ];
         }
@@ -179,7 +244,7 @@ class ReportAggregator
 
     private function markdown(array $placements, array $groups, array $summary): string
     {
-        $md = "## 1. Chart Placement Overview\n\n";
+        $md = '## '.$this->label('s1')."\n\n";
 
         foreach ($placements as $p) {
             $grahas = implode(', ', array_map(
@@ -188,24 +253,26 @@ class ReportAggregator
             ));
 
             $md .= sprintf(
-                "- **%s%s House:** %s (%s - %d) with %s\n",
-                $p['isLagna'] ? 'Ascendant / Lagna — ' : '',
+                "- **%s%s %s:** %s (%s - %d) %s %s\n",
+                $p['isLagna'] ? $this->label('lagna').' — ' : '',
                 $p['ordinal'],
+                $this->vocab->houseWord(),
                 $p['signName'],
                 $p['signSanskrit'],
                 $p['signNumber'],
+                $this->label('with'),
                 $grahas
             );
         }
 
-        $md .= "\n## 2. Detailed Analysis Based On Your Rules\n\n";
+        $md .= "\n## ".$this->label('s2')."\n\n";
 
         foreach ($groups as $g) {
             $md .= "**{$g['letter']}. {$g['title']}**\n\n";
             $md .= "- **{$g['heading']}:**\n";
 
             if ($g['points'] === []) {
-                $md .= "  - No rule in the current rule base covers this placement.\n";
+                $md .= '  - '.$this->label('none')."\n";
             }
 
             foreach ($g['points'] as $point) {
@@ -216,7 +283,7 @@ class ReportAggregator
         }
 
         if ($summary !== []) {
-            $md .= "## 3. Summary of Key Outcomes\n\n";
+            $md .= '## '.$this->label('s3')."\n\n";
 
             foreach ($summary as $i => $bucket) {
                 $md .= ($i + 1).". **{$bucket['label']}**\n";

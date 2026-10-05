@@ -28,13 +28,13 @@ class ReadingService
     public function forKundali(Kundali $kundali, string $locale = 'en', bool $force = false): array
     {
         $existing = $kundali->reading($locale);
-        $fingerprint = $this->fingerprint();
+        $fingerprint = $this->fingerprint().':'.$locale;
 
         if (! $force && $existing !== null && $existing->corpus_fingerprint === $fingerprint) {
             return $existing->sections;
         }
 
-        $report = $this->generate($this->charts->facts($kundali));
+        $report = $this->generate($this->charts->facts($kundali), $locale);
 
         Reading::updateOrCreate(
             ['kundali_id' => $kundali->id, 'locale' => $locale],
@@ -47,15 +47,15 @@ class ReadingService
     }
 
     /** Run the pipeline against an already-computed chart. */
-    public function generate(array $facts): array
+    public function generate(array $facts, string $locale = 'en'): array
     {
         $payload = ChartPayload::fromFacts($facts);
 
-        $explicit = $this->engine->evaluate($this->ruleBase->rules(), $payload);
+        $explicit = $this->engine->evaluate($this->ruleBase->rules($locale), $payload);
 
-        $derived = $this->derivation->derive($payload, $this->ruleBase->karakatwa());
+        $derived = $this->derivation->derive($payload, $this->ruleBase->karakatwa($locale), [], $locale);
 
-        return $this->aggregator->build($payload, array_merge($explicit, $derived));
+        return $this->aggregator->build($payload, array_merge($explicit, $derived), $locale);
     }
 
     /**
@@ -69,6 +69,12 @@ class ReadingService
         foreach ($this->ruleBase->files() as $file) {
             $path = base_path(RuleBase::PATH."/{$file}.json");
             $parts[] = $file.':'.(is_file($path) ? md5_file($path) : '');
+        }
+
+        // Translation files are part of the corpus too, so editing one
+        // rebuilds stored reports in that locale.
+        foreach (glob(base_path(RuleBase::PATH.'/*/*.json')) ?: [] as $path) {
+            $parts[] = basename(dirname($path)).'/'.basename($path).':'.md5_file($path);
         }
 
         return substr(hash('sha256', implode('|', $parts)), 0, 32);
