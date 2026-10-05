@@ -29,8 +29,15 @@ class ReadingGenerator
     public function forKundali(Kundali $kundali, string $locale = 'en', bool $force = false): array
     {
         $existing = $kundali->reading($locale);
+        $fingerprint = RuleRepository::fingerprint($locale);
 
-        if (! $force && $existing !== null) {
+        // A stored reading is only reusable if it was built from the same
+        // corpus. Reseeding rules or switching rule sources changes the
+        // fingerprint, so the reading rebuilds itself rather than serving
+        // text that no longer reflects the active rules.
+        if (! $force
+            && $existing !== null
+            && $existing->corpus_fingerprint === $fingerprint) {
             return $existing->sections;
         }
 
@@ -39,7 +46,7 @@ class ReadingGenerator
 
         Reading::updateOrCreate(
             ['kundali_id' => $kundali->id, 'locale' => $locale],
-            ['sections' => $sections],
+            ['sections' => $sections, 'corpus_fingerprint' => $fingerprint],
         );
 
         $kundali->unsetRelation('readings');

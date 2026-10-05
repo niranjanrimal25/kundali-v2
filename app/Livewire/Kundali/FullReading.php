@@ -5,6 +5,8 @@ namespace App\Livewire\Kundali;
 use App\Models\Kundali;
 use App\Services\Astrology\Interpretation\ReadingGenerator;
 use App\Services\Astrology\KundaliService;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -25,6 +27,27 @@ class FullReading extends Component
     public function sections(): array
     {
         return app(ReadingGenerator::class)->forKundali($this->kundali, $this->locale);
+    }
+
+    /** Stream the reading as a PDF the user can keep or print. */
+    public function downloadPdf()
+    {
+        abort_unless($this->kundali->user_id === auth()->id(), 403);
+
+        $pdf = Pdf::loadView('pdf.reading', [
+            'kundali' => $this->kundali,
+            'facts' => $this->facts(),
+            'sections' => $this->sections(),
+            'ruleMode' => config('jyotish.rule_sources'),
+        ])->setPaper('a4');
+
+        $name = Str::slug($this->kundali->name).'-kundali-reading.pdf';
+
+        return response()->streamDownload(
+            fn () => print ($pdf->output()),
+            $name,
+            ['Content-Type' => 'application/pdf']
+        );
     }
 
     #[Computed]

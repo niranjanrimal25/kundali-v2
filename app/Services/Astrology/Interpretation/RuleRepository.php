@@ -108,6 +108,32 @@ class RuleRepository
         return $out;
     }
 
+    /**
+     * Identifies the corpus a reading was built from.
+     *
+     * Combines the active rule sources, the number of visible rules and
+     * the latest rule update. Any of those changing means a stored
+     * reading is out of date, which is what lets the cache invalidate
+     * itself rather than needing a manual truncate after every reseed.
+     */
+    public static function fingerprint(string $locale = 'en'): string
+    {
+        $allowed = self::activeProvenance();
+
+        $row = DB::table('interpretation_rules')
+            ->where('locale', $locale)
+            ->whereIn('provenance', $allowed)
+            ->selectRaw('count(*) as c, max(updated_at) as m')
+            ->first();
+
+        return substr(hash('sha256', implode('|', [
+            implode(',', $allowed),
+            $locale,
+            $row->c ?? 0,
+            $row->m ?? '',
+        ])), 0, 32);
+    }
+
     public function count(): int
     {
         $this->load();

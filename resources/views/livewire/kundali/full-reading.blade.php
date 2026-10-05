@@ -28,6 +28,13 @@
                        class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
                         ← Chart
                     </a>
+                    <button wire:click="downloadPdf"
+                            wire:loading.attr="disabled"
+                            class="rounded bg-[#e9c46a] px-3 py-1.5 text-xs font-medium text-[#33203f] hover:bg-[#f0d089] disabled:opacity-60">
+                        <span wire:loading.remove wire:target="downloadPdf">Download PDF</span>
+                        <span wire:loading wire:target="downloadPdf">Preparing&hellip;</span>
+                    </button>
+
                     <button onclick="window.print()"
                             class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
                         Print

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reading extends Model
 {
-    protected $fillable = ['kundali_id', 'locale', 'sections'];
+    protected $fillable = ['kundali_id', 'locale', 'sections', 'corpus_fingerprint'];
 
     protected function casts(): array
     {
