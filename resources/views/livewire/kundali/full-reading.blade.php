@@ -68,13 +68,10 @@
             {{-- Legend --}}
             <div class="mb-6 flex flex-wrap items-center gap-4 rounded border border-[#ede5d6] bg-[#f9f6ef] px-4 py-2.5 text-xs text-gray-600">
                 <span class="font-medium text-[#4a2c5a]">Key:</span>
+                <span>Each placement is filtered to what the bhava actually governs, then merged into three focus areas.</span>
                 <span class="flex items-center gap-1.5">
-                    <span class="rounded bg-[#b5643f] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white">Rule</span>
-                    a rule from your rule base matched this placement
-                </span>
-                <span class="flex items-center gap-1.5">
-                    <span class="rounded bg-[#9aa8c4] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white">Karakatwa</span>
-                    derived by composing significations with the bhava
+                    <span class="rounded bg-[#8a6d3b] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white">Rule</span>
+                    an explicit rule from your rule base
                 </span>
             </div>
 
@@ -107,32 +104,50 @@
                         <h3 class="text-sm font-semibold text-[#4a2c5a]">{{ $group['letter'] }}. {{ $group['title'] }}</h3>
                         <p class="mt-1 text-sm font-medium text-[#b5643f]">{{ $group['heading'] }}</p>
 
-                        @if ($group['points'] === [])
-                            <p class="mt-2 text-sm italic text-gray-400">
-                                No rule in the current rule base covers this placement.
-                            </p>
-                        @else
-                            {{-- Explicit rule matches read as the primary
-                                 findings; derived Karakatwa is tinted so the
-                                 two are never confused at a glance. --}}
+                        {{-- Consolidated synthesis: only what this bhava
+                             actually governs, merged across its occupants. --}}
+                        @if ($group['block'])
+                            <dl class="mt-3 space-y-2 text-sm leading-relaxed">
+                                @foreach ([
+                                    'health' => ['Primary Health Focus', '#b5643f', '#fdf3ec'],
+                                    'mind' => ['Mind &amp; Temperament', '#4a2c5a', '#f4eff7'],
+                                    'people' => ['Key Relationships &amp; Dynamics', '#2f6f5e', '#ecf5f2'],
+                                ] as $key => [$label, $accent, $tint])
+                                    @if (! empty($group['block'][$key]))
+                                        <div class="rounded border-l-[3px] px-3 py-2"
+                                             style="border-color: {{ $accent }}; background: {{ $tint }};">
+                                            <dt class="text-xs font-semibold uppercase tracking-wide"
+                                                style="color: {{ $accent }};">{!! $label !!}</dt>
+                                            <dd class="mt-0.5 text-gray-800">{{ $group['block'][$key] }}</dd>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </dl>
+
+                            @foreach ($group['block']['notes'] as $note)
+                                <p class="mt-2 text-xs italic text-emerald-800">{{ $note }}</p>
+                            @endforeach
+                        @endif
+
+                        {{-- Explicit rule matches from the rule base --}}
+                        @if ($group['points'] !== [])
                             <ul class="mt-3 space-y-2 text-sm leading-relaxed">
                                 @foreach ($group['points'] as $point)
-                                    @if ($point['derived'])
-                                        <li class="flex gap-2 rounded border-l-[3px] border-[#9aa8c4] bg-[#eef1f7] px-3 py-2 text-gray-600">
-                                            <span class="mt-0.5 shrink-0 rounded bg-[#9aa8c4] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white"
-                                                  title="{{ $point['source'] }}">Karakatwa</span>
-                                            <span>{{ $point['text'] }}</span>
-                                        </li>
-                                    @else
-                                        <li class="flex gap-2 rounded border-l-[3px] border-[#b5643f] bg-[#fdf3ec] px-3 py-2 text-gray-800">
-                                            <span class="mt-0.5 shrink-0 rounded bg-[#b5643f] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white"
-                                                  title="{{ $point['source'] }}">Rule</span>
-                                            <span>{{ $point['text'] }}</span>
-                                        </li>
-                                    @endif
+                                    <li class="flex gap-2 rounded border-l-[3px] border-[#8a6d3b] bg-[#fdf8ee] px-3 py-2 text-gray-800">
+                                        <span class="mt-0.5 shrink-0 rounded bg-[#8a6d3b] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white"
+                                              title="{{ $point['source'] }}">Rule</span>
+                                        <span>{{ $point['text'] }}</span>
+                                    </li>
                                 @endforeach
                             </ul>
                         @endif
+
+                        @if ($group['points'] === [] && ! $group['block'])
+                            <p class="mt-2 text-sm italic text-gray-400">
+                                No rule in the current rule base covers this placement.
+                            </p>
+                        @endif
+
                     </div>
                 @endforeach
             </div>

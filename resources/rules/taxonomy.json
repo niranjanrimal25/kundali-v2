@@ -1,0 +1,1086 @@
+{
+  "_comment": "Tagged taxonomy driving the intersection engine. A graha's attribute is only reported when at least one of its tags also belongs to the bhava it occupies. This is what stops kidneys being predicted from a 3rd-house placement.",
+  "houseDomains": {
+    "1": {
+      "body": [
+        "head",
+        "face",
+        "vitality",
+        "appearance",
+        "immunity"
+      ],
+      "theme": [
+        "self",
+        "temperament",
+        "direction"
+      ],
+      "people": [
+        "self"
+      ]
+    },
+    "2": {
+      "body": [
+        "face",
+        "throat",
+        "speech",
+        "teeth",
+        "eyes"
+      ],
+      "theme": [
+        "wealth",
+        "values",
+        "food"
+      ],
+      "people": [
+        "family"
+      ]
+    },
+    "3": {
+      "body": [
+        "hands",
+        "arms",
+        "shoulders",
+        "nerves",
+        "respiratory",
+        "skin"
+      ],
+      "theme": [
+        "courage",
+        "communication",
+        "effort",
+        "travel-short",
+        "media"
+      ],
+      "people": [
+        "siblings",
+        "peers",
+        "neighbours"
+      ]
+    },
+    "4": {
+      "body": [
+        "chest",
+        "lungs",
+        "heart",
+        "fluids"
+      ],
+      "theme": [
+        "home",
+        "property",
+        "vehicles",
+        "education",
+        "inner-peace"
+      ],
+      "people": [
+        "mother"
+      ]
+    },
+    "5": {
+      "body": [
+        "stomach",
+        "upper-abdomen",
+        "mind"
+      ],
+      "theme": [
+        "intellect",
+        "creativity",
+        "romance",
+        "speculation"
+      ],
+      "people": [
+        "children"
+      ]
+    },
+    "6": {
+      "body": [
+        "intestines",
+        "digestion",
+        "immunity",
+        "infection",
+        "toxins",
+        "obscure"
+      ],
+      "theme": [
+        "disease",
+        "debt",
+        "litigation",
+        "service",
+        "daily-work"
+      ],
+      "people": [
+        "enemies",
+        "servants",
+        "maternal-uncle"
+      ]
+    },
+    "7": {
+      "body": [
+        "pelvis",
+        "urinary",
+        "reproductive",
+        "kidneys",
+        "hormones"
+      ],
+      "theme": [
+        "marriage",
+        "partnership",
+        "contracts",
+        "public"
+      ],
+      "people": [
+        "spouse",
+        "partners"
+      ]
+    },
+    "8": {
+      "body": [
+        "reproductive",
+        "excretory",
+        "spine",
+        "chronic",
+        "obscure",
+        "toxins"
+      ],
+      "theme": [
+        "longevity",
+        "sudden-events",
+        "inheritance",
+        "occult",
+        "research"
+      ],
+      "people": [
+        "in-laws"
+      ]
+    },
+    "9": {
+      "body": [
+        "hips",
+        "thighs",
+        "liver"
+      ],
+      "theme": [
+        "fortune",
+        "dharma",
+        "higher-learning",
+        "travel-long",
+        "ethics"
+      ],
+      "people": [
+        "father",
+        "guru"
+      ]
+    },
+    "10": {
+      "body": [
+        "knees",
+        "joints",
+        "bones"
+      ],
+      "theme": [
+        "career",
+        "status",
+        "authority",
+        "reputation"
+      ],
+      "people": [
+        "employer",
+        "government"
+      ]
+    },
+    "11": {
+      "body": [
+        "legs",
+        "ankles",
+        "blood"
+      ],
+      "theme": [
+        "income",
+        "gains",
+        "networks",
+        "ambition"
+      ],
+      "people": [
+        "friends",
+        "elder-siblings"
+      ]
+    },
+    "12": {
+      "body": [
+        "feet",
+        "eyes",
+        "sleep",
+        "nerves"
+      ],
+      "theme": [
+        "expenditure",
+        "loss",
+        "foreign",
+        "isolation",
+        "moksha"
+      ],
+      "people": [
+        "distant",
+        "hidden"
+      ]
+    }
+  },
+  "grahaAttributes": {
+    "Sun": {
+      "body": [
+        {
+          "term": "the heart",
+          "tags": [
+            "heart"
+          ],
+          "severity": "high",
+          "key": "the heart"
+        },
+        {
+          "term": "the bones",
+          "tags": [
+            "bones"
+          ],
+          "severity": "normal",
+          "key": "the bones"
+        },
+        {
+          "term": "the eyes",
+          "tags": [
+            "eyes"
+          ],
+          "severity": "normal",
+          "key": "eyes"
+        },
+        {
+          "term": "the head and skull",
+          "tags": [
+            "head"
+          ],
+          "severity": "high",
+          "key": "the head and skull"
+        },
+        {
+          "term": "bile and the pitta humour",
+          "tags": [
+            "digestion",
+            "liver"
+          ],
+          "severity": "normal",
+          "key": "bile and the pitta humour"
+        },
+        {
+          "term": "the body's immunity",
+          "tags": [
+            "immunity"
+          ],
+          "severity": "normal",
+          "key": "the body's immunity"
+        }
+      ],
+      "mind": [
+        {
+          "term": "confidence and leadership",
+          "tags": [
+            "self",
+            "authority",
+            "career"
+          ],
+          "polarity": "positive",
+          "key": "confidence and leadership"
+        },
+        {
+          "term": "ego and ambition",
+          "tags": [
+            "self",
+            "status",
+            "ambition"
+          ],
+          "polarity": "mixed",
+          "key": "ego and ambition"
+        },
+        {
+          "term": "discipline and personal aura",
+          "tags": [
+            "self",
+            "temperament",
+            "reputation"
+          ],
+          "polarity": "positive",
+          "key": "discipline and personal aura"
+        }
+      ],
+      "people": [
+        {
+          "term": "the father",
+          "tags": [
+            "father",
+            "family"
+          ],
+          "key": "the father"
+        },
+        {
+          "term": "employers and those in authority",
+          "tags": [
+            "employer",
+            "government",
+            "authority"
+          ],
+          "key": "employers and those in authority"
+        }
+      ]
+    },
+    "Moon": {
+      "body": [
+        {
+          "term": "the mind and brain",
+          "tags": [
+            "mind",
+            "nerves"
+          ],
+          "severity": "high",
+          "key": "the mind and brain"
+        },
+        {
+          "term": "the chest and lungs",
+          "tags": [
+            "chest",
+            "lungs",
+            "respiratory"
+          ],
+          "severity": "high",
+          "key": "the chest and lungs"
+        },
+        {
+          "term": "the eyes",
+          "tags": [
+            "eyes"
+          ],
+          "severity": "normal",
+          "key": "eyes"
+        },
+        {
+          "term": "the blood and body fluids",
+          "tags": [
+            "blood",
+            "fluids"
+          ],
+          "severity": "normal",
+          "key": "the blood and body fluids"
+        }
+      ],
+      "mind": [
+        {
+          "term": "sensitivity and imagination",
+          "tags": [
+            "mind",
+            "creativity",
+            "temperament"
+          ],
+          "polarity": "positive",
+          "key": "sensitivity and imagination"
+        },
+        {
+          "term": "changeability and restlessness of mind",
+          "tags": [
+            "mind",
+            "temperament"
+          ],
+          "polarity": "mixed",
+          "key": "changeability and restlessness of mind"
+        },
+        {
+          "term": "the quality of sleep and mental peace",
+          "tags": [
+            "sleep",
+            "mind",
+            "inner-peace"
+          ],
+          "polarity": "mixed",
+          "key": "the quality of sleep and mental peace"
+        }
+      ],
+      "people": [
+        {
+          "term": "the mother",
+          "tags": [
+            "mother",
+            "family"
+          ],
+          "key": "the mother"
+        },
+        {
+          "term": "the mother-in-law",
+          "tags": [
+            "in-laws"
+          ],
+          "key": "the mother-in-law"
+        }
+      ]
+    },
+    "Mars": {
+      "body": [
+        {
+          "term": "the muscles",
+          "tags": [
+            "muscles"
+          ],
+          "severity": "normal",
+          "key": "the muscles"
+        },
+        {
+          "term": "the bone marrow and red blood cells",
+          "tags": [
+            "bones",
+            "blood"
+          ],
+          "severity": "high",
+          "key": "the bone marrow and red blood cells"
+        },
+        {
+          "term": "the liver",
+          "tags": [
+            "liver",
+            "digestion"
+          ],
+          "severity": "normal",
+          "key": "liver"
+        },
+        {
+          "term": "the reproductive organs",
+          "tags": [
+            "reproductive"
+          ],
+          "severity": "high",
+          "key": "the reproductive organs"
+        }
+      ],
+      "mind": [
+        {
+          "term": "courage and decisiveness",
+          "tags": [
+            "courage",
+            "self",
+            "effort"
+          ],
+          "polarity": "positive",
+          "key": "courage and decisiveness"
+        },
+        {
+          "term": "anger and impatience",
+          "tags": [
+            "temperament",
+            "self"
+          ],
+          "polarity": "negative",
+          "key": "anger and impatience"
+        },
+        {
+          "term": "drive and raw energy",
+          "tags": [
+            "effort",
+            "ambition",
+            "career"
+          ],
+          "polarity": "positive",
+          "key": "drive and raw energy"
+        }
+      ],
+      "people": [
+        {
+          "term": "brothers and sisters",
+          "tags": [
+            "siblings",
+            "peers"
+          ],
+          "key": "brothers and sisters"
+        },
+        {
+          "term": "those in the forces or the police",
+          "tags": [
+            "peers",
+            "authority"
+          ],
+          "key": "those in the forces or the police"
+        }
+      ]
+    },
+    "Mercury": {
+      "body": [
+        {
+          "term": "the nervous system",
+          "tags": [
+            "nerves"
+          ],
+          "severity": "normal",
+          "key": "nerves"
+        },
+        {
+          "term": "the skin, including allergic reaction",
+          "tags": [
+            "skin"
+          ],
+          "severity": "normal",
+          "key": "skin"
+        },
+        {
+          "term": "speech and the throat",
+          "tags": [
+            "speech",
+            "throat"
+          ],
+          "severity": "normal",
+          "key": "speech and the throat"
+        },
+        {
+          "term": "hearing",
+          "tags": [
+            "ears"
+          ],
+          "severity": "normal",
+          "key": "ears"
+        },
+        {
+          "term": "the digestive tract",
+          "tags": [
+            "digestion",
+            "intestines"
+          ],
+          "severity": "normal",
+          "key": "the digestive tract"
+        },
+        {
+          "term": "the hands in fine work",
+          "tags": [
+            "hands"
+          ],
+          "severity": "normal",
+          "key": "the hands in fine work"
+        }
+      ],
+      "mind": [
+        {
+          "term": "reasoning and quick intellect",
+          "tags": [
+            "intellect",
+            "communication",
+            "mind"
+          ],
+          "polarity": "positive",
+          "key": "reasoning and quick intellect"
+        },
+        {
+          "term": "clarity in communication",
+          "tags": [
+            "communication",
+            "media",
+            "speech"
+          ],
+          "polarity": "positive",
+          "key": "clarity in communication"
+        },
+        {
+          "term": "overthinking and mental fatigue",
+          "tags": [
+            "mind",
+            "temperament"
+          ],
+          "polarity": "negative",
+          "key": "overthinking and mental fatigue"
+        }
+      ],
+      "people": [
+        {
+          "term": "younger relatives and business partners",
+          "tags": [
+            "siblings",
+            "peers",
+            "partners"
+          ],
+          "key": "younger relatives and business partners"
+        },
+        {
+          "term": "maternal uncles and aunts",
+          "tags": [
+            "maternal-uncle",
+            "family"
+          ],
+          "key": "maternal uncles and aunts"
+        }
+      ]
+    },
+    "Jupiter": {
+      "body": [
+        {
+          "term": "the liver and gallbladder",
+          "tags": [
+            "liver",
+            "digestion"
+          ],
+          "severity": "high",
+          "key": "liver"
+        },
+        {
+          "term": "body fat and cholesterol",
+          "tags": [
+            "fat",
+            "blood"
+          ],
+          "severity": "normal",
+          "key": "body fat and cholesterol"
+        },
+        {
+          "term": "the ears",
+          "tags": [
+            "ears"
+          ],
+          "severity": "normal",
+          "key": "ears"
+        },
+        {
+          "term": "the hips and thighs",
+          "tags": [
+            "hips",
+            "thighs"
+          ],
+          "severity": "normal",
+          "key": "the hips and thighs"
+        }
+      ],
+      "mind": [
+        {
+          "term": "judgement, ethics and faith",
+          "tags": [
+            "ethics",
+            "dharma",
+            "higher-learning"
+          ],
+          "polarity": "positive",
+          "key": "judgement, ethics and faith"
+        },
+        {
+          "term": "optimism and generosity",
+          "tags": [
+            "temperament",
+            "wealth"
+          ],
+          "polarity": "positive",
+          "key": "optimism and generosity"
+        },
+        {
+          "term": "overconfidence and pride in knowing",
+          "tags": [
+            "temperament",
+            "self"
+          ],
+          "polarity": "negative",
+          "key": "overconfidence and pride in knowing"
+        }
+      ],
+      "people": [
+        {
+          "term": "teachers and guides",
+          "tags": [
+            "guru",
+            "higher-learning"
+          ],
+          "key": "teachers and guides"
+        },
+        {
+          "term": "children",
+          "tags": [
+            "children",
+            "family"
+          ],
+          "key": "children"
+        }
+      ]
+    },
+    "Venus": {
+      "body": [
+        {
+          "term": "the kidneys and urinary tract",
+          "tags": [
+            "kidneys",
+            "urinary"
+          ],
+          "severity": "high",
+          "key": "the kidneys and urinary tract"
+        },
+        {
+          "term": "the reproductive organs and hormones",
+          "tags": [
+            "reproductive",
+            "hormones"
+          ],
+          "severity": "high",
+          "key": "the reproductive organs and hormones"
+        },
+        {
+          "term": "eyesight",
+          "tags": [
+            "eyes"
+          ],
+          "severity": "normal",
+          "key": "eyes"
+        },
+        {
+          "term": "the nervous system",
+          "tags": [
+            "nerves"
+          ],
+          "severity": "normal",
+          "key": "nerves"
+        },
+        {
+          "term": "the skin",
+          "tags": [
+            "skin",
+            "appearance"
+          ],
+          "severity": "normal",
+          "key": "skin"
+        }
+      ],
+      "mind": [
+        {
+          "term": "artistic feeling and creative output",
+          "tags": [
+            "creativity",
+            "media",
+            "appearance"
+          ],
+          "polarity": "positive",
+          "key": "artistic feeling and creative output"
+        },
+        {
+          "term": "desire for comfort and pleasure",
+          "tags": [
+            "temperament",
+            "wealth"
+          ],
+          "polarity": "mixed",
+          "key": "desire for comfort and pleasure"
+        },
+        {
+          "term": "diplomacy and the wish to be liked",
+          "tags": [
+            "communication",
+            "partnership",
+            "peers"
+          ],
+          "polarity": "positive",
+          "key": "diplomacy"
+        }
+      ],
+      "people": [
+        {
+          "term": "the spouse or partner",
+          "tags": [
+            "spouse",
+            "partners"
+          ],
+          "key": "the spouse or partner"
+        },
+        {
+          "term": "women in the family and close friends",
+          "tags": [
+            "family",
+            "peers",
+            "friends"
+          ],
+          "key": "women in the family and close friends"
+        }
+      ]
+    },
+    "Saturn": {
+      "body": [
+        {
+          "term": "the joints and knees",
+          "tags": [
+            "joints",
+            "knees"
+          ],
+          "severity": "normal",
+          "key": "the joints and knees"
+        },
+        {
+          "term": "the legs",
+          "tags": [
+            "legs"
+          ],
+          "severity": "normal",
+          "key": "the legs"
+        },
+        {
+          "term": "the teeth",
+          "tags": [
+            "teeth"
+          ],
+          "severity": "normal",
+          "key": "the teeth"
+        },
+        {
+          "term": "the nervous system",
+          "tags": [
+            "nerves"
+          ],
+          "severity": "normal",
+          "key": "nerves"
+        },
+        {
+          "term": "the bowel",
+          "tags": [
+            "intestines",
+            "excretory"
+          ],
+          "severity": "normal",
+          "key": "the bowel"
+        }
+      ],
+      "mind": [
+        {
+          "term": "patience and endurance",
+          "tags": [
+            "effort",
+            "temperament"
+          ],
+          "polarity": "positive",
+          "key": "patience and endurance"
+        },
+        {
+          "term": "delay, caution and pessimism",
+          "tags": [
+            "temperament",
+            "mind"
+          ],
+          "polarity": "negative",
+          "key": "delay, caution and pessimism"
+        },
+        {
+          "term": "detachment and solitude",
+          "tags": [
+            "isolation",
+            "temperament"
+          ],
+          "polarity": "mixed",
+          "key": "detachment and solitude"
+        }
+      ],
+      "people": [
+        {
+          "term": "elders, employees and subordinates",
+          "tags": [
+            "servants",
+            "employer"
+          ],
+          "key": "elders, employees and subordinates"
+        },
+        {
+          "term": "elder siblings",
+          "tags": [
+            "elder-siblings",
+            "siblings"
+          ],
+          "key": "elder siblings"
+        }
+      ]
+    },
+    "Rahu": {
+      "body": [
+        {
+          "term": "conditions that resist diagnosis",
+          "tags": [
+            "obscure"
+          ],
+          "severity": "high",
+          "key": "conditions that resist diagnosis"
+        },
+        {
+          "term": "the nervous system",
+          "tags": [
+            "nerves"
+          ],
+          "severity": "normal",
+          "key": "nerves"
+        },
+        {
+          "term": "toxins and adverse reactions",
+          "tags": [
+            "toxins",
+            "infection"
+          ],
+          "severity": "high",
+          "key": "toxins and adverse reactions"
+        },
+        {
+          "term": "the intestines",
+          "tags": [
+            "intestines"
+          ],
+          "severity": "normal",
+          "key": "intestines"
+        },
+        {
+          "term": "disturbed sleep",
+          "tags": [
+            "sleep"
+          ],
+          "severity": "normal",
+          "key": "disturbed sleep"
+        }
+      ],
+      "mind": [
+        {
+          "term": "ambition and the drive for the unconventional",
+          "tags": [
+            "ambition",
+            "media",
+            "career"
+          ],
+          "polarity": "mixed",
+          "key": "ambition and the drive for the unconventional"
+        },
+        {
+          "term": "strategic and diplomatic manoeuvring",
+          "tags": [
+            "communication",
+            "partnership"
+          ],
+          "polarity": "mixed",
+          "key": "diplomacy"
+        },
+        {
+          "term": "restlessness and obsessive focus",
+          "tags": [
+            "mind",
+            "temperament"
+          ],
+          "polarity": "negative",
+          "key": "restlessness and obsessive focus"
+        }
+      ],
+      "people": [
+        {
+          "term": "foreigners and people outside your circle",
+          "tags": [
+            "distant",
+            "networks",
+            "peers"
+          ],
+          "key": "foreigners and people outside your circle"
+        },
+        {
+          "term": "unconventional associates",
+          "tags": [
+            "peers",
+            "partners"
+          ],
+          "key": "unconventional associates"
+        }
+      ]
+    },
+    "Ketu": {
+      "body": [
+        {
+          "term": "the intestines",
+          "tags": [
+            "intestines",
+            "infection"
+          ],
+          "severity": "normal",
+          "key": "intestines"
+        },
+        {
+          "term": "the skin",
+          "tags": [
+            "skin"
+          ],
+          "severity": "normal",
+          "key": "skin"
+        },
+        {
+          "term": "the lower back and spine",
+          "tags": [
+            "spine",
+            "back"
+          ],
+          "severity": "normal",
+          "key": "the lower back and spine"
+        },
+        {
+          "term": "the soles of the feet",
+          "tags": [
+            "feet"
+          ],
+          "severity": "normal",
+          "key": "the soles of the feet"
+        },
+        {
+          "term": "the nervous system",
+          "tags": [
+            "nerves"
+          ],
+          "severity": "normal",
+          "key": "nerves"
+        }
+      ],
+      "mind": [
+        {
+          "term": "detachment and loss of ordinary interest",
+          "tags": [
+            "isolation",
+            "moksha",
+            "temperament"
+          ],
+          "polarity": "mixed",
+          "key": "detachment and loss of ordinary interest"
+        },
+        {
+          "term": "intuition and penetrating insight",
+          "tags": [
+            "occult",
+            "research",
+            "mind"
+          ],
+          "polarity": "positive",
+          "key": "intuition and penetrating insight"
+        },
+        {
+          "term": "distrust and withdrawal",
+          "tags": [
+            "temperament",
+            "isolation"
+          ],
+          "polarity": "negative",
+          "key": "distrust and withdrawal"
+        }
+      ],
+      "people": [
+        {
+          "term": "nieces, nephews and grandchildren",
+          "tags": [
+            "family"
+          ],
+          "key": "nieces, nephews and grandchildren"
+        },
+        {
+          "term": "those you quietly withdraw from",
+          "tags": [
+            "hidden",
+            "distant"
+          ],
+          "key": "those you quietly withdraw from"
+        }
+      ]
+    }
+  },
+  "dignityTiers": {
+    "exalted": "strong",
+    "moolatrikona": "strong",
+    "own": "strong",
+    "friendly": "stable",
+    "neutral": "stable",
+    "enemy": "weak",
+    "debilitated": "weak"
+  }
+}

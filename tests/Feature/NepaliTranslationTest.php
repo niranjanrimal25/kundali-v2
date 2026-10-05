@@ -80,29 +80,6 @@ class NepaliTranslationTest extends TestCase
     }
 
     #[Test]
-    public function derived_sentences_use_the_nepali_frame(): void
-    {
-        $report = app(ReadingService::class)->forKundali($this->kundali(), 'ne', true);
-
-        $derived = [];
-
-        foreach ($report['groups'] as $group) {
-            foreach ($group['points'] as $point) {
-                if ($point['derived']) {
-                    $derived[] = $point['text'];
-                }
-            }
-        }
-
-        $this->assertNotEmpty($derived);
-
-        // The frame and the karakatwa must both be Nepali.
-        $joined = implode(' ', $derived);
-        $this->assertStringContainsString('भावमा', $joined);
-        $this->assertStringContainsString('मुटु', $joined, 'Sun body karakatwa should appear in Nepali');
-    }
-
-    #[Test]
     public function english_and_nepali_reports_are_cached_separately(): void
     {
         $kundali = $this->kundali();

@@ -20,7 +20,7 @@ class ReadingService
         private readonly KundaliService $charts,
         private readonly RuleBase $ruleBase,
         private readonly RuleEngine $engine,
-        private readonly DerivationEngine $derivation,
+        private readonly IntersectionEngine $intersection,
         private readonly ReportAggregator $aggregator,
     ) {}
 
@@ -53,9 +53,11 @@ class ReadingService
 
         $explicit = $this->engine->evaluate($this->ruleBase->rules($locale), $payload);
 
-        $derived = $this->derivation->derive($payload, $this->ruleBase->karakatwa($locale), [], $locale);
+        // Filtered intersection, not a Cartesian product: only the
+        // attributes the bhava actually governs survive.
+        $blocks = $this->intersection->forHouses($payload);
 
-        return $this->aggregator->build($payload, array_merge($explicit, $derived), $locale);
+        return $this->aggregator->build($payload, $explicit, $locale, $blocks);
     }
 
     /**

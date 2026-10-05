@@ -21,6 +21,9 @@ class ReportAggregator
 
     private Vocabulary $vocab;
 
+    /** Consolidated intersection block per bhava. */
+    private array $blocks = [];
+
     private const LABELS = [
         'en' => [
             'conjunction' => 'Conjunction of %s (%s House)',
@@ -79,8 +82,10 @@ class ReportAggregator
     /**
      * @param  list<array>  $findings  from RuleEngine + DerivationEngine
      */
-    public function build(array $payload, array $findings, string $locale = 'en'): array
+    public function build(array $payload, array $findings, string $locale = 'en', array $blocks = []): array
     {
+        $this->blocks = $blocks;
+
         $this->locale = $locale;
         $this->vocab = new Vocabulary($locale);
 
@@ -172,8 +177,11 @@ class ReportAggregator
                 ];
             }
 
+            $block = $this->blocks[$house['number']] ?? null;
+
             $groups[] = [
                 'letter' => chr(65 + $letter++),
+                'block' => $block,
                 'title' => count($occupants) > 1
                     ? sprintf($this->label('conjunction'), $this->listify($names), $this->vocab->ordinal($house['number']))
                     : sprintf($this->label('placement'), $names[0], $this->vocab->graha($occupants[0], $occupants[0])),

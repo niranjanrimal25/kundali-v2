@@ -178,41 +178,4 @@ class RuleEngineTest extends TestCase
             );
         }
     }
-
-    #[Test]
-    public function derived_points_are_marked_and_rank_below_explicit_rules(): void
-    {
-        $kundali = Kundali::create([
-            'user_id' => User::factory()->create()->id,
-            'name' => 'Demo Chart',
-            'birth_date' => '1990-05-15',
-            'birth_time' => '10:30:00',
-            'birth_place' => 'Pokhara, Nepal',
-            'latitude' => 28.26689,
-            'longitude' => 83.96851,
-            'timezone' => 'Asia/Kathmandu',
-        ]);
-
-        $report = app(ReadingService::class)->forKundali($kundali, 'en', true);
-
-        $this->assertGreaterThan(0, $report['stats']['explicit']);
-        $this->assertGreaterThan(0, $report['stats']['derived']);
-
-        foreach ($report['groups'] as $group) {
-            $seenDerived = false;
-
-            foreach ($group['points'] as $point) {
-                if ($point['derived']) {
-                    $seenDerived = true;
-
-                    continue;
-                }
-
-                $this->assertFalse(
-                    $seenDerived,
-                    'An explicit rule appeared after a derived point in '.$group['letter']
-                );
-            }
-        }
-    }
 }
