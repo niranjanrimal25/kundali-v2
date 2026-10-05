@@ -1375,7 +1375,7 @@
         },
         "then": {
             "title": "Sun in the 4th",
-            "text": "Surya occupies the 4th house, where it is weak, but this does not mean it is entirely inauspicious."
+            "text": "Surya occupies the 4th house and so lacks directional strength (Digheena). Its power and efficacy are reduced, but this does not make it inauspicious by itself."
         }
     },
     {
@@ -1413,7 +1413,56 @@
         },
         "then": {
             "title": "Mars in the 4th",
-            "text": "Mangala occupies the 4th house, the north direction, where it is directionally weak (Digheena)."
+            "text": "Mangala occupies the 4th house, the north direction, and so lacks directional strength (Digheena). Its efficacy is reduced rather than turned harmful."
+        }
+    },
+    {
+        "id": "SUN_DIGHEENA_IN_TRIK_SIGN",
+        "subject": "Sun",
+        "category": "career",
+        "priority": 75,
+        "source": "Master rule set, directional strength qualification",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        4,
+                        7
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.inTrikSign",
+                    "isTrue": true
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun without directional strength in an unfavourable sign",
+            "text": "Surya lacks directional strength and additionally occupies one of the unfavourable signs, those of the 4th, 8th and 12th bhavas. Reduced efficacy becomes genuinely inauspicious only in this combination."
+        }
+    },
+    {
+        "id": "MARS_DIGHEENA_IN_TRIK_SIGN",
+        "subject": "Mars",
+        "category": "career",
+        "priority": 75,
+        "source": "Master rule set, directional strength qualification",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 4
+                },
+                {
+                    "fact": "planet.Mars.inTrikSign",
+                    "isTrue": true
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars without directional strength in an unfavourable sign",
+            "text": "Mangala lacks directional strength and additionally occupies one of the unfavourable signs. Only in this combination does the reduction become genuinely inauspicious."
         }
     }
 ]

@@ -10,13 +10,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 6th bhava",
             "text": "Physically, the indications are high fever, irregular heartbeat, spinal pain, a weakened immune system and pitta (bile) disorders."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_6_RELATIONS",
@@ -29,13 +34,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 6th bhava",
             "text": "In relationships, it shows as coolness with the father and with the paternal and maternal uncles, and friction with senior officials or with government bodies."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_6_TEMPERAMENT",
@@ -48,13 +58,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 6th bhava",
             "text": "In temperament, it shows as excessive ego and unnecessary anger toward opponents, with disputes at work arising from pride."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_8_PHYSICAL",
@@ -67,13 +82,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 8th bhava",
             "text": "Physically, the indications are weakening of the joints and bones, risk of fracture, trouble in the right eye, strain on the heart, and a burning sensation from excess bile."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_8_RELATIONS",
@@ -86,13 +106,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 8th bhava",
             "text": "In relationships, it shows as serious friction over the father's health or the relationship with him, and tension with the in-laws."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_8_TEMPERAMENT",
@@ -105,13 +130,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 8th bhava",
             "text": "In temperament, it shows as a deep lack of self-confidence, unnamed fear, self-reproach, fear of losing honour, and spells of despair. Where this weighs heavily, it is worth treating as a reason to seek support rather than something to endure alone."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_12_PHYSICAL",
@@ -124,13 +154,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 12th bhava",
             "text": "Physically, the indications are insomnia, reduced vision or cataract in the right eye, migraine, and a general want of radiance and vitality."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_12_RELATIONS",
@@ -143,13 +178,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 12th bhava",
             "text": "In relationships, it shows as distance from the father through living abroad or apart, and differences of outlook with seniors and elders."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SUN_12_TEMPERAMENT",
@@ -162,13 +202,18 @@
                 {
                     "fact": "planet.Sun.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Sun.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Sun in the 12th bhava",
             "text": "In temperament, it shows as excessive isolation, sacrificing one's own standing, and loss of reputation or wealth through poor decisions."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_6_PHYSICAL",
@@ -181,13 +226,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 6th bhava",
             "text": "Physically, the indications are imbalance of the digestive juices, jaundice, chronic phlegm and colds, waterborne intestinal infection, and anaemia."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_6_RELATIONS",
@@ -200,13 +250,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 6th bhava",
             "text": "In relationships, it shows as differences with the mother, concern for her health, and obstacles in dealings with maternal aunts."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_6_TEMPERAMENT",
@@ -219,13 +274,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 6th bhava",
             "text": "In temperament, it shows as a fickle mind, difficulty reaching decisions, and frequent swings of mood."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_8_PHYSICAL",
@@ -238,13 +298,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 8th bhava",
             "text": "Physically, the indications are depression, extreme mental strain, insomnia, fear of water, trouble in the left eye, and swelling or oedema."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_8_RELATIONS",
@@ -257,13 +322,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 8th bhava",
             "text": "In relationships, it shows as serious distance or hardship involving the mother, and spoiled relations with the in-laws or with female relatives."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_8_TEMPERAMENT",
@@ -276,13 +346,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 8th bhava",
             "text": "In temperament, it shows as mental instability, long blank spells, deep despair, negative thinking and inward fear. Persistent low mood here deserves proper attention rather than endurance."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_12_PHYSICAL",
@@ -295,13 +370,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 12th bhava",
             "text": "Physically, the indications are anxiety and phobia, fluid gathering in the chest or lungs, and phlegm disorders."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_12_RELATIONS",
@@ -314,13 +394,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 12th bhava",
             "text": "In relationships, it shows as complete detachment from the mother or maternal relatives, and betrayal by close friends."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MOON_12_TEMPERAMENT",
@@ -333,13 +418,18 @@
                 {
                     "fact": "planet.Moon.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Moon.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Moon in the 12th bhava",
             "text": "In temperament, it shows as excessive emotionality, a tendency to escape rather than face matters, and a wish to withdraw from society."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_6_PHYSICAL",
@@ -352,13 +442,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 6th bhava",
             "text": "Physically, the indications are high blood pressure, ulcers, liver infection, accidents, physical harm arising from litigation, and torn muscle."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_6_RELATIONS",
@@ -371,13 +466,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 6th bhava",
             "text": "In relationships, it shows as disputes and enmity with siblings, particularly younger ones, and with friends."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_6_TEMPERAMENT",
@@ -390,13 +490,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 6th bhava",
             "text": "In temperament, it shows as extreme aggression, a fierce temper, a tendency to quarrel without cause, and little patience."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_8_PHYSICAL",
@@ -409,13 +514,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 8th bhava",
             "text": "Physically, the indications are piles and fistula, internal bleeding, serious accidents, complex surgery, and disease of the private organs."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_8_RELATIONS",
@@ -428,13 +538,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 8th bhava",
             "text": "In relationships, it shows as health crisis for a sibling, and severe enmity with brothers-in-law or the in-law side."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_8_TEMPERAMENT",
@@ -447,13 +562,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 8th bhava",
             "text": "In temperament, it shows as stubbornness, violent thoughts, a vengeful cast of mind, and anger that is not controlled."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_12_PHYSICAL",
@@ -466,13 +586,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 12th bhava",
             "text": "Physically, the indications are insomnia, eye injury or reduced vision, injury to the legs, surgery, and extreme physical exhaustion."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_12_RELATIONS",
@@ -485,13 +610,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 12th bhava",
             "text": "In relationships, it shows as sharp quarrels with the spouse and a want of marital ease, and broken ties with siblings."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MARS_12_TEMPERAMENT",
@@ -504,13 +634,18 @@
                 {
                     "fact": "planet.Mars.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mars.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mars in the 12th bhava",
             "text": "In temperament, it shows as anger expressed covertly, involvement in concealed activity, and regret over hasty decisions."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_6_PHYSICAL",
@@ -523,13 +658,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 6th bhava",
             "text": "Physically, the indications are weakness of the nervous system, severe skin allergy, stammering speech, and trouble in the digestive tract."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_6_RELATIONS",
@@ -542,13 +682,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 6th bhava",
             "text": "In relationships, it shows as spoiled relations or betrayal involving maternal uncles and aunts, nieces and nephews, or paternal uncles."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_6_TEMPERAMENT",
@@ -561,13 +706,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 6th bhava",
             "text": "In temperament, it shows as getting lost in argument, indecision, confusion in business judgement, and bitterness in speech."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_8_PHYSICAL",
@@ -580,13 +730,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 8th bhava",
             "text": "Physically, the indications are memory loss, stroke, withering of the nerves, and skin disease in the private areas."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_8_RELATIONS",
@@ -599,13 +754,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 8th bhava",
             "text": "In relationships, it shows as severe differences with sisters, paternal aunts, or business partners."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_8_TEMPERAMENT",
@@ -618,13 +778,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 8th bhava",
             "text": "In temperament, it shows as being trapped by one's own cleverness, deceitful thinking, and a lack of clarity in communication."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_12_PHYSICAL",
@@ -637,13 +802,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 12th bhava",
             "text": "Physically, the indications are nervous insomnia, loss of hearing, and mental fatigue from an overactive mind."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_12_RELATIONS",
@@ -656,13 +826,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 12th bhava",
             "text": "In relationships, it shows as growing distance from sisters, nieces and nephews, or friends, and disputes over money."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_MERCURY_12_TEMPERAMENT",
@@ -675,13 +850,18 @@
                 {
                     "fact": "planet.Mercury.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Mercury.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Mercury in the 12th bhava",
             "text": "In temperament, it shows as overthinking, indecision, and a habit of talking more than working."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_6_PHYSICAL",
@@ -694,13 +874,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 6th bhava",
             "text": "Physically, the indications are obesity, fatty liver, diabetes, and disturbance of the digestive system."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_6_RELATIONS",
@@ -713,13 +898,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 6th bhava",
             "text": "In relationships, it shows as differences with gurus, teachers, elders and religious guardians."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_6_TEMPERAMENT",
@@ -732,13 +922,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 6th bhava",
             "text": "In temperament, it shows as pride in one's own piety, the ego of being learned, looking down on others, and overconfidence."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_8_PHYSICAL",
@@ -751,13 +946,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 8th bhava",
             "text": "Physically, the indications are serious liver disease, gastric trouble and gallstones, and severe ear problems."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_8_RELATIONS",
@@ -770,13 +970,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 8th bhava",
             "text": "In relationships, it shows as hardship or difference with children, particularly the first, and distance in outlook from teachers."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_8_TEMPERAMENT",
@@ -789,13 +994,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 8th bhava",
             "text": "In temperament, it shows as moral slackening, scepticism toward spiritual matters, a habit of giving poor advice, and pride in not knowing."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_12_PHYSICAL",
@@ -808,13 +1018,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 12th bhava",
             "text": "Physically, the indications are increase in body fat and cholesterol, declining memory, swelling of the feet, and heavy expenditure."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_12_RELATIONS",
@@ -827,13 +1042,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 12th bhava",
             "text": "In relationships, it shows as distance from children through travel or separation, and a weakened bond with grandparents."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_JUPITER_12_TEMPERAMENT",
@@ -846,13 +1066,18 @@
                 {
                     "fact": "planet.Jupiter.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Jupiter.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Jupiter in the 12th bhava",
             "text": "In temperament, it shows as ostentatious religiosity, misuse of wealth in the name of charity, and poor investment."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_6_PHYSICAL",
@@ -865,13 +1090,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 6th bhava",
             "text": "Physically, the indications are kidney infection, diabetes, hormonal imbalance and urinary tract infection."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_6_RELATIONS",
@@ -884,13 +1114,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 6th bhava",
             "text": "In relationships, it shows as enmity and dispute with the spouse, with female friends, or with a partner."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_6_TEMPERAMENT",
@@ -903,13 +1138,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 6th bhava",
             "text": "In temperament, it shows as excessive desire, unethical attraction, neglect of personal care, and a dissatisfied life."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_8_PHYSICAL",
@@ -922,13 +1162,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 8th bhava",
             "text": "Physically, the indications are disease of the reproductive organs, poor quality of sperm or ovum, kidney failure, and venereal complaints."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_8_RELATIONS",
@@ -941,13 +1186,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 8th bhava",
             "text": "In relationships, it shows as a major health crisis for the spouse, and bitterness with the mother-in-law or siblings-in-law."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_8_TEMPERAMENT",
@@ -960,13 +1210,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 8th bhava",
             "text": "In temperament, it shows as addiction to sensual pleasure, inclination toward unethical relationships, and false pride in appearance."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_12_PHYSICAL",
@@ -979,13 +1234,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 12th bhava",
             "text": "Physically, the indications are reduced eyesight, physical weakness from excessive indulgence, and weakness of the nerves."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_12_RELATIONS",
@@ -998,13 +1258,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 12th bhava",
             "text": "In relationships, it shows as separation or divorce from the spouse, and betrayal by a lover or female friend."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_VENUS_12_TEMPERAMENT",
@@ -1017,13 +1282,18 @@
                 {
                     "fact": "planet.Venus.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Venus.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Venus in the 12th bhava",
             "text": "In temperament, it shows as extravagance, intense attachment to comfort and luxury, and laziness."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_6_PHYSICAL",
@@ -1036,13 +1306,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 6th bhava",
             "text": "Physically, the indications are arthritis, severe pain in the joints and knees, and chronic constipation."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_6_RELATIONS",
@@ -1055,13 +1330,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 6th bhava",
             "text": "In relationships, it shows as dispute and betrayal involving servants, employees, labourers or paternal uncles."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_6_TEMPERAMENT",
@@ -1074,13 +1354,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 6th bhava",
             "text": "In temperament, it shows as extreme laziness, procrastination, neglect of work, and pessimistic thinking."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_8_PHYSICAL",
@@ -1093,13 +1378,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 8th bhava",
             "text": "Physically, the indications are paralysis, severe trouble in the legs and teeth, wasting of the nerves, and risk of chronic disability."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_8_RELATIONS",
@@ -1112,13 +1402,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 8th bhava",
             "text": "In relationships, it shows as severe differences with the in-laws, and distance from elderly relatives."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_8_TEMPERAMENT",
@@ -1131,13 +1426,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 8th bhava",
             "text": "In temperament, it shows as deep sadness, renunciation, stubbornness, aversion to the world, and an overly suspicious nature."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_12_PHYSICAL",
@@ -1150,13 +1450,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 12th bhava",
             "text": "Physically, the indications are chronic insomnia, chronic depression, severe injury to the leg, and hospitalisation or seclusion."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_12_RELATIONS",
@@ -1169,13 +1474,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 12th bhava",
             "text": "In relationships, it shows as broken ties with paternal uncles, elder brothers or old friends, and complete isolation from society."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_SATURN_12_TEMPERAMENT",
@@ -1188,13 +1498,18 @@
                 {
                     "fact": "planet.Saturn.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Saturn.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Saturn in the 12th bhava",
             "text": "In temperament, it shows as a grasping nature, narrow thinking, negativity, and self-inflicted harm through one's own actions."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_6_PHYSICAL",
@@ -1207,13 +1522,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 6th bhava",
             "text": "Physically, the indications are problems that resist diagnosis, poisonous bites, and intestinal worms or ulcers."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_6_RELATIONS",
@@ -1226,13 +1546,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 6th bhava",
             "text": "In relationships, it shows as disputes with the maternal side, with the paternal grandfather's line, or with people of another community."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_6_TEMPERAMENT",
@@ -1245,13 +1570,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 6th bhava",
             "text": "In temperament, it shows as diplomatic deceit, suspicious behaviour, a habit of breaking rules, and extreme restlessness."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_8_PHYSICAL",
@@ -1264,13 +1594,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 8th bhava",
             "text": "Physically, the indications are fear of poisoning, risk of cancer, complex nerve trouble in the private parts, and accidents."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_8_RELATIONS",
@@ -1283,13 +1618,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 8th bhava",
             "text": "In relationships, it shows as major betrayal or sudden rupture with the in-laws, and an increase in hidden enemies."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_8_TEMPERAMENT",
@@ -1302,13 +1642,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 8th bhava",
             "text": "In temperament, it shows as inclination toward gambling, a wish to earn by unethical means, and a confused mind."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_12_PHYSICAL",
@@ -1321,13 +1666,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 12th bhava",
             "text": "Physically, the indications are nightmares, phobia, mental delusion, and adverse reaction to drugs."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_12_RELATIONS",
@@ -1340,13 +1690,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 12th bhava",
             "text": "In relationships, it shows as betrayal by people living abroad or by relatives of unusual background."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_RAHU_12_TEMPERAMENT",
@@ -1359,13 +1714,18 @@
                 {
                     "fact": "planet.Rahu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Rahu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Rahu in the 12th bhava",
             "text": "In temperament, it shows as risk of falling into addiction, living in delusion, extreme insomnia and mental instability."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_6_PHYSICAL",
@@ -1378,13 +1738,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 6th bhava",
             "text": "Physically, the indications are intestinal worms, illness caused by microscopic organisms, and sudden marks on the skin."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_6_RELATIONS",
@@ -1397,13 +1762,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 6th bhava",
             "text": "In relationships, it shows as dissatisfaction and distance with nieces and nephews, grandchildren, or household help."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_6_TEMPERAMENT",
@@ -1416,13 +1786,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 6
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 6th bhava",
             "text": "In temperament, it shows as a feeling of detachment, lack of interest in work, and a sudden whimsical turn."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_8_PHYSICAL",
@@ -1435,13 +1810,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 8th bhava",
             "text": "Physically, the indications are lower back and spinal trouble, sudden surgery, and internal pain that resists identification."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_8_RELATIONS",
@@ -1454,13 +1834,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 8th bhava",
             "text": "In relationships, it shows as severe dispute with relatives over the maternal grandmother's or ancestral property."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_8_TEMPERAMENT",
@@ -1473,13 +1858,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 8
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 8th bhava",
             "text": "In temperament, it shows as mysterious behaviour, distrust of everyone, and sudden thoughts of walking away."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_12_PHYSICAL",
@@ -1492,13 +1882,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 12th bhava",
             "text": "Physically, the indications are injury or burning on the soles of the feet, sudden disturbance of the nervous system, insomnia and weakness."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_12_RELATIONS",
@@ -1511,13 +1906,18 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 12th bhava",
             "text": "In relationships, it shows as mental distance from all family members, and spiritual or social withdrawal."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     },
     {
         "id": "TRIK_KETU_12_TEMPERAMENT",
@@ -1530,12 +1930,17 @@
                 {
                     "fact": "planet.Ketu.house",
                     "equals": 12
+                },
+                {
+                    "fact": "planet.Ketu.afflicted",
+                    "isTrue": true
                 }
             ]
         },
         "then": {
             "title": "Ketu in the 12th bhava",
             "text": "In temperament, it shows as a feeling of hollowness, avoidance of worldly responsibility, and a meditative but indifferent cast of mind."
-        }
+        },
+        "note": "Fires only when the graha is also afflicted: enemy or debilitated sign, malefic conjunction, or malefic aspect."
     }
 ]

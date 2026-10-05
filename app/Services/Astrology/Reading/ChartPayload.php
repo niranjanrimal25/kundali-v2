@@ -21,6 +21,12 @@ use App\Services\Astrology\Support\Zodiac;
  *   planet.Sun.aspectedBy     ["Mars"]     receiving drishti
  *   planet.Sun.influencedBy   ["Jupiter","Mars"]   conjunct OR aspecting
  *   planet.Sun.inTrik         true|false   6th, 8th or 12th
+ *   planet.Sun.inEnemySign    true|false   enemy or debilitated
+ *   planet.Sun.withMalefic    true|false   shares a bhava with a malefic
+ *   planet.Sun.aspectedByMalefic   true|false
+ *   planet.Sun.afflicted      true|false   any of the three above
+ *   planet.Sun.inTrikSign     true|false   occupies the rashi of a 4/8/12
+ *                                          bhava, the unfavourable signs
  *   lagna.sign / lagna.signNumber
  *   house.4.sign / house.4.lord / house.4.occupants
  *
@@ -47,6 +53,11 @@ class ChartPayload
             'planet' => [],
             'house' => [],
         ];
+
+        // A planet in a Trik bhava is only read as harmful when it is
+        // ALSO afflicted. Per the owner: Mars in the 6th does not mean
+        // injury by itself; it must be joined by a malefic.
+        $malefics = ['Saturn', 'Mars', 'Rahu', 'Ketu', 'Sun'];
 
         // --- grahas -------------------------------------------------
         foreach (self::GRAHAS as $name) {
@@ -79,6 +90,17 @@ class ChartPayload
                 }
             }
 
+            $withMalefic = array_values(array_intersect($conjunct, array_diff($malefics, [$name])));
+            $aspectedByMalefic = array_values(array_intersect($aspectedBy, array_diff($malefics, [$name])));
+            $inEnemySign = in_array($p['dignity'], ['enemy', 'debilitated'], true);
+
+            // Signs belonging to the 4th, 8th and 12th bhavas - the
+            // unfavourable signs referred to as the north direction.
+            $trikSigns = [];
+            foreach ([4, 8, 12] as $h) {
+                $trikSigns[] = ($lagnaSign + $h - 1) % 12;
+            }
+
             $payload['planet'][$name] = [
                 'name' => $name,
                 'sanskrit' => $p['sanskrit'],
@@ -97,6 +119,12 @@ class ChartPayload
                 // "With" in the source manual means influence generally.
                 'influencedBy' => array_values(array_unique(array_merge($conjunct, $aspectedBy))),
                 'inTrik' => in_array($p['house'], [6, 8, 12], true),
+                'inEnemySign' => $inEnemySign,
+                'withMalefic' => $withMalefic !== [],
+                'aspectedByMalefic' => $aspectedByMalefic !== [],
+                'maleficCompany' => $withMalefic,
+                'afflicted' => $inEnemySign || $withMalefic !== [] || $aspectedByMalefic !== [],
+                'inTrikSign' => in_array($p['sign'], $trikSigns, true),
                 'inKendra' => in_array($p['house'], [1, 4, 7, 10], true),
                 'inTrikona' => in_array($p['house'], [1, 5, 9], true),
                 'aspectsHouses' => $p['aspects_houses'] ?? [],
