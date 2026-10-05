@@ -49,7 +49,7 @@ class RuleSourceSwitchTest extends TestCase
 
         $repo = new RuleRepository('en');
 
-        $this->assertSame(112, $repo->count());
+        $this->assertSame(134, $repo->count());
     }
 
     #[Test]
@@ -59,7 +59,7 @@ class RuleSourceSwitchTest extends TestCase
 
         $repo = new RuleRepository('en');
 
-        $this->assertSame(1051, $repo->count());
+        $this->assertSame(1073, $repo->count());
     }
 
     #[Test]
@@ -69,7 +69,7 @@ class RuleSourceSwitchTest extends TestCase
         (new RuleRepository('en'))->count();
 
         // Dormant rules remain in the database, ready to switch back on.
-        $this->assertSame(1051, DB::table('interpretation_rules')->count());
+        $this->assertSame(1073, DB::table('interpretation_rules')->count());
     }
 
     #[Test]

@@ -27,6 +27,10 @@ class OwnerCompositeRules
     {
         $rows = [];
 
+        foreach (self::overrides() as $override) {
+            $rows[] = $override;
+        }
+
         foreach (self::rules() as $i => [$key, $polarity, $text, $conditions]) {
             $rows[] = [
                 'condition_type' => 'composite',
@@ -42,6 +46,39 @@ class OwnerCompositeRules
         }
 
         return $rows;
+    }
+
+    /**
+     * Rules that are not composite but still owner-supplied, so they
+     * must outrank this project's own wording of the same point.
+     */
+    public static function overrides(): array
+    {
+        return [
+            [
+                'condition_type' => 'digbala_planet',
+                'condition_key' => 'Sun:powerless',
+                'section' => 'modifier',
+                'polarity' => -1,
+                // Weight above DigbalaRules (80) so the owner's wording wins.
+                'weight' => 99,
+                'text' => 'is directionally weak (no Digbala) in the fourth. The source is careful here: weak does not mean entirely inauspicious, and the bhava still gives its results, only without the force it would carry in the tenth',
+                'provenance' => self::PROVENANCE,
+                'source' => self::SOURCE,
+                'conditions' => null,
+            ],
+            [
+                'condition_type' => 'digbala_planet',
+                'condition_key' => 'Sun:full',
+                'section' => 'modifier',
+                'polarity' => 2,
+                'weight' => 99,
+                'text' => 'holds full directional strength (Digbala) in the tenth, which is the most powerful position Surya can occupy',
+                'provenance' => self::PROVENANCE,
+                'source' => self::SOURCE,
+                'conditions' => null,
+            ],
+        ];
     }
 
     private static function rules(): array
@@ -112,6 +149,34 @@ class OwnerCompositeRules
                 ['planet' => 'Sun', 'in_house' => [1, 6, 4, 8, 7, 12], 'with_all' => ['Mars', 'Rahu']],
             ],
 
+            // --- alternate branches the source states with "OR" ---
+            [
+                'sun_rahu_mercury_low_degree', -2,
+                'Surya, Rahu and Budha stand together with Surya at a low degree in its sign. The classical reading is disturbance of the nervous system, serious trouble in the chest, and psychological strain',
+                ['planet' => 'Sun', 'with_all' => ['Rahu', 'Mercury'], 'degree_below' => 10],
+            ],
+            [
+                'sun_12_mars_fire_injury', -2,
+                'Surya occupies the 12th in the company of Mangala. The classical indication is injury to the eye or forehead by a sharp implement, and harm from fire or electrical current',
+                ['planet' => 'Sun', 'in_house' => [12], 'with_any' => ['Mars']],
+            ],
+            [
+                'mars_venus_reproductive', -2,
+                'Mangala stands with Shukra in a sensitive bhava in a fiery or watery sign. The classical reading is vulnerability in the reproductive organs, the prostate, the kidneys and the urinary system',
+                ['planet' => 'Mars', 'in_house' => [6, 8, 7, 1], 'in_sign' => [8, 4, 7, 0], 'with_any' => ['Venus']],
+            ],
+            [
+                'sun_venus_reproductive_severe', -2,
+                'Surya and Shukra stand together in a sensitive fiery or watery sign with Shani aspecting or a node joining. The source reads this combination as markedly more serious for the reproductive and urinary systems, and it warrants ordinary medical vigilance rather than alarm',
+                [
+                    'planet' => 'Sun',
+                    'in_house' => [6, 8, 7, 1],
+                    'in_sign' => [8, 4, 7, 0],
+                    'with_any' => ['Venus'],
+                    'aspected_by' => ['Saturn'],
+                ],
+            ],
+
             // ---------------- MOON ----------------
             [
                 'moon_1st_fickle', -1,
@@ -161,7 +226,13 @@ class OwnerCompositeRules
             [
                 'moon_saturn_venus_water', -2,
                 'Chandra stands with Shani and Shukra in a sensitive bhava. The classical reading is imbalance of the water element, producing swelling in the body and an unsettled mind',
-                ['planet' => 'Moon', 'in_house' => [2, 6, 8, 10, 12], 'with_all' => ['Saturn', 'Venus']],
+                [
+                    'planet' => 'Moon',
+                    'in_house' => [2, 6, 8, 10, 12],
+                    'with_all' => ['Saturn', 'Venus'],
+                    // Mesha, Kanya, Vrischika, Dhanu, Kumbha, Makara
+                    'in_sign' => [0, 5, 7, 8, 10, 9],
+                ],
             ],
             [
                 'moon_saturn_isolation', -2,
@@ -171,7 +242,23 @@ class OwnerCompositeRules
             [
                 'moon_mars_blood', -2,
                 'Chandra is joined or aspected by Mangala from a sensitive bhava. The classical reading is disorder of the blood and the urinary system',
-                ['planet' => 'Moon', 'in_house' => [6, 10, 2, 8, 12], 'aspected_by' => ['Mars']],
+                [
+                    'planet' => 'Moon',
+                    'in_house' => [6, 10, 2, 8, 12],
+                    'aspected_by' => ['Mars'],
+                    // The source restricts this to Mesha, Vrischika, Dhanu, Simha or Kanya.
+                    'in_sign' => [0, 7, 8, 4, 5],
+                ],
+            ],
+            [
+                'moon_mars_blood_conjunct', -2,
+                'Chandra and Mangala stand together in a sensitive bhava. The classical reading is disorder of the blood and the urinary system',
+                [
+                    'planet' => 'Moon',
+                    'in_house' => [6, 10, 2, 8, 12],
+                    'with_any' => ['Mars'],
+                    'in_sign' => [0, 7, 8, 4, 5],
+                ],
             ],
             [
                 'moon_mars_virgo_lagna', -2,
@@ -181,7 +268,13 @@ class OwnerCompositeRules
             [
                 'moon_venus_mars_serious', -2,
                 'Chandra stands with Shukra and Mangala, lords of difficult bhavas, in a sensitive house. The supplied text reads this as a serious combination for the blood, the urinary tract, the prostate, the uterus and the ovaries. It is a reason for ordinary medical vigilance, not a diagnosis',
-                ['planet' => 'Moon', 'in_house' => [2, 6, 7, 8, 12], 'with_all' => ['Venus', 'Mars']],
+                [
+                    'planet' => 'Moon',
+                    'in_house' => [2, 6, 7, 8, 12],
+                    'with_all' => ['Venus', 'Mars'],
+                    // The source requires the two to own dusthanas.
+                    'companion_lord_of' => ['planets' => ['Venus', 'Mars'], 'houses' => [6, 8, 12]],
+                ],
             ],
 
             // ---------------- MARS ----------------
@@ -204,6 +297,28 @@ class OwnerCompositeRules
                 'mars_afflicted_anorectal', -2,
                 'Mangala stands afflicted in the 6th or 8th. The classical reading is vulnerability to piles, fistula or fissure, inflammation of the reproductive organs, and in women heavy menstruation with severe abdominal pain',
                 ['planet' => 'Mars', 'in_house' => [6, 8], 'with_any' => ['Saturn', 'Rahu', 'Ketu', 'Venus']],
+            ],
+            [
+                'lagnesh_blood_urinary', -2,
+                'The lord of the Lagna occupies the 2nd, 6th, 8th or 12th in the company of Mangala, Rahu, Shukra or Ketu. The classical reading is disorder of the blood, the urinary system, the kidneys and the brain',
+                ['lord_of' => [1], 'in_house' => [2, 6, 8, 12], 'with_any' => ['Mars', 'Rahu', 'Venus', 'Ketu']],
+            ],
+            [
+                'moon_cancer_heart_clot', -2,
+                'Karka falls on a sensitive bhava, Chandra is afflicted by malefic company, and the lord of the 4th occupies a dusthana. The source reads this combination together as indicating the lungs, the chest, and the risk of a clot affecting the heart. It is a reason for ordinary cardiac vigilance, not a diagnosis',
+                [
+                    'planet' => 'Moon',
+                    'sign_in_house' => ['sign' => 3, 'house' => [6, 8, 2, 10]],
+                    'with_any' => ['Rahu', 'Ketu', 'Saturn', 'Venus'],
+                    'lord_in_house' => [
+                        ['lord_of' => [4], 'in_house' => [6, 8, 12]],
+                    ],
+                ],
+            ],
+            [
+                'mars_afflicted_marrow', -2,
+                'Mangala, significator of the bone marrow and the muscles, stands afflicted in a Trik bhava. The classical reading is wasting of the muscles, severe cramp or sharp muscular pain, and abnormality in the bone marrow obstructing the production of blood cells',
+                ['planet' => 'Mars', 'in_house' => [6, 8, 12], 'with_any' => ['Saturn', 'Rahu', 'Ketu', 'Sun', 'Venus']],
             ],
             [
                 'mars_afflicted_mind', -2,

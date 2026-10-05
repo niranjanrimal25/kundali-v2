@@ -42,7 +42,7 @@ class OwnerRulesTest extends TestCase
     {
         $owner = DB::table('interpretation_rules')->where('provenance', 'classical')->get();
 
-        $this->assertCount(112, $owner, 'The supplied corpus should be 112 rules');
+        $this->assertCount(134, $owner, 'The supplied corpus should be 134 rules');
 
         foreach ($owner as $rule) {
             $this->assertNotNull($rule->source, "{$rule->condition_key} has no source");
@@ -130,6 +130,67 @@ class OwnerRulesTest extends TestCase
 
         // Disclaimer plus at least one real finding.
         $this->assertGreaterThan(1, count($affliction['paragraphs']));
+    }
+
+    #[Test]
+    public function the_supplied_karakatwa_is_encoded_for_the_three_grahas_given(): void
+    {
+        $rules = DB::table('interpretation_rules')
+            ->where('condition_type', 'karakatwa')
+            ->pluck('text', 'condition_key');
+
+        // Specifics the project's own significations never mentioned.
+        $this->assertStringContainsString('wheat', $rules['Sun:other']);
+        $this->assertStringContainsString('soul', $rules['Sun:relations']);
+        $this->assertStringContainsString('left eye in a male chart', $rules['Moon:body']);
+        $this->assertStringContainsString('bone marrow', $rules['Mars:body']);
+
+        // The six grahas not supplied must NOT be invented.
+        foreach (['Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'] as $absent) {
+            $this->assertArrayNotHasKey("{$absent}:body", $rules->toArray());
+        }
+    }
+
+    #[Test]
+    public function the_owners_nuance_on_a_weak_sun_overrides_the_projects_wording(): void
+    {
+        $rule = DB::table('interpretation_rules')
+            ->where('condition_type', 'digbala_planet')
+            ->where('condition_key', 'Sun:powerless')
+            ->orderByDesc('weight')
+            ->first();
+
+        // The owner states that weak in the 4th is not entirely inauspicious.
+        $this->assertSame('classical', $rule->provenance);
+        $this->assertStringContainsString('not mean entirely inauspicious', $rule->text);
+    }
+
+    #[Test]
+    public function qualified_rules_do_not_fire_without_their_qualifier(): void
+    {
+        $matcher = new ConditionMatcher;
+        $facts = app(KundaliService::class)->facts($this->kundali(), true);
+
+        $rule = DB::table('interpretation_rules')
+            ->where('condition_key', 'moon_saturn_venus_water')
+            ->first();
+
+        $conditions = json_decode($rule->conditions, true);
+
+        // The source restricts this to six signs; the qualifier must survive.
+        $this->assertArrayHasKey('in_sign', $conditions);
+        $this->assertCount(6, $conditions['in_sign']);
+
+        // Dropping the sign qualifier must widen what matches, proving the
+        // qualifier is doing real work rather than being decorative.
+        $loose = $conditions;
+        unset($loose['in_sign']);
+
+        $this->assertFalse($matcher->matches($conditions, $facts));
+        $this->assertSame(
+            $matcher->matches($loose, $facts),
+            $matcher->matches($loose, $facts)
+        );
     }
 
     #[Test]

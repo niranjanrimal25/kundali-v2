@@ -64,6 +64,7 @@ class ReadingGenerator
 
         $sections[] = $this->yogaSection($facts, $rules);
         $sections[] = $this->afflictionSection($facts, $rules);
+        $sections[] = $this->karakatwaSection($facts, $rules);
         $sections[] = $this->dashaSection($facts, $seed, $rules);
 
         return array_values(array_filter($sections));
@@ -490,6 +491,69 @@ class ReadingGenerator
         }
 
         return $planet['combust'] ?? false;
+    }
+
+    /**
+     * Karakatwa — what each graha signifies, tied to where it sits.
+     *
+     * Only grahas with supplied significations appear. Inventing the
+     * missing six would defeat the point of sourcing them.
+     */
+    private function karakatwaSection(array $facts, RuleRepository $rules): array
+    {
+        $paragraphs = [];
+
+        foreach (['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'] as $name) {
+            $planet = $facts['planets'][$name] ?? null;
+
+            if (! $planet) {
+                continue;
+            }
+
+            $parts = [];
+
+            foreach ([
+                'body' => 'In the body it governs',
+                'relations' => 'Among people it stands for',
+                'qualities' => 'In temperament it carries',
+                'other' => 'It also signifies',
+            ] as $facet => $prefix) {
+                if ($rule = $rules->first('karakatwa', "{$name}:{$facet}")) {
+                    $parts[] = $this->sentence($prefix.' '.$this->trimText($rule->text));
+                }
+            }
+
+            if ($parts === []) {
+                continue;
+            }
+
+            array_unshift($parts, $this->sentence(sprintf(
+                '%s sits in your %s bhava in %s',
+                $planet['sanskrit'],
+                $this->ordinal($planet['house']),
+                $planet['sign_name']
+            )));
+
+            $paragraphs[] = implode(' ', $parts);
+        }
+
+        if ($paragraphs === []) {
+            return [];
+        }
+
+        array_unshift(
+            $paragraphs,
+            'Each graha governs a fixed set of matters. Wherever a graha sits, those '
+            .'matters are drawn into that bhava, which is why the same placement can '
+            .'touch health, family and temperament at once.'
+        );
+
+        return [
+            'key' => 'karakatwa',
+            'title' => 'What Each Graha Governs',
+            'subtitle' => 'Significations and where they fall in your chart',
+            'paragraphs' => $paragraphs,
+        ];
     }
 
     private function dashaSection(array $facts, string $seed, RuleRepository $rules): array

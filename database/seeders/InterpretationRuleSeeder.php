@@ -13,6 +13,7 @@ use Database\Seeders\Rules\HouseSignRules;
 use Database\Seeders\Rules\LordPlacementRules;
 use Database\Seeders\Rules\NakshatraRules;
 use Database\Seeders\Rules\OwnerCompositeRules;
+use Database\Seeders\Rules\OwnerKarakatwaRules;
 use Database\Seeders\Rules\PlanetHouseRules;
 use Database\Seeders\Rules\PlanetSignRules;
 use Database\Seeders\Rules\TrikAfflictionRules;
@@ -66,6 +67,7 @@ class InterpretationRuleSeeder extends Seeder
             YogaRules::all(),
             TrikAfflictionRules::all(),
             OwnerCompositeRules::all(),
+            OwnerKarakatwaRules::all(),
         );
 
         $rows = array_map(fn ($r) => $this->clean($r), $rows);

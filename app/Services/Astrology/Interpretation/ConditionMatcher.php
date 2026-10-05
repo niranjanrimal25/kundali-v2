@@ -35,6 +35,7 @@ class ConditionMatcher
     public const SUPPORTED = [
         'planet', 'lord_of', 'in_house', 'in_sign', 'with_any', 'with_all',
         'aspected_by', 'lagna_sign', 'sign_in_house', 'not_in_house',
+        'companion_lord_of', 'degree_below', 'lord_in_house',
     ];
 
     public function matches(array $conditions, array $facts): bool
@@ -72,6 +73,24 @@ class ConditionMatcher
             return true;
         }
 
+        // A named OTHER graha must rule one set of houses and sit in another.
+        if (isset($conditions['lord_in_house'])) {
+            foreach ($conditions['lord_in_house'] as $spec) {
+                $ruler = null;
+
+                foreach (Zodiac::OWN_SIGNS as $graha => $signs) {
+                    if (array_intersect($this->housesRuledBy($graha, $lagnaSign), (array) $spec['lord_of'])) {
+                        $ruler = $facts['planets'][$graha] ?? null;
+                        break;
+                    }
+                }
+
+                if (! $ruler || ! in_array($ruler['house'], (array) $spec['in_house'], true)) {
+                    return false;
+                }
+            }
+        }
+
         if (isset($conditions['lord_of'])) {
             $owned = $this->housesRuledBy($name, $lagnaSign);
 
@@ -104,6 +123,25 @@ class ConditionMatcher
         }
 
         if (isset($conditions['aspected_by']) && ! $this->aspectedByAny($planet, (array) $conditions['aspected_by'], $facts)) {
+            return false;
+        }
+
+        // Companions sharing the bhava must themselves rule given houses.
+        if (isset($conditions['companion_lord_of'])) {
+            $spec = $conditions['companion_lord_of'];
+
+            foreach ((array) $spec['planets'] as $companion) {
+                $owned = $this->housesRuledBy($companion, $lagnaSign);
+
+                if (array_intersect($owned, (array) $spec['houses']) === []) {
+                    return false;
+                }
+            }
+        }
+
+        // Degree within its own sign, used for "low degree" conditions.
+        if (isset($conditions['degree_below'])
+            && fmod($planet['longitude'], 30) >= (float) $conditions['degree_below']) {
             return false;
         }
 
