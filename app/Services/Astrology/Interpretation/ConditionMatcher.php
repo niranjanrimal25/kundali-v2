@@ -67,9 +67,22 @@ class ConditionMatcher
             }
         }
 
+        // A rule may name its subject implicitly, as "the lord of the Nth".
+        // Resolve that to an actual graha, otherwise every placement test
+        // below has nothing to test and the rule matches any chart at all.
+        if ($planet === null && isset($conditions['lord_of'])) {
+            $planet = $this->rulerOf((array) $conditions['lord_of'], $lagnaSign, $facts);
+
+            if ($planet === null) {
+                return false;
+            }
+
+            // Lordship is now satisfied by construction.
+            unset($conditions['lord_of']);
+        }
+
         if ($planet === null) {
-            // A rule with no planet key is purely chart-level; everything
-            // testable has already been checked above.
+            // Genuinely chart-level: everything testable is already checked.
             return true;
         }
 
@@ -146,6 +159,21 @@ class ConditionMatcher
         }
 
         return true;
+    }
+
+    /** The graha ruling any of the given bhavas, if one is placed. */
+    private function rulerOf(array $houses, int $lagnaSign, array $facts): ?array
+    {
+        foreach ($houses as $house) {
+            $sign = ($lagnaSign + $house - 1) % 12;
+            $lord = Zodiac::SIGN_LORDS[$sign] ?? null;
+
+            if ($lord && isset($facts['planets'][$lord])) {
+                return $facts['planets'][$lord];
+            }
+        }
+
+        return null;
     }
 
     /** Bhavas ruled by a graha, relative to the Lagna. */

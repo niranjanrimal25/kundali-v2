@@ -194,6 +194,33 @@ class OwnerRulesTest extends TestCase
     }
 
     #[Test]
+    public function a_lord_rule_only_fires_when_that_lord_is_actually_placed_there(): void
+    {
+        $matcher = new ConditionMatcher;
+        $facts = app(KundaliService::class)->facts($this->kundali(), true);
+
+        // Cancer Lagna: the 1st lord is Chandra, which sits in the 6th.
+        $this->assertTrue($matcher->matches(
+            ['lord_of' => [1], 'in_house' => [6]],
+            $facts
+        ));
+
+        // The same rule pointed at houses the Lagna lord does NOT occupy
+        // must fail. Before this was fixed, a rule naming its subject only
+        // as "the lord of the Nth" skipped every placement test and
+        // matched every chart ever generated.
+        $this->assertFalse($matcher->matches(
+            ['lord_of' => [1], 'in_house' => [2, 8, 12]],
+            $facts
+        ));
+
+        $this->assertFalse($matcher->matches(
+            ['lord_of' => [1], 'in_house' => [6], 'with_any' => ['Jupiter']],
+            $facts
+        ));
+    }
+
+    #[Test]
     public function every_composite_rule_has_valid_parseable_conditions(): void
     {
         $matcher = new ConditionMatcher;
