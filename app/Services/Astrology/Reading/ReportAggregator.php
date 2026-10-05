@@ -107,6 +107,9 @@ class ReportAggregator
                 ];
             }
 
+            $explicit = array_values(array_filter($points, fn ($p) => ! $p['derived']));
+            $derived = array_values(array_filter($points, fn ($p) => $p['derived']));
+
             $groups[] = [
                 'letter' => chr(65 + $letter++),
                 'title' => count($occupants) > 1
@@ -121,6 +124,11 @@ class ReportAggregator
                 ),
                 'house' => $house['number'],
                 'points' => $points,
+                // Explicit rule matches are shown by default; the derived
+                // Karakatwa breakdown sits behind a disclosure so a long
+                // chart does not bury the findings that actually matched.
+                'explicit' => $explicit,
+                'derived' => $derived,
             ];
         }
 
@@ -144,6 +152,8 @@ class ReportAggregator
                 'heading' => 'Rules that depend on where a bhava lord sits',
                 'house' => null,
                 'points' => $lordPoints,
+                'explicit' => array_values(array_filter($lordPoints, fn ($p) => ! $p['derived'])),
+                'derived' => array_values(array_filter($lordPoints, fn ($p) => $p['derived'])),
             ];
         }
 
@@ -156,6 +166,13 @@ class ReportAggregator
         $buckets = array_fill_keys(array_keys(self::CATEGORY_LABELS), []);
 
         foreach ($findings as $f) {
+            // The summary reports what the rule base actually matched.
+            // Derived Karakatwa would swamp it, and is available in full
+            // under each placement.
+            if ($f['derived']) {
+                continue;
+            }
+
             $key = array_key_exists($f['category'], $buckets) ? $f['category'] : 'health';
             $buckets[$key][] = $f['text'];
         }
@@ -204,12 +221,22 @@ class ReportAggregator
             $md .= "**{$g['letter']}. {$g['title']}**\n\n";
             $md .= "- **{$g['heading']}:**\n";
 
-            if ($g['points'] === []) {
-                $md .= "  - No rule in the current rule base covers this placement.\n";
+            if ($g['explicit'] === []) {
+                $md .= "  - No explicit rule in the rule base matches this placement.\n";
             }
 
-            foreach ($g['points'] as $point) {
+            foreach ($g['explicit'] as $point) {
                 $md .= '  - '.$point['text']."\n";
+            }
+
+            if ($g['derived'] !== []) {
+                $md .= "\n  <details>\n  <summary>View Detailed Karakatwa &amp; House Breakdown</summary>\n\n";
+
+                foreach ($g['derived'] as $point) {
+                    $md .= '  - '.$point['text']."\n";
+                }
+
+                $md .= "\n  </details>\n";
             }
 
             $md .= "\n";

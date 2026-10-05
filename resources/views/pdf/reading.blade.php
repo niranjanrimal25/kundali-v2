@@ -89,11 +89,20 @@
     @foreach ($report['groups'] as $group)
         <p><strong>{{ $group['letter'] }}. {{ $group['title'] }}</strong></p>
         <div class="st">{{ $group['heading'] }}</div>
-        @forelse ($group['points'] as $point)
+        @forelse ($group['explicit'] as $point)
             <p>&bull; {{ $point['text'] }}</p>
         @empty
-            <p><em>No rule in the current rule base covers this placement.</em></p>
+            <p><em>No explicit rule in the rule base matches this placement.</em></p>
         @endforelse
+
+        {{-- Print cannot collapse, so the derived breakdown is kept but
+             clearly separated and set smaller. --}}
+        @if ($group['derived'] !== [])
+            <p style="margin-top:4pt;font-size:8.5pt;color:#7b3f61;">Detailed Karakatwa &amp; House Breakdown</p>
+            @foreach ($group['derived'] as $point)
+                <p style="font-size:9pt;color:#5a5048;margin-left:8pt;">&ndash; {{ $point['text'] }}</p>
+            @endforeach
+        @endif
     @endforeach
 
     @if ($report['summary'] !== [])

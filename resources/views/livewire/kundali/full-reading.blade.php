@@ -46,7 +46,8 @@
             ({{ $report['stats']['explicit'] }} rules matched this chart).
             @if ($report['stats']['derived'] > 0)
                 A further {{ $report['stats']['derived'] }} points are derived by composing the
-                supplied Karakatwa against bhava significations, so no placement is left unexplained.
+                supplied Karakatwa against bhava significations. Those are folded away under each
+                placement, and are not counted in the summary.
             @endif
         </div>
 
@@ -81,22 +82,34 @@
                         <h3 class="text-sm font-semibold text-[#4a2c5a]">{{ $group['letter'] }}. {{ $group['title'] }}</h3>
                         <p class="mt-1 text-sm font-medium text-[#b5643f]">{{ $group['heading'] }}</p>
 
-                        @if ($group['points'] === [])
+                        {{-- Explicit rule matches: always visible --}}
+                        @if ($group['explicit'] === [])
                             <p class="mt-2 text-sm italic text-gray-400">
-                                No rule in the current rule base covers this placement.
+                                No explicit rule in the rule base matches this placement.
                             </p>
                         @else
                             <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-gray-700">
-                                @foreach ($group['points'] as $point)
-                                    <li>
-                                        {{ $point['text'] }}
-                                        @if ($point['derived'])
-                                            <span class="ml-1 rounded bg-gray-100 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-gray-500"
-                                                  title="{{ $point['source'] }}">derived</span>
-                                        @endif
-                                    </li>
+                                @foreach ($group['explicit'] as $point)
+                                    <li>{{ $point['text'] }}</li>
                                 @endforeach
                             </ul>
+                        @endif
+
+                        {{-- Derived Karakatwa: folded away so it never buries
+                             the rules that actually matched. --}}
+                        @if ($group['derived'] !== [])
+                            <details class="group/acc mt-3 rounded border border-[#ede5d6] bg-[#f9f6ef]">
+                                <summary class="flex cursor-pointer list-none items-center gap-2 px-3 py-2 text-xs font-medium text-[#7b3f61] hover:text-[#4a2c5a]">
+                                    <span class="transition-transform group-open/acc:rotate-90">&#9656;</span>
+                                    View Detailed Karakatwa &amp; House Breakdown
+                                    <span class="text-gray-400">({{ count($group['derived']) }})</span>
+                                </summary>
+                                <ul class="list-disc space-y-1.5 border-t border-[#ede5d6] px-3 py-3 pl-8 text-sm leading-relaxed text-gray-600">
+                                    @foreach ($group['derived'] as $point)
+                                        <li>{{ $point['text'] }}</li>
+                                    @endforeach
+                                </ul>
+                            </details>
                         @endif
                     </div>
                 @endforeach
