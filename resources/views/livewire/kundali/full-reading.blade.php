@@ -43,12 +43,21 @@
             </div>
         </div>
 
-        {{-- Scope notice --}}
+        {{-- Scope notice: states which rule corpus produced this reading,
+             so a thin report is never mistaken for a broken one. --}}
+        @php($ruleMode = config('jyotish.rule_sources'))
+
         <div class="border-x border-[#e3dccd] bg-amber-50 px-8 py-3 text-xs text-amber-900">
-            <strong>Scope.</strong>
-            This reading covers the Lagna, all twelve Bhavas and the running
-            Vimshottari dasha. Yogas, doshas, Sade Sati and remedial measures
-            are analysed in a later release.
+            @if ($ruleMode === 'owner')
+                <strong>Source.</strong>
+                This reading is generated <em>only</em> from the rule set supplied by the
+                owner of this installation. Placements with no supplied rule are stated as
+                plain chart facts rather than interpreted, so some bhavas will read briefly.
+            @else
+                <strong>Scope.</strong>
+                This reading covers the Lagna, all twelve Bhavas, yogas and doshas, and the
+                running Vimshottari dasha. Remedial measures are analysed in a later release.
+            @endif
         </div>
 
         {{-- The reading --}}

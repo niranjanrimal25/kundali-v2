@@ -71,4 +71,32 @@ return [
         'Saturn' => 15.0,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Which interpretation rules to read from
+    |--------------------------------------------------------------------------
+    | Every rule carries a provenance. This decides which of them the
+    | reading engine is allowed to use. Nothing is deleted — rules
+    | outside the active set stay in the database, dormant.
+    |
+    |   'owner'  - only rules supplied by the project owner
+    |              (provenance = classical)
+    |   'all'    - owner rules plus this project's own synthesis
+    |   ['a','b'] - an explicit list of provenance values
+    |
+    | Override per environment with JYOTISH_RULE_SOURCES in .env.
+    | To go back to the full corpus: JYOTISH_RULE_SOURCES=all
+    */
+
+    'rule_sources' => env('JYOTISH_RULE_SOURCES', 'owner'),
+
+    /*
+    | Provenance values that each mode admits.
+    */
+
+    'rule_source_modes' => [
+        'owner' => ['classical'],
+        'all' => ['classical', 'traditional-consensus', 'modern-synthesis'],
+    ],
+
 ];

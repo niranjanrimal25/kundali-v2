@@ -16,7 +16,34 @@ class RuleRepository
 
     private bool $loaded = false;
 
-    public function __construct(private readonly string $locale = 'en') {}
+    /** Provenance values this instance is allowed to use. */
+    private array $allowed;
+
+    public function __construct(
+        private readonly string $locale = 'en',
+        ?array $provenance = null,
+    ) {
+        $this->allowed = $provenance ?? self::activeProvenance();
+    }
+
+    /**
+     * Which rule sources are switched on, per config/jyotish.php.
+     *
+     * Rules outside the active set stay in the database but are never
+     * read, so switching back is a config change rather than a reseed.
+     */
+    public static function activeProvenance(): array
+    {
+        $mode = config('jyotish.rule_sources', 'all');
+
+        if (is_array($mode)) {
+            return $mode;
+        }
+
+        $modes = config('jyotish.rule_source_modes', []);
+
+        return $modes[$mode] ?? $modes['all'] ?? ['classical', 'traditional-consensus', 'modern-synthesis'];
+    }
 
     private function load(): void
     {
@@ -26,6 +53,7 @@ class RuleRepository
 
         $rules = DB::table('interpretation_rules')
             ->where('locale', $this->locale)
+            ->whereIn('provenance', $this->allowed)
             ->orderByDesc('weight')
             ->get();
 
