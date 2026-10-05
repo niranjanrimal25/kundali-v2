@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NiranjanUserSeeder::class,
             CitySeeder::class,
-            InterpretationRuleSeeder::class,
         ]);
     }
 }

@@ -1,0 +1,110 @@
+[
+    {
+        "id": "KARAKA_SUN_BODY",
+        "subject": "Sun",
+        "facet": "body",
+        "category": "health",
+        "text": "the heart, the bones, the eyes, the head and skull, the bile (pitta), and the body's immunity",
+        "lead": "In the body it governs",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_SUN_RELATIONS",
+        "subject": "Sun",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "the father, the king or ruler, your employer, and the soul itself",
+        "lead": "Among people it stands for",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_SUN_QUALITIES",
+        "subject": "Sun",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "confidence, leadership, ego, ambition, kindness, discipline and personal aura",
+        "lead": "In temperament it carries",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_SUN_OTHER",
+        "subject": "Sun",
+        "facet": "other",
+        "category": "career",
+        "text": "government service, rights and authority held in office, gold, and wheat",
+        "lead": "It also signifies",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MOON_BODY",
+        "subject": "Moon",
+        "facet": "body",
+        "category": "health",
+        "text": "the mind and brain, the chest and lungs, the left eye in a male chart, the blood, and the fluids of the body",
+        "lead": "In the body it governs",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MOON_RELATIONS",
+        "subject": "Moon",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "the mother, and the mother-in-law",
+        "lead": "Among people it stands for",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MOON_QUALITIES",
+        "subject": "Moon",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "changeability and restlessness, sensitivity, kindness, imagination, motherly care, sleep, and the steadiness or unsteadiness of mental peace",
+        "lead": "In temperament it carries",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MOON_OTHER",
+        "subject": "Moon",
+        "facet": "other",
+        "category": "career",
+        "text": "water, and whatever in life is subject to tides and phases",
+        "lead": "It also signifies",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MARS_BODY",
+        "subject": "Mars",
+        "facet": "body",
+        "category": "health",
+        "text": "the muscles, the bone marrow, the red blood cells, the liver, and the reproductive organs",
+        "lead": "In the body it governs",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MARS_RELATIONS",
+        "subject": "Mars",
+        "facet": "relations",
+        "category": "relationships",
+        "text": "brothers and sisters, and those who serve in the military or the police",
+        "lead": "Among people it stands for",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MARS_QUALITIES",
+        "subject": "Mars",
+        "facet": "qualities",
+        "category": "mind",
+        "text": "valour and courage, boldness, anger, and raw energy",
+        "lead": "In temperament it carries",
+        "source": "Supplied by project owner"
+    },
+    {
+        "id": "KARAKA_MARS_OTHER",
+        "subject": "Mars",
+        "facet": "other",
+        "category": "career",
+        "text": "land and property, weapons and sharp implements, and the fire element",
+        "lead": "It also signifies",
+        "source": "Supplied by project owner"
+    }
+]

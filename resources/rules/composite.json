@@ -1,0 +1,1322 @@
+[
+    {
+        "id": "SUN_LORD_AFFLICTED",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        1,
+                        4,
+                        6,
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        4,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Venus",
+                        "Saturn",
+                        "Rahu",
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules a sensitive bhava and sits in a difficult one alongside malefic company. The classical reading is weakness in the bones, trouble with the eyes, disordered bile and a weak immune response, together with strain in the relationship with the father, recognition withheld by those in authority, a dimmed personal presence, and difficulty settling on a direction in life. Where this produces a persistent sense of despair, treat it as a reason to seek support rather than something to carry quietly."
+        }
+    },
+    {
+        "id": "SUN_LAGNESH_NODES_HEAD",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        4,
+                        8,
+                        7,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Rahu",
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules the Lagna, occupies a difficult bhava and is joined by a node. The classical indication is injury or surgery involving the head or skull. Read it as a standing reason for caution rather than a fixed event."
+        }
+    },
+    {
+        "id": "SUN_LAGNESH_6_MOON_VENUS",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAll": [
+                        "Moon",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules the Lagna and stands in the 6th with Chandra and Shukra together. The classical reading of this combination is vulnerability of the chest and lungs, pneumonia in particular."
+        }
+    },
+    {
+        "id": "SUN_LAGNESH_8_MOON_VENUS",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAll": [
+                        "Moon",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules the Lagna and stands in the 8th with Chandra and Shukra together. The classical reading is vulnerability of the chest and lungs, and a warning regarding water."
+        }
+    },
+    {
+        "id": "THIRD_LORD_ARM_FRACTURE",
+        "subject": null,
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "lord.3.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        12
+                    ]
+                },
+                {
+                    "fact": "lord.3.conjunctWith",
+                    "includesAny": [
+                        "Ketu",
+                        "Rahu",
+                        "Saturn"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "The lord of the 3rd occupies a difficult bhava in the company of Shani or a node. The classical indication is fracture or injury to the bone of the arm."
+        }
+    },
+    {
+        "id": "SUN_RAHU_STOMACH",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        5,
+                        6,
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Rahu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules a difficult bhava and sits with Rahu in the 5th or 6th. The classical reading is infection of the stomach, and a pull toward gambling and similar habits."
+        }
+    },
+    {
+        "id": "SUN_KETU_SPIRITUAL",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        5,
+                        6,
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules a difficult bhava and sits with Ketu. The classical reading is a stubborn temperament paired with genuine spiritual inclination, and a standing caution regarding head injury through accident."
+        }
+    },
+    {
+        "id": "SUN_RAHU_MERCURY_NERVES",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Rahu"
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        7,
+                        8
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya stands with Rahu while Budha occupies a difficult bhava. The classical reading is disturbance of the nervous system, serious trouble in the chest, and psychological strain."
+        }
+    },
+    {
+        "id": "SUN_SATURN_TRIK",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.influencedBy",
+                    "includesAny": [
+                        "Saturn"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya and Shani share a difficult bhava. The classical reading is trouble in the nerves, the legs, the teeth, the ears and the hair."
+        }
+    },
+    {
+        "id": "SUN_MARS_FIRE_INJURY",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.lordOf",
+                    "includesAny": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        4
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.influencedBy",
+                    "includesAny": [
+                        "Mars"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya rules the Lagna or the 2nd and shares a difficult bhava with Mangala. The classical indication is injury to the eye or forehead by a sharp implement, and harm from fire or electrical current."
+        }
+    },
+    {
+        "id": "SUN_VENUS_REPRODUCTIVE",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.sign",
+                    "in": [
+                        8,
+                        4,
+                        7,
+                        0
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya stands with Shukra in a sensitive bhava in a fiery or watery sign. The classical reading is vulnerability in the reproductive organs, the prostate, the kidneys and the urinary system, and the indication is read as more serious where Shani aspects or a node joins."
+        }
+    },
+    {
+        "id": "SUN_MARS_RAHU_FIRE",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        1,
+                        6,
+                        4,
+                        8,
+                        7,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAll": [
+                        "Mars",
+                        "Rahu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya, Mangala and Rahu come together in a sensitive bhava. The classical reading is harm connected with fire, pronounced aggression, and danger arising from impulse. Where that impulse turns against the self, it should be treated as a reason to seek help early."
+        }
+    },
+    {
+        "id": "SUN_RAHU_MERCURY_LOW_DEGREE",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAll": [
+                        "Rahu",
+                        "Mercury"
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.degree",
+                    "lessThan": 10
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya, Rahu and Budha stand together with Surya at a low degree in its sign. The classical reading is disturbance of the nervous system, serious trouble in the chest, and psychological strain."
+        }
+    },
+    {
+        "id": "SUN_12_MARS_FIRE_INJURY",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.influencedBy",
+                    "includesAny": [
+                        "Mars"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya occupies the 12th in the company of Mangala. The classical indication is injury to the eye or forehead by a sharp implement, and harm from fire or electrical current."
+        }
+    },
+    {
+        "id": "MARS_VENUS_REPRODUCTIVE",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.sign",
+                    "in": [
+                        8,
+                        4,
+                        7,
+                        0
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.conjunctWith",
+                    "includesAny": [
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala stands with Shukra in a sensitive bhava in a fiery or watery sign. The classical reading is vulnerability in the reproductive organs, the prostate, the kidneys and the urinary system."
+        }
+    },
+    {
+        "id": "SUN_VENUS_REPRODUCTIVE_SEVERE",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.sign",
+                    "in": [
+                        8,
+                        4,
+                        7,
+                        0
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.conjunctWith",
+                    "includesAny": [
+                        "Venus"
+                    ]
+                },
+                {
+                    "fact": "planet.Sun.aspectedBy",
+                    "includesAny": [
+                        "Saturn"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Surya and Shukra stand together in a sensitive fiery or watery sign with Shani aspecting or a node joining. The source reads this combination as markedly more serious for the reproductive and urinary systems, and it warrants ordinary medical vigilance rather than alarm."
+        }
+    },
+    {
+        "id": "MOON_1ST_FICKLE",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.house",
+                    "notIn": []
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra occupies the Lagna, giving a changeable and restless temperament that settles slowly."
+        }
+    },
+    {
+        "id": "MOON_2_6_10_UNSTABLE",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        2,
+                        6,
+                        10
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Rahu",
+                        "Ketu",
+                        "Saturn",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra occupies the 2nd, 6th or 10th, which unsettles the temperament and makes mental quiet harder to hold. In the company of Rahu, Ketu, Shani or Shukra the mind carries real distress."
+        }
+    },
+    {
+        "id": "FOURTH_LORD_CHEST",
+        "subject": null,
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "lord.4.house",
+                    "in": [
+                        2,
+                        6,
+                        8,
+                        10
+                    ]
+                },
+                {
+                    "fact": "lord.4.conjunctWith",
+                    "includesAny": [
+                        "Rahu",
+                        "Ketu",
+                        "Saturn",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "The lord of the 4th occupies the 2nd, 6th, 8th or 10th with Rahu, Ketu, Shani or Shukra. The classical reading is vulnerability in the chest, the lungs and the blood."
+        }
+    },
+    {
+        "id": "SIXTH_LORD_BLOOD",
+        "subject": null,
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "lord.6.house",
+                    "in": [
+                        8,
+                        10,
+                        12
+                    ]
+                },
+                {
+                    "fact": "lord.6.conjunctWith",
+                    "includesAny": [
+                        "Saturn",
+                        "Rahu",
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "The lord of the 6th occupies the 8th, 10th or 12th with Shani or a node. The classical reading is impurity in the blood, hormonal imbalance, and an effect upon the mind."
+        }
+    },
+    {
+        "id": "MOON_12_FIRE_WATER",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.sign",
+                    "in": [
+                        0,
+                        4,
+                        8,
+                        7
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra occupies the 12th in a fiery or watery sign. The classical reading is expenditure on treatment, disturbed sleep, and a temperament that runs emotional and unsettled."
+        }
+    },
+    {
+        "id": "MOON_ARIES_LAGNA_1ST",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        1
+                    ]
+                },
+                {
+                    "fact": "lagna.sign",
+                    "equals": 0
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra occupies the Lagna in Mesha. The supplied reading treats every outcome of this placement as auspicious."
+        }
+    },
+    {
+        "id": "MOON_KETU_MATERNAL",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        6,
+                        8,
+                        2,
+                        10
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra and Ketu stand together in the 2nd, 6th, 8th or 10th. The classical reading is continuing hardship for the maternal grandmother and for the mother-in-law."
+        }
+    },
+    {
+        "id": "MOON_SATURN_SORROW",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        2,
+                        6,
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Saturn"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra and Shani share the 2nd, 6th or 8th. The classical reading is a mind that carries sadness, distress caused through the mother-in-law, and swelling in the body."
+        }
+    },
+    {
+        "id": "MOON_RAHU_GRANDFATHER",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        6,
+                        8,
+                        12,
+                        2,
+                        10
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Rahu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra and Rahu stand together in a sensitive bhava. The classical reading is suffering borne by the paternal grandfather."
+        }
+    },
+    {
+        "id": "MOON_SATURN_VENUS_WATER",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        2,
+                        6,
+                        8,
+                        10,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAll": [
+                        "Saturn",
+                        "Venus"
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.sign",
+                    "in": [
+                        0,
+                        5,
+                        7,
+                        8,
+                        10,
+                        9
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra stands with Shani and Shukra in a sensitive bhava. The classical reading is imbalance of the water element, producing swelling in the body and an unsettled mind."
+        }
+    },
+    {
+        "id": "MOON_SATURN_ISOLATION",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.lordOf",
+                    "includesAny": [
+                        6,
+                        8,
+                        12,
+                        10,
+                        4,
+                        2
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.influencedBy",
+                    "includesAny": [
+                        "Saturn"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra rules a difficult bhava and is joined or aspected by Shani. The classical reading is loneliness, and a sense of being let down by those around you."
+        }
+    },
+    {
+        "id": "MOON_MARS_BLOOD",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        6,
+                        10,
+                        2,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.aspectedBy",
+                    "includesAny": [
+                        "Mars"
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.sign",
+                    "in": [
+                        0,
+                        7,
+                        8,
+                        4,
+                        5
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra is joined or aspected by Mangala from a sensitive bhava. The classical reading is disorder of the blood and the urinary system."
+        }
+    },
+    {
+        "id": "MOON_MARS_BLOOD_CONJUNCT",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        6,
+                        10,
+                        2,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Mars"
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.sign",
+                    "in": [
+                        0,
+                        7,
+                        8,
+                        4,
+                        5
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra and Mangala stand together in a sensitive bhava. The classical reading is disorder of the blood and the urinary system."
+        }
+    },
+    {
+        "id": "MOON_MARS_VIRGO_LAGNA",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "lagna.sign",
+                    "equals": 5
+                },
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        6,
+                        8,
+                        7,
+                        10,
+                        2,
+                        1
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Mars"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra and Mangala are conjoined in a sensitive bhava for a Kanya ascendant. The classical reading is mental strain and vulnerability in the chest and lungs; where Shani aspects, the blood, urine and prostate are also implicated."
+        }
+    },
+    {
+        "id": "MOON_VENUS_MARS_SERIOUS",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "in": [
+                        2,
+                        6,
+                        7,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAll": [
+                        "Venus",
+                        "Mars"
+                    ]
+                },
+                {
+                    "fact": "planet.Venus.lordOf",
+                    "includesAny": [
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.lordOf",
+                    "includesAny": [
+                        6,
+                        8,
+                        12
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Chandra stands with Shukra and Mangala, lords of difficult bhavas, in a sensitive house. The supplied text reads this as a serious combination for the blood, the urinary tract, the prostate, the uterus and the ovaries. It is a reason for ordinary medical vigilance, not a diagnosis."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_BLOOD",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.conjunctWith",
+                    "includesAny": [
+                        "Saturn",
+                        "Rahu",
+                        "Ketu",
+                        "Sun"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala, significator of the blood, stands afflicted in a Trik bhava. The classical reading groups the vulnerabilities as sudden swings in blood pressure, impurity or infection of the blood, and the risk of internal bleeding."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_SURGERY",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.sign",
+                    "in": [
+                        1,
+                        3,
+                        5,
+                        6,
+                        9,
+                        10
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala governs sharp implements, metal and fire, and stands afflicted in a Trik bhava. The classical reading is a raised likelihood of surgery, of burns from fire, electricity or acid, and of fracture or torn muscle through accident."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_PITTA",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.aspectedBy",
+                    "includesAny": [
+                        "Saturn",
+                        "Rahu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala rules the digestive fire and the pitta dosha, and stands afflicted in a Trik bhava. The classical reading is ulcer and hyperacidity, inflammation of the liver or gallstones, and inflammation within the intestines."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_ANORECTAL",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.conjunctWith",
+                    "includesAny": [
+                        "Saturn",
+                        "Rahu",
+                        "Ketu",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala stands afflicted in the 6th or 8th. The classical reading is vulnerability to piles, fistula or fissure, inflammation of the reproductive organs, and in women heavy menstruation with severe abdominal pain."
+        }
+    },
+    {
+        "id": "LAGNESH_BLOOD_URINARY",
+        "subject": null,
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "lord.1.house",
+                    "in": [
+                        2,
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "lord.1.conjunctWith",
+                    "includesAny": [
+                        "Mars",
+                        "Rahu",
+                        "Venus",
+                        "Ketu"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "The lord of the Lagna occupies the 2nd, 6th, 8th or 12th in the company of Mangala, Rahu, Shukra or Ketu. The classical reading is disorder of the blood, the urinary system, the kidneys and the brain."
+        }
+    },
+    {
+        "id": "MOON_CANCER_HEART_CLOT",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "sign.3.house",
+                    "in": [
+                        6,
+                        8,
+                        2,
+                        10
+                    ]
+                },
+                {
+                    "fact": "planet.Moon.conjunctWith",
+                    "includesAny": [
+                        "Rahu",
+                        "Ketu",
+                        "Saturn",
+                        "Venus"
+                    ]
+                },
+                {
+                    "fact": "lord.4.house",
+                    "in": [
+                        6,
+                        8,
+                        12
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Karka falls on a sensitive bhava, Chandra is afflicted by malefic company, and the lord of the 4th occupies a dusthana. The source reads this combination together as indicating the lungs, the chest, and the risk of a clot affecting the heart. It is a reason for ordinary cardiac vigilance, not a diagnosis."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_MARROW",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        6,
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "fact": "planet.Mars.conjunctWith",
+                    "includesAny": [
+                        "Saturn",
+                        "Rahu",
+                        "Ketu",
+                        "Sun",
+                        "Venus"
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala, significator of the bone marrow and the muscles, stands afflicted in a Trik bhava. The classical reading is wasting of the muscles, severe cramp or sharp muscular pain, and abnormality in the bone marrow obstructing the production of blood cells."
+        }
+    },
+    {
+        "id": "MARS_AFFLICTED_MIND",
+        "subject": "Mars",
+        "category": "mind",
+        "priority": 90,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "in": [
+                        12
+                    ]
+                }
+            ]
+        },
+        "then": {
+            "title": null,
+            "text": "Mangala stands afflicted in the 12th. The classical reading is difficulty controlling impulse, aggression and high mental strain, together with insomnia, nightmares and irrational fear."
+        }
+    }
+]

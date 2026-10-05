@@ -1,0 +1,1541 @@
+[
+    {
+        "id": "TRIK_SUN_6_PHYSICAL",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 6th bhava",
+            "text": "Physically, the indications are high fever, irregular heartbeat, spinal pain, a weakened immune system and pitta (bile) disorders."
+        }
+    },
+    {
+        "id": "TRIK_SUN_6_RELATIONS",
+        "subject": "Sun",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 6th bhava",
+            "text": "In relationships, it shows as coolness with the father and with the paternal and maternal uncles, and friction with senior officials or with government bodies."
+        }
+    },
+    {
+        "id": "TRIK_SUN_6_TEMPERAMENT",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 6th bhava",
+            "text": "In temperament, it shows as excessive ego and unnecessary anger toward opponents, with disputes at work arising from pride."
+        }
+    },
+    {
+        "id": "TRIK_SUN_8_PHYSICAL",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 8th bhava",
+            "text": "Physically, the indications are weakening of the joints and bones, risk of fracture, trouble in the right eye, strain on the heart, and a burning sensation from excess bile."
+        }
+    },
+    {
+        "id": "TRIK_SUN_8_RELATIONS",
+        "subject": "Sun",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 8th bhava",
+            "text": "In relationships, it shows as serious friction over the father's health or the relationship with him, and tension with the in-laws."
+        }
+    },
+    {
+        "id": "TRIK_SUN_8_TEMPERAMENT",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 8th bhava",
+            "text": "In temperament, it shows as a deep lack of self-confidence, unnamed fear, self-reproach, fear of losing honour, and spells of despair. Where this weighs heavily, it is worth treating as a reason to seek support rather than something to endure alone."
+        }
+    },
+    {
+        "id": "TRIK_SUN_12_PHYSICAL",
+        "subject": "Sun",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 12th bhava",
+            "text": "Physically, the indications are insomnia, reduced vision or cataract in the right eye, migraine, and a general want of radiance and vitality."
+        }
+    },
+    {
+        "id": "TRIK_SUN_12_RELATIONS",
+        "subject": "Sun",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 12th bhava",
+            "text": "In relationships, it shows as distance from the father through living abroad or apart, and differences of outlook with seniors and elders."
+        }
+    },
+    {
+        "id": "TRIK_SUN_12_TEMPERAMENT",
+        "subject": "Sun",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Sun.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Sun in the 12th bhava",
+            "text": "In temperament, it shows as excessive isolation, sacrificing one's own standing, and loss of reputation or wealth through poor decisions."
+        }
+    },
+    {
+        "id": "TRIK_MOON_6_PHYSICAL",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 6th bhava",
+            "text": "Physically, the indications are imbalance of the digestive juices, jaundice, chronic phlegm and colds, waterborne intestinal infection, and anaemia."
+        }
+    },
+    {
+        "id": "TRIK_MOON_6_RELATIONS",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 6th bhava",
+            "text": "In relationships, it shows as differences with the mother, concern for her health, and obstacles in dealings with maternal aunts."
+        }
+    },
+    {
+        "id": "TRIK_MOON_6_TEMPERAMENT",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 6th bhava",
+            "text": "In temperament, it shows as a fickle mind, difficulty reaching decisions, and frequent swings of mood."
+        }
+    },
+    {
+        "id": "TRIK_MOON_8_PHYSICAL",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 8th bhava",
+            "text": "Physically, the indications are depression, extreme mental strain, insomnia, fear of water, trouble in the left eye, and swelling or oedema."
+        }
+    },
+    {
+        "id": "TRIK_MOON_8_RELATIONS",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 8th bhava",
+            "text": "In relationships, it shows as serious distance or hardship involving the mother, and spoiled relations with the in-laws or with female relatives."
+        }
+    },
+    {
+        "id": "TRIK_MOON_8_TEMPERAMENT",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 8th bhava",
+            "text": "In temperament, it shows as mental instability, long blank spells, deep despair, negative thinking and inward fear. Persistent low mood here deserves proper attention rather than endurance."
+        }
+    },
+    {
+        "id": "TRIK_MOON_12_PHYSICAL",
+        "subject": "Moon",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 12th bhava",
+            "text": "Physically, the indications are anxiety and phobia, fluid gathering in the chest or lungs, and phlegm disorders."
+        }
+    },
+    {
+        "id": "TRIK_MOON_12_RELATIONS",
+        "subject": "Moon",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 12th bhava",
+            "text": "In relationships, it shows as complete detachment from the mother or maternal relatives, and betrayal by close friends."
+        }
+    },
+    {
+        "id": "TRIK_MOON_12_TEMPERAMENT",
+        "subject": "Moon",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Moon.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Moon in the 12th bhava",
+            "text": "In temperament, it shows as excessive emotionality, a tendency to escape rather than face matters, and a wish to withdraw from society."
+        }
+    },
+    {
+        "id": "TRIK_MARS_6_PHYSICAL",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 6th bhava",
+            "text": "Physically, the indications are high blood pressure, ulcers, liver infection, accidents, physical harm arising from litigation, and torn muscle."
+        }
+    },
+    {
+        "id": "TRIK_MARS_6_RELATIONS",
+        "subject": "Mars",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 6th bhava",
+            "text": "In relationships, it shows as disputes and enmity with siblings, particularly younger ones, and with friends."
+        }
+    },
+    {
+        "id": "TRIK_MARS_6_TEMPERAMENT",
+        "subject": "Mars",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 6th bhava",
+            "text": "In temperament, it shows as extreme aggression, a fierce temper, a tendency to quarrel without cause, and little patience."
+        }
+    },
+    {
+        "id": "TRIK_MARS_8_PHYSICAL",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 8th bhava",
+            "text": "Physically, the indications are piles and fistula, internal bleeding, serious accidents, complex surgery, and disease of the private organs."
+        }
+    },
+    {
+        "id": "TRIK_MARS_8_RELATIONS",
+        "subject": "Mars",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 8th bhava",
+            "text": "In relationships, it shows as health crisis for a sibling, and severe enmity with brothers-in-law or the in-law side."
+        }
+    },
+    {
+        "id": "TRIK_MARS_8_TEMPERAMENT",
+        "subject": "Mars",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 8th bhava",
+            "text": "In temperament, it shows as stubbornness, violent thoughts, a vengeful cast of mind, and anger that is not controlled."
+        }
+    },
+    {
+        "id": "TRIK_MARS_12_PHYSICAL",
+        "subject": "Mars",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 12th bhava",
+            "text": "Physically, the indications are insomnia, eye injury or reduced vision, injury to the legs, surgery, and extreme physical exhaustion."
+        }
+    },
+    {
+        "id": "TRIK_MARS_12_RELATIONS",
+        "subject": "Mars",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 12th bhava",
+            "text": "In relationships, it shows as sharp quarrels with the spouse and a want of marital ease, and broken ties with siblings."
+        }
+    },
+    {
+        "id": "TRIK_MARS_12_TEMPERAMENT",
+        "subject": "Mars",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mars.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mars in the 12th bhava",
+            "text": "In temperament, it shows as anger expressed covertly, involvement in concealed activity, and regret over hasty decisions."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_6_PHYSICAL",
+        "subject": "Mercury",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 6th bhava",
+            "text": "Physically, the indications are weakness of the nervous system, severe skin allergy, stammering speech, and trouble in the digestive tract."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_6_RELATIONS",
+        "subject": "Mercury",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 6th bhava",
+            "text": "In relationships, it shows as spoiled relations or betrayal involving maternal uncles and aunts, nieces and nephews, or paternal uncles."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_6_TEMPERAMENT",
+        "subject": "Mercury",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 6th bhava",
+            "text": "In temperament, it shows as getting lost in argument, indecision, confusion in business judgement, and bitterness in speech."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_8_PHYSICAL",
+        "subject": "Mercury",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 8th bhava",
+            "text": "Physically, the indications are memory loss, stroke, withering of the nerves, and skin disease in the private areas."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_8_RELATIONS",
+        "subject": "Mercury",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 8th bhava",
+            "text": "In relationships, it shows as severe differences with sisters, paternal aunts, or business partners."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_8_TEMPERAMENT",
+        "subject": "Mercury",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 8th bhava",
+            "text": "In temperament, it shows as being trapped by one's own cleverness, deceitful thinking, and a lack of clarity in communication."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_12_PHYSICAL",
+        "subject": "Mercury",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 12th bhava",
+            "text": "Physically, the indications are nervous insomnia, loss of hearing, and mental fatigue from an overactive mind."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_12_RELATIONS",
+        "subject": "Mercury",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 12th bhava",
+            "text": "In relationships, it shows as growing distance from sisters, nieces and nephews, or friends, and disputes over money."
+        }
+    },
+    {
+        "id": "TRIK_MERCURY_12_TEMPERAMENT",
+        "subject": "Mercury",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Mercury.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Mercury in the 12th bhava",
+            "text": "In temperament, it shows as overthinking, indecision, and a habit of talking more than working."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_6_PHYSICAL",
+        "subject": "Jupiter",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 6th bhava",
+            "text": "Physically, the indications are obesity, fatty liver, diabetes, and disturbance of the digestive system."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_6_RELATIONS",
+        "subject": "Jupiter",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 6th bhava",
+            "text": "In relationships, it shows as differences with gurus, teachers, elders and religious guardians."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_6_TEMPERAMENT",
+        "subject": "Jupiter",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 6th bhava",
+            "text": "In temperament, it shows as pride in one's own piety, the ego of being learned, looking down on others, and overconfidence."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_8_PHYSICAL",
+        "subject": "Jupiter",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 8th bhava",
+            "text": "Physically, the indications are serious liver disease, gastric trouble and gallstones, and severe ear problems."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_8_RELATIONS",
+        "subject": "Jupiter",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 8th bhava",
+            "text": "In relationships, it shows as hardship or difference with children, particularly the first, and distance in outlook from teachers."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_8_TEMPERAMENT",
+        "subject": "Jupiter",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 8th bhava",
+            "text": "In temperament, it shows as moral slackening, scepticism toward spiritual matters, a habit of giving poor advice, and pride in not knowing."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_12_PHYSICAL",
+        "subject": "Jupiter",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 12th bhava",
+            "text": "Physically, the indications are increase in body fat and cholesterol, declining memory, swelling of the feet, and heavy expenditure."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_12_RELATIONS",
+        "subject": "Jupiter",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 12th bhava",
+            "text": "In relationships, it shows as distance from children through travel or separation, and a weakened bond with grandparents."
+        }
+    },
+    {
+        "id": "TRIK_JUPITER_12_TEMPERAMENT",
+        "subject": "Jupiter",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Jupiter.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Jupiter in the 12th bhava",
+            "text": "In temperament, it shows as ostentatious religiosity, misuse of wealth in the name of charity, and poor investment."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_6_PHYSICAL",
+        "subject": "Venus",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 6th bhava",
+            "text": "Physically, the indications are kidney infection, diabetes, hormonal imbalance and urinary tract infection."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_6_RELATIONS",
+        "subject": "Venus",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 6th bhava",
+            "text": "In relationships, it shows as enmity and dispute with the spouse, with female friends, or with a partner."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_6_TEMPERAMENT",
+        "subject": "Venus",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 6th bhava",
+            "text": "In temperament, it shows as excessive desire, unethical attraction, neglect of personal care, and a dissatisfied life."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_8_PHYSICAL",
+        "subject": "Venus",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 8th bhava",
+            "text": "Physically, the indications are disease of the reproductive organs, poor quality of sperm or ovum, kidney failure, and venereal complaints."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_8_RELATIONS",
+        "subject": "Venus",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 8th bhava",
+            "text": "In relationships, it shows as a major health crisis for the spouse, and bitterness with the mother-in-law or siblings-in-law."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_8_TEMPERAMENT",
+        "subject": "Venus",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 8th bhava",
+            "text": "In temperament, it shows as addiction to sensual pleasure, inclination toward unethical relationships, and false pride in appearance."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_12_PHYSICAL",
+        "subject": "Venus",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 12th bhava",
+            "text": "Physically, the indications are reduced eyesight, physical weakness from excessive indulgence, and weakness of the nerves."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_12_RELATIONS",
+        "subject": "Venus",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 12th bhava",
+            "text": "In relationships, it shows as separation or divorce from the spouse, and betrayal by a lover or female friend."
+        }
+    },
+    {
+        "id": "TRIK_VENUS_12_TEMPERAMENT",
+        "subject": "Venus",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Venus.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Venus in the 12th bhava",
+            "text": "In temperament, it shows as extravagance, intense attachment to comfort and luxury, and laziness."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_6_PHYSICAL",
+        "subject": "Saturn",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 6th bhava",
+            "text": "Physically, the indications are arthritis, severe pain in the joints and knees, and chronic constipation."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_6_RELATIONS",
+        "subject": "Saturn",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 6th bhava",
+            "text": "In relationships, it shows as dispute and betrayal involving servants, employees, labourers or paternal uncles."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_6_TEMPERAMENT",
+        "subject": "Saturn",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 6th bhava",
+            "text": "In temperament, it shows as extreme laziness, procrastination, neglect of work, and pessimistic thinking."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_8_PHYSICAL",
+        "subject": "Saturn",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 8th bhava",
+            "text": "Physically, the indications are paralysis, severe trouble in the legs and teeth, wasting of the nerves, and risk of chronic disability."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_8_RELATIONS",
+        "subject": "Saturn",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 8th bhava",
+            "text": "In relationships, it shows as severe differences with the in-laws, and distance from elderly relatives."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_8_TEMPERAMENT",
+        "subject": "Saturn",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 8th bhava",
+            "text": "In temperament, it shows as deep sadness, renunciation, stubbornness, aversion to the world, and an overly suspicious nature."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_12_PHYSICAL",
+        "subject": "Saturn",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 12th bhava",
+            "text": "Physically, the indications are chronic insomnia, chronic depression, severe injury to the leg, and hospitalisation or seclusion."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_12_RELATIONS",
+        "subject": "Saturn",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 12th bhava",
+            "text": "In relationships, it shows as broken ties with paternal uncles, elder brothers or old friends, and complete isolation from society."
+        }
+    },
+    {
+        "id": "TRIK_SATURN_12_TEMPERAMENT",
+        "subject": "Saturn",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Saturn.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Saturn in the 12th bhava",
+            "text": "In temperament, it shows as a grasping nature, narrow thinking, negativity, and self-inflicted harm through one's own actions."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_6_PHYSICAL",
+        "subject": "Rahu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 6th bhava",
+            "text": "Physically, the indications are problems that resist diagnosis, poisonous bites, and intestinal worms or ulcers."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_6_RELATIONS",
+        "subject": "Rahu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 6th bhava",
+            "text": "In relationships, it shows as disputes with the maternal side, with the paternal grandfather's line, or with people of another community."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_6_TEMPERAMENT",
+        "subject": "Rahu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 6th bhava",
+            "text": "In temperament, it shows as diplomatic deceit, suspicious behaviour, a habit of breaking rules, and extreme restlessness."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_8_PHYSICAL",
+        "subject": "Rahu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 8th bhava",
+            "text": "Physically, the indications are fear of poisoning, risk of cancer, complex nerve trouble in the private parts, and accidents."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_8_RELATIONS",
+        "subject": "Rahu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 8th bhava",
+            "text": "In relationships, it shows as major betrayal or sudden rupture with the in-laws, and an increase in hidden enemies."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_8_TEMPERAMENT",
+        "subject": "Rahu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 8th bhava",
+            "text": "In temperament, it shows as inclination toward gambling, a wish to earn by unethical means, and a confused mind."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_12_PHYSICAL",
+        "subject": "Rahu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 12th bhava",
+            "text": "Physically, the indications are nightmares, phobia, mental delusion, and adverse reaction to drugs."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_12_RELATIONS",
+        "subject": "Rahu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 12th bhava",
+            "text": "In relationships, it shows as betrayal by people living abroad or by relatives of unusual background."
+        }
+    },
+    {
+        "id": "TRIK_RAHU_12_TEMPERAMENT",
+        "subject": "Rahu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Rahu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Rahu in the 12th bhava",
+            "text": "In temperament, it shows as risk of falling into addiction, living in delusion, extreme insomnia and mental instability."
+        }
+    },
+    {
+        "id": "TRIK_KETU_6_PHYSICAL",
+        "subject": "Ketu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 6th bhava",
+            "text": "Physically, the indications are intestinal worms, illness caused by microscopic organisms, and sudden marks on the skin."
+        }
+    },
+    {
+        "id": "TRIK_KETU_6_RELATIONS",
+        "subject": "Ketu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 6th bhava",
+            "text": "In relationships, it shows as dissatisfaction and distance with nieces and nephews, grandchildren, or household help."
+        }
+    },
+    {
+        "id": "TRIK_KETU_6_TEMPERAMENT",
+        "subject": "Ketu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 6
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 6th bhava",
+            "text": "In temperament, it shows as a feeling of detachment, lack of interest in work, and a sudden whimsical turn."
+        }
+    },
+    {
+        "id": "TRIK_KETU_8_PHYSICAL",
+        "subject": "Ketu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 8th bhava",
+            "text": "Physically, the indications are lower back and spinal trouble, sudden surgery, and internal pain that resists identification."
+        }
+    },
+    {
+        "id": "TRIK_KETU_8_RELATIONS",
+        "subject": "Ketu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 8th bhava",
+            "text": "In relationships, it shows as severe dispute with relatives over the maternal grandmother's or ancestral property."
+        }
+    },
+    {
+        "id": "TRIK_KETU_8_TEMPERAMENT",
+        "subject": "Ketu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 8
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 8th bhava",
+            "text": "In temperament, it shows as mysterious behaviour, distrust of everyone, and sudden thoughts of walking away."
+        }
+    },
+    {
+        "id": "TRIK_KETU_12_PHYSICAL",
+        "subject": "Ketu",
+        "category": "health",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 12th bhava",
+            "text": "Physically, the indications are injury or burning on the soles of the feet, sudden disturbance of the nervous system, insomnia and weakness."
+        }
+    },
+    {
+        "id": "TRIK_KETU_12_RELATIONS",
+        "subject": "Ketu",
+        "category": "relationships",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 12th bhava",
+            "text": "In relationships, it shows as mental distance from all family members, and spiritual or social withdrawal."
+        }
+    },
+    {
+        "id": "TRIK_KETU_12_TEMPERAMENT",
+        "subject": "Ketu",
+        "category": "mind",
+        "priority": 80,
+        "source": "Supplied by project owner",
+        "when": {
+            "all": [
+                {
+                    "fact": "planet.Ketu.house",
+                    "equals": 12
+                }
+            ]
+        },
+        "then": {
+            "title": "Ketu in the 12th bhava",
+            "text": "In temperament, it shows as a feeling of hollowness, avoidance of worldly responsibility, and a meditative but indifferent cast of mind."
+        }
+    }
+]

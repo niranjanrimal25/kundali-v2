@@ -6,13 +6,10 @@ use App\Livewire\Kundali\FullReading;
 use App\Models\Kundali;
 use App\Models\Reading;
 use App\Models\User;
-use App\Services\Astrology\Interpretation\ReadingGenerator;
-use App\Services\Astrology\Interpretation\RuleRepository;
 use App\Services\Astrology\KundaliService;
+use App\Services\Astrology\Reading\ReadingService;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Database\Seeders\InterpretationRuleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -26,7 +23,6 @@ class ReadingPdfTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed(InterpretationRuleSeeder::class);
         $this->user = User::factory()->create();
     }
 
@@ -54,94 +50,70 @@ class ReadingPdfTest extends TestCase
     }
 
     #[Test]
-    public function the_generated_file_is_a_real_pdf_containing_the_reading(): void
+    public function the_generated_file_is_a_real_pdf(): void
     {
         $kundali = $this->kundali();
 
-        $facts = app(KundaliService::class)->facts($kundali);
-        $sections = app(ReadingGenerator::class)->forKundali($kundali, 'en');
-
         $body = Pdf::loadView('pdf.reading', [
             'kundali' => $kundali,
-            'facts' => $facts,
-            'sections' => $sections,
-            'ruleMode' => config('jyotish.rule_sources'),
+            'facts' => app(KundaliService::class)->facts($kundali),
+            'report' => app(ReadingService::class)->forKundali($kundali),
         ])->setPaper('a4')->output();
 
-        // A PDF, not an HTML error page.
         $this->assertStringStartsWith('%PDF-', $body);
         $this->assertGreaterThan(10_000, strlen($body));
     }
 
     #[Test]
-    public function a_user_cannot_download_another_users_reading(): void
+    public function a_user_cannot_reach_another_users_reading(): void
     {
-        $theirs = $this->kundali(User::factory()->create());
-
-        // mount() aborts 403, which Livewire surfaces as a forbidden
-        // response rather than a thrown exception.
         Livewire::actingAs($this->user)
-            ->test(FullReading::class, ['kundali' => $theirs])
+            ->test(FullReading::class, ['kundali' => $this->kundali(User::factory()->create())])
             ->assertForbidden();
     }
 
     #[Test]
-    public function a_cached_reading_is_reused_when_the_corpus_is_unchanged(): void
+    public function a_cached_report_is_reused_when_the_rule_base_is_unchanged(): void
     {
         $kundali = $this->kundali();
-        $generator = app(ReadingGenerator::class);
+        $service = app(ReadingService::class);
 
-        $generator->forKundali($kundali, 'en', true);
+        $service->forKundali($kundali, 'en', true);
         $first = Reading::first();
 
         $kundali->unsetRelation('readings');
-        $generator->forKundali($kundali, 'en');
+        $service->forKundali($kundali);
 
         $this->assertSame(
             $first->updated_at->toString(),
             Reading::first()->updated_at->toString(),
-            'An unchanged corpus must not trigger a rebuild'
+            'An unchanged rule base must not trigger a rebuild'
         );
     }
 
     #[Test]
-    public function a_reading_rebuilds_itself_when_the_rule_sources_change(): void
-    {
-        config()->set('jyotish.rule_sources', 'owner');
-
-        $kundali = $this->kundali();
-        $generator = app(ReadingGenerator::class);
-
-        $generator->forKundali($kundali, 'en', true);
-        $ownerPrint = Reading::first()->corpus_fingerprint;
-
-        // Switching sources must invalidate the stored reading without
-        // anyone having to truncate the table by hand.
-        config()->set('jyotish.rule_sources', 'all');
-        $kundali->unsetRelation('readings');
-        $generator->forKundali($kundali, 'en');
-
-        $allPrint = Reading::first()->corpus_fingerprint;
-
-        $this->assertNotSame($ownerPrint, $allPrint);
-        $this->assertSame(RuleRepository::fingerprint('en'), $allPrint);
-    }
-
-    #[Test]
-    public function a_reading_rebuilds_itself_when_rules_are_reseeded(): void
+    public function a_report_rebuilds_itself_when_a_rule_file_changes(): void
     {
         $kundali = $this->kundali();
-        $generator = app(ReadingGenerator::class);
+        $service = app(ReadingService::class);
 
-        $generator->forKundali($kundali, 'en', true);
+        $service->forKundali($kundali, 'en', true);
         $before = Reading::first()->corpus_fingerprint;
 
-        // Simulate a reseed changing the corpus.
-        DB::table('interpretation_rules')->limit(5)->delete();
+        // Editing a rule file must invalidate every stored report, with
+        // no manual cache clearing required.
+        $path = base_path('resources/rules/trik.json');
+        $original = file_get_contents($path);
 
-        $kundali->unsetRelation('readings');
-        $generator->forKundali($kundali, 'en');
+        try {
+            file_put_contents($path, $original."\n");
 
-        $this->assertNotSame($before, Reading::first()->corpus_fingerprint);
+            $kundali->unsetRelation('readings');
+            $service->forKundali($kundali);
+
+            $this->assertNotSame($before, Reading::first()->corpus_fingerprint);
+        } finally {
+            file_put_contents($path, $original);
+        }
     }
 }

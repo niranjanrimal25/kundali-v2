@@ -61,14 +61,9 @@
 
         <div class="notice">
             <strong>About this reading.</strong>
-            @if ($ruleMode === 'owner')
-                Generated only from the rule set supplied by the owner of this installation.
-                Placements with no supplied rule are stated as plain chart facts rather than
-                interpreted.
-            @else
-                Planetary positions are computed with the Swiss Ephemeris using the
-                {{ $facts['meta']['ayanamsa_name'] }} ayanamsa and whole-sign bhavas.
-            @endif
+            Positions are computed with the Swiss Ephemeris using the
+            {{ $facts['meta']['ayanamsa_name'] }} ayanamsa and whole-sign bhavas.
+            Findings come from the supplied rule base.
             Any passage touching health describes tendencies indicated by the chart. It is
             not medical advice and cannot diagnose anything.
         </div>
@@ -81,15 +76,35 @@
     <div style="page-break-after: always;"></div>
 
     {{-- Reading --}}
-    @foreach ($sections as $section)
-        <h2>{{ $section['title'] }}</h2>
-        @if (! empty($section['subtitle']))
-            <div class="st">{{ $section['subtitle'] }}</div>
-        @endif
-        @foreach ($section['paragraphs'] as $paragraph)
-            <p>{{ $paragraph }}</p>
-        @endforeach
+    <h2>1. Chart Placement Overview</h2>
+    @foreach ($report['placements'] as $p)
+        <p>
+            <strong>@if ($p['isLagna'])Ascendant / Lagna &mdash; @endif{{ $p['ordinal'] }} House:</strong>
+            {{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }}) with
+            @foreach ($p['grahas'] as $g){{ $g['sanskrit'] }}@if ($g['combust'])*@endif{{ ! $loop->last ? ', ' : '' }}@endforeach
+        </p>
     @endforeach
+
+    <h2>2. Detailed Analysis Based On Your Rules</h2>
+    @foreach ($report['groups'] as $group)
+        <p><strong>{{ $group['letter'] }}. {{ $group['title'] }}</strong></p>
+        <div class="st">{{ $group['heading'] }}</div>
+        @forelse ($group['points'] as $point)
+            <p>&bull; {{ $point['text'] }}</p>
+        @empty
+            <p><em>No rule in the current rule base covers this placement.</em></p>
+        @endforelse
+    @endforeach
+
+    @if ($report['summary'] !== [])
+        <h2>3. Summary of Key Outcomes</h2>
+        @foreach ($report['summary'] as $i => $bucket)
+            <p><strong>{{ $i + 1 }}. {{ $bucket['label'] }}</strong></p>
+            @foreach ($bucket['points'] as $point)
+                <p>&bull; {{ $point }}</p>
+            @endforeach
+        @endforeach
+    @endif
 
     <div class="foot">
         Positions by Swiss Ephemeris &middot; {{ $facts['meta']['ayanamsa_name'] }} ayanamsa &middot; {{ config('app.name') }}

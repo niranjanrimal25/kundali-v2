@@ -3,13 +3,11 @@
 namespace App\Livewire\Kundali;
 
 use App\Models\Kundali;
-use App\Services\Astrology\Interpretation\ReadingGenerator;
-use App\Services\Astrology\Interpretation\SimpleAnalysisGenerator;
 use App\Services\Astrology\KundaliService;
+use App\Services\Astrology\Reading\ReadingService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class FullReading extends Component
@@ -17,10 +15,6 @@ class FullReading extends Component
     public Kundali $kundali;
 
     public string $locale = 'en';
-
-    /** 'full' = the long-form reading, 'simple' = the point-by-point view. */
-    #[Url(as: 'view')]
-    public string $view = 'full';
 
     public function mount(Kundali $kundali): void
     {
@@ -30,9 +24,9 @@ class FullReading extends Component
     }
 
     #[Computed(persist: true)]
-    public function sections(): array
+    public function report(): array
     {
-        return app(ReadingGenerator::class)->forKundali($this->kundali, $this->locale);
+        return app(ReadingService::class)->forKundali($this->kundali, $this->locale);
     }
 
     /** Stream the reading as a PDF the user can keep or print. */
@@ -43,8 +37,7 @@ class FullReading extends Component
         $pdf = Pdf::loadView('pdf.reading', [
             'kundali' => $this->kundali,
             'facts' => $this->facts(),
-            'sections' => $this->sections(),
-            'ruleMode' => config('jyotish.rule_sources'),
+            'report' => $this->report(),
         ])->setPaper('a4');
 
         $name = Str::slug($this->kundali->name).'-kundali-reading.pdf';
@@ -56,18 +49,6 @@ class FullReading extends Component
         );
     }
 
-    public function setView(string $view): void
-    {
-        $this->view = in_array($view, ['full', 'simple'], true) ? $view : 'full';
-    }
-
-    /** The same corpus, laid out as grouped points rather than prose. */
-    #[Computed(persist: true)]
-    public function simple(): array
-    {
-        return app(SimpleAnalysisGenerator::class)->generate($this->facts(), $this->locale);
-    }
-
     #[Computed]
     public function facts(): array
     {
@@ -76,8 +57,8 @@ class FullReading extends Component
 
     public function regenerate(): void
     {
-        app(ReadingGenerator::class)->forKundali($this->kundali, $this->locale, force: true);
-        unset($this->sections);
+        app(ReadingService::class)->forKundali($this->kundali, $this->locale, force: true);
+        unset($this->report);
 
         session()->flash('status', 'Reading regenerated from the current chart data.');
     }

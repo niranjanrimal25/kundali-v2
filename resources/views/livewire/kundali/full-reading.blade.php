@@ -1,10 +1,7 @@
-@php
-    $facts = $this->facts();
-    $sections = $this->sections();
-@endphp
+@php($report = $this->report)
 
 <div class="py-8">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 
         @if (session('status'))
             <div class="mb-6 rounded border-l-4 border-emerald-500 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
@@ -13,116 +10,120 @@
         @endif
 
         {{-- Header --}}
-        <div class="rounded-t border border-[#e3dccd] bg-gradient-to-br from-[#4a2c5a] via-[#7b3f61] to-[#b5643f] px-8 py-7 text-white">
+        <div class="rounded-t border border-[#e3dccd] bg-gradient-to-br from-[#4a2c5a] via-[#7b3f61] to-[#b5643f] px-8 py-6 text-white">
             <div class="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <div class="text-xs uppercase tracking-[3px] text-white/60">Horoscope Reading</div>
-                    <h1 class="mt-2 text-3xl" style="font-family:Georgia,serif;">{{ $kundali->name }}</h1>
+                    <h1 class="text-2xl" style="font-family:Georgia,serif;">{{ $kundali->name }}</h1>
                     <p class="mt-1 text-sm text-white/80">
-                        {{ $kundali->birth_date->format('j F Y') }} at {{ $kundali->birth_time_short }}
-                        · {{ $kundali->birth_place }}
+                        Horoscope Reading &middot;
+                        {{ $kundali->birth_date->format('j F Y') }} at {{ substr($kundali->birth_time, 0, 5) }}
+                        &middot; {{ $kundali->birth_place }}
                     </p>
                 </div>
-                <div class="flex gap-2">
-                    <a href="{{ route('kundalis.show', $kundali) }}" wire:navigate
-                       class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
-                        ← Chart
-                    </a>
-                    <button wire:click="downloadPdf"
-                            wire:loading.attr="disabled"
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <button wire:click="downloadPdf" wire:loading.attr="disabled"
                             class="rounded bg-[#e9c46a] px-3 py-1.5 text-xs font-medium text-[#33203f] hover:bg-[#f0d089] disabled:opacity-60">
                         <span wire:loading.remove wire:target="downloadPdf">Download PDF</span>
                         <span wire:loading wire:target="downloadPdf">Preparing&hellip;</span>
                     </button>
-
                     <button onclick="window.print()"
                             class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
                         Print
                     </button>
+                    <a href="{{ route('kundalis.show', $kundali) }}" wire:navigate
+                       class="rounded border border-white/30 px-3 py-1.5 text-xs text-white/90 hover:bg-white/10">
+                        &larr; Chart
+                    </a>
                 </div>
             </div>
-
-            <div class="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-white/20 pt-4 text-sm">
-                <span><span class="text-white/60">Lagna</span> {{ $facts['lagna']['sign_name'] }} {{ $facts['lagna']['degree_formatted'] }}</span>
-                <span><span class="text-white/60">Rashi</span> {{ $facts['moon']['sign_name'] }}</span>
-                <span><span class="text-white/60">Nakshatra</span> {{ $facts['moon']['nakshatra']['name'] }}</span>
-                <span><span class="text-white/60">Ayanamsa</span> {{ $facts['meta']['ayanamsa_name'] }}</span>
-            </div>
         </div>
 
-        {{-- View toggle: same corpus, two presentations --}}
-        <div class="flex gap-1 border-x border-t border-[#e3dccd] bg-[#fffdf8] px-8 pt-4">
-            <button wire:click="setView('full')"
-                    class="rounded-t-md border-b-2 px-4 py-2 text-sm transition
-                           {{ $view === 'full'
-                              ? 'border-[#4a2c5a] font-medium text-[#4a2c5a]'
-                              : 'border-transparent text-gray-500 hover:text-[#4a2c5a]' }}">
-                Full Reading
-            </button>
-            <button wire:click="setView('simple')"
-                    class="rounded-t-md border-b-2 px-4 py-2 text-sm transition
-                           {{ $view === 'simple'
-                              ? 'border-[#4a2c5a] font-medium text-[#4a2c5a]'
-                              : 'border-transparent text-gray-500 hover:text-[#4a2c5a]' }}">
-                Point-by-Point Analysis
-            </button>
-        </div>
-
-        {{-- Scope notice: states which rule corpus produced this reading,
-             so a thin report is never mistaken for a broken one. --}}
-        @php($ruleMode = config('jyotish.rule_sources'))
-
+        {{-- Provenance notice --}}
         <div class="border-x border-[#e3dccd] bg-amber-50 px-8 py-3 text-xs text-amber-900">
-            @if ($ruleMode === 'owner')
-                <strong>Source.</strong>
-                This reading is generated <em>only</em> from the rule set supplied by the
-                owner of this installation. Placements with no supplied rule are stated as
-                plain chart facts rather than interpreted, so some bhavas will read briefly.
-            @else
-                <strong>Scope.</strong>
-                This reading covers the Lagna, all twelve Bhavas, yogas and doshas, and the
-                running Vimshottari dasha. Remedial measures are analysed in a later release.
+            <strong>Source.</strong>
+            Generated from the supplied rule base
+            ({{ $report['stats']['explicit'] }} rules matched this chart).
+            @if ($report['stats']['derived'] > 0)
+                A further {{ $report['stats']['derived'] }} points are derived by composing the
+                supplied Karakatwa against bhava significations, so no placement is left unexplained.
             @endif
         </div>
 
-        {{-- The reading --}}
-        @if ($view === 'simple')
-            @include('livewire.kundali.partials.simple-analysis', ['simple' => $this->simple])
-        @else
         <article class="rounded-b border-x border-b border-[#e3dccd] bg-[#fffdf8] px-8 py-8 shadow-sm">
-            @foreach ($sections as $section)
-                <section class="{{ $loop->first ? '' : 'mt-10 border-t border-[#ede5d6] pt-8' }}">
-                    <h2 class="text-2xl text-[#4a2c5a]" style="font-family:Georgia,serif;">
-                        {{ $section['title'] }}
-                    </h2>
 
-                    @if (!empty($section['subtitle']))
-                        <p class="mt-1 text-xs uppercase tracking-wide text-[#b5643f]">
-                            {{ $section['subtitle'] }}
-                        </p>
-                    @endif
-
-                    <div class="mt-4 space-y-4">
-                        @foreach ($section['paragraphs'] as $paragraph)
-                            <p class="text-[15px] leading-[1.75] text-[#2b2520]" style="font-family:Georgia,serif;">
-                                {{ $paragraph }}
-                            </p>
+            {{-- 1. Placements --}}
+            <h2 class="text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">1. Chart Placement Overview</h2>
+            <ul class="mt-4 space-y-2">
+                @foreach ($report['placements'] as $p)
+                    <li class="flex flex-wrap items-baseline gap-x-2 rounded border border-[#ede5d6] bg-[#f9f6ef] px-4 py-2.5 text-sm">
+                        <span class="font-medium text-[#4a2c5a]">
+                            @if ($p['isLagna']) Ascendant / Lagna &mdash; @endif {{ $p['ordinal'] }} House:
+                        </span>
+                        <span class="text-gray-700">{{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }})</span>
+                        <span class="text-gray-400">with</span>
+                        @foreach ($p['grahas'] as $g)
+                            <span class="rounded bg-[#4a2c5a] px-2 py-0.5 text-xs text-white">
+                                {{ $g['sanskrit'] }}@if ($g['combust'])*@endif@if ($g['retrograde']) &#8478;@endif
+                            </span>
                         @endforeach
-                    </div>
-                </section>
-            @endforeach
+                    </li>
+                @endforeach
+            </ul>
 
-            <div class="mt-10 border-t border-[#ede5d6] pt-5 text-xs text-gray-400">
-                <p>
-                    Computed with Swiss Ephemeris using the {{ $facts['meta']['ayanamsa_name'] }} ayanamsa
-                    ({{ $facts['meta']['ayanamsa_formatted'] }}) and {{ $facts['meta']['house_system'] }} houses.
-                    Universal time {{ $facts['meta']['utc'] }}, offset {{ $facts['meta']['utc_offset'] }}.
-                </p>
-                <button wire:click="regenerate" class="mt-3 text-[#4a2c5a] underline hover:no-underline">
-                    Regenerate this reading
-                </button>
+            {{-- 2. Analysis --}}
+            <h2 class="mt-10 text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">
+                2. Detailed Analysis Based On Your Rules
+            </h2>
+            <div class="mt-4 space-y-6">
+                @foreach ($report['groups'] as $group)
+                    <div class="rounded border border-[#ede5d6] bg-white px-5 py-4">
+                        <h3 class="text-sm font-semibold text-[#4a2c5a]">{{ $group['letter'] }}. {{ $group['title'] }}</h3>
+                        <p class="mt-1 text-sm font-medium text-[#b5643f]">{{ $group['heading'] }}</p>
+
+                        @if ($group['points'] === [])
+                            <p class="mt-2 text-sm italic text-gray-400">
+                                No rule in the current rule base covers this placement.
+                            </p>
+                        @else
+                            <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-gray-700">
+                                @foreach ($group['points'] as $point)
+                                    <li>
+                                        {{ $point['text'] }}
+                                        @if ($point['derived'])
+                                            <span class="ml-1 rounded bg-gray-100 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-gray-500"
+                                                  title="{{ $point['source'] }}">derived</span>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                @endforeach
             </div>
+
+            {{-- 3. Summary --}}
+            @if ($report['summary'] !== [])
+                <h2 class="mt-10 text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">3. Summary of Key Outcomes</h2>
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                    @foreach ($report['summary'] as $i => $bucket)
+                        <div class="rounded border-l-4 border-[#7b3f61] bg-[#f9f6ef] px-4 py-3">
+                            <h3 class="text-sm font-semibold text-[#4a2c5a]">{{ $i + 1 }}. {{ $bucket['label'] }}</h3>
+                            <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-gray-700">
+                                @foreach ($bucket['points'] as $point)
+                                    <li>{{ $point }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            <p class="mt-8 border-t border-[#ede5d6] pt-4 text-xs leading-relaxed text-gray-500">
+                Passages touching health describe tendencies indicated by the chart. They are not a
+                medical opinion and cannot diagnose anything. If something here matches a symptom you
+                actually have, treat it as a reason to see a doctor, not as a conclusion.
+            </p>
         </article>
-        @endif
     </div>
 </div>
