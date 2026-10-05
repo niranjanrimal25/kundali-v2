@@ -21,6 +21,7 @@ class ReadingService
         private readonly RuleBase $ruleBase,
         private readonly RuleEngine $engine,
         private readonly IntersectionEngine $intersection,
+        private readonly LagneshAnalyser $lagnesh,
         private readonly ReportAggregator $aggregator,
     ) {}
 
@@ -57,7 +58,11 @@ class ReadingService
         // attributes the bhava actually governs survive.
         $blocks = $this->intersection->forHouses($payload);
 
-        return $this->aggregator->build($payload, $explicit, $locale, $blocks);
+        // The Lagna and its lord are established before anything else,
+        // because the rest of the reading is read against them.
+        $lagnesh = $this->lagnesh->analyse($payload);
+
+        return $this->aggregator->build($payload, $explicit, $locale, $blocks, $lagnesh);
     }
 
     /**

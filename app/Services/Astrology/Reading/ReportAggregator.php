@@ -82,8 +82,13 @@ class ReportAggregator
     /**
      * @param  list<array>  $findings  from RuleEngine + DerivationEngine
      */
-    public function build(array $payload, array $findings, string $locale = 'en', array $blocks = []): array
-    {
+    public function build(
+        array $payload,
+        array $findings,
+        string $locale = 'en',
+        array $blocks = [],
+        ?array $lagnesh = null,
+    ): array {
         $this->blocks = $blocks;
 
         $this->locale = $locale;
@@ -94,10 +99,11 @@ class ReportAggregator
         $summary = $this->summary($findings);
 
         return [
+            'lagnesh' => $lagnesh,
             'placements' => $placements,
             'groups' => $groups,
             'summary' => $summary,
-            'markdown' => $this->markdown($placements, $groups, $summary),
+            'markdown' => $this->markdown($placements, $groups, $summary, $lagnesh),
             'labels' => [
                 's1' => $this->label('s1'),
                 's2' => $this->label('s2'),
@@ -250,9 +256,34 @@ class ReportAggregator
         return $out;
     }
 
-    private function markdown(array $placements, array $groups, array $summary): string
+    private function markdown(array $placements, array $groups, array $summary, ?array $lagnesh = null): string
     {
-        $md = '## '.$this->label('s1')."\n\n";
+        $md = '';
+
+        if ($lagnesh) {
+            $md .= "## 1. Lagna and its Lord\n\n";
+            $md .= sprintf(
+                "- **Ascendant:** %s (%s - %d)\n- **Lagnesh:** %s, in the %s bhava\n\n",
+                $lagnesh['lagna']['signName'],
+                $lagnesh['lagna']['signSanskrit'],
+                $lagnesh['lagna']['signNumber'],
+                $lagnesh['lagnesh']['sanskrit'],
+                $this->ordinal($lagnesh['lagnesh']['house'])
+            );
+            $md .= $lagnesh['verdict']."\n\n";
+
+            if ($lagnesh['qualities']) {
+                $md .= '- **Core qualities:** '.$lagnesh['qualities']."\n";
+            }
+
+            if ($lagnesh['health']) {
+                $md .= '- **Bodily vulnerability:** '.$lagnesh['health']."\n";
+            }
+
+            $md .= "\n";
+        }
+
+        $md .= '## '.$this->label('s1')."\n\n";
 
         foreach ($placements as $p) {
             $grahas = implode(', ', array_map(

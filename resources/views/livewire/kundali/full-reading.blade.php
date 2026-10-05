@@ -75,6 +75,50 @@
                 </span>
             </div>
 
+            {{-- 0. Lagna and Lagnesh: established before anything else,
+                 because the rest of the reading is read against it. --}}
+            @if ($report['lagnesh'])
+                @php($lg = $report['lagnesh'])
+                <section class="mb-8 rounded border-2 px-5 py-4"
+                         style="border-color: {{ $lg['afflicted'] ? '#b5643f' : '#2f6f5e' }};
+                                background: {{ $lg['afflicted'] ? '#fdf3ec' : '#ecf5f2' }};">
+                    <h2 class="text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">
+                        Lagna and its Lord
+                    </h2>
+
+                    <div class="mt-3 flex flex-wrap gap-x-8 gap-y-1 text-sm">
+                        <span><span class="text-gray-500">Ascendant:</span>
+                            <strong>{{ $lg['lagna']['signName'] }}</strong>
+                            ({{ $lg['lagna']['signSanskrit'] }} &mdash; {{ $lg['lagna']['signNumber'] }})</span>
+                        <span><span class="text-gray-500">Lagnesh:</span>
+                            <strong>{{ $lg['lagnesh']['sanskrit'] }}</strong>
+                            in the {{ $lg['lagnesh']['house'] }}
+                            @if ($lg['lagnesh']['house'] == 1)st @elseif ($lg['lagnesh']['house'] == 2)nd @elseif ($lg['lagnesh']['house'] == 3)rd @else th @endif
+                            bhava, {{ $lg['lagnesh']['dignity'] }} in {{ $lg['lagnesh']['signName'] }}</span>
+                        <span class="rounded px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white"
+                              style="background: {{ $lg['afflicted'] ? '#b5643f' : '#2f6f5e' }};">
+                            {{ $lg['afflicted'] ? 'Afflicted' : 'Not afflicted' }}
+                        </span>
+                    </div>
+
+                    <p class="mt-3 text-sm leading-relaxed text-gray-800">{{ $lg['verdict'] }}</p>
+
+                    @if ($lg['qualities'])
+                        <p class="mt-2 text-sm text-gray-700">
+                            <span class="font-semibold text-[#4a2c5a]">Core qualities:</span>
+                            {{ $lg['qualities'] }}
+                        </p>
+                    @endif
+
+                    @if ($lg['health'])
+                        <p class="mt-1 text-sm text-gray-700">
+                            <span class="font-semibold text-[#b5643f]">Bodily vulnerability:</span>
+                            {{ $lg['health'] }}
+                        </p>
+                    @endif
+                </section>
+            @endif
+
             {{-- 1. Placements --}}
             <h2 class="text-xl text-[#4a2c5a]" style="font-family:Georgia,serif;">1. Chart Placement Overview</h2>
             <ul class="mt-4 space-y-2">
