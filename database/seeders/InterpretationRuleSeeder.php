@@ -12,8 +12,10 @@ use Database\Seeders\Rules\DignityRules;
 use Database\Seeders\Rules\HouseSignRules;
 use Database\Seeders\Rules\LordPlacementRules;
 use Database\Seeders\Rules\NakshatraRules;
+use Database\Seeders\Rules\OwnerCompositeRules;
 use Database\Seeders\Rules\PlanetHouseRules;
 use Database\Seeders\Rules\PlanetSignRules;
+use Database\Seeders\Rules\TrikAfflictionRules;
 use Database\Seeders\Rules\YogaRules;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -62,9 +64,18 @@ class InterpretationRuleSeeder extends Seeder
             DignityRules::all(),
             DigbalaRules::all(),
             YogaRules::all(),
+            TrikAfflictionRules::all(),
+            OwnerCompositeRules::all(),
         );
 
         $rows = array_map(fn ($r) => $this->clean($r), $rows);
+
+        // Rules written by this project carry the default provenance;
+        // owner-supplied rules declare their own.
+        $rows = array_map(
+            fn ($r) => $r + ['provenance' => 'modern-synthesis', 'source' => null],
+            $rows
+        );
 
         $now = now();
         foreach (array_chunk($rows, 200) as $chunk) {

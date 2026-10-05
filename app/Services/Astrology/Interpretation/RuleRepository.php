@@ -62,6 +62,24 @@ class RuleRepository
         return $this->find($type, $key)[0] ?? null;
     }
 
+    /** Every rule of a given type, strongest first. */
+    public function all(string $type): array
+    {
+        $this->load();
+
+        $out = [];
+
+        foreach ($this->index as $key => $rules) {
+            if (str_starts_with($key, $type.'|')) {
+                foreach ($rules as $rule) {
+                    $out[] = $rule;
+                }
+            }
+        }
+
+        return $out;
+    }
+
     public function count(): int
     {
         $this->load();

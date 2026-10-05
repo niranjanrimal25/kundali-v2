@@ -63,6 +63,7 @@ class ReadingGenerator
         }
 
         $sections[] = $this->yogaSection($facts, $rules);
+        $sections[] = $this->afflictionSection($facts, $rules);
         $sections[] = $this->dashaSection($facts, $seed, $rules);
 
         return array_values(array_filter($sections));
@@ -371,6 +372,124 @@ class ReadingGenerator
             ),
             'paragraphs' => $paragraphs,
         ];
+    }
+
+    /**
+     * Health, relations and temperament under affliction.
+     *
+     * Driven by the owner-supplied corpus. Two layers:
+     *   - composite rules, evaluated through ConditionMatcher
+     *   - the Trik table, for a graha in the 6th, 8th or 12th
+     *
+     * A graha merely sitting in a dusthana is NOT enough to fire the
+     * Trik table: the source assumes affliction, so we require an
+     * enemy or debilitated sign, or malefic company. Applying it
+     * otherwise would overstate what was supplied.
+     */
+    private function afflictionSection(array $facts, RuleRepository $rules): array
+    {
+        $matcher = new ConditionMatcher;
+        $paragraphs = [];
+        $cited = false;
+
+        // 1. Compound rules.
+        foreach ($rules->all('composite') as $rule) {
+            $conditions = json_decode($rule->conditions ?? '[]', true) ?: [];
+
+            if (! $matcher->matches($conditions, $facts)) {
+                continue;
+            }
+
+            $paragraphs[] = $this->sentence($rule->text);
+            $cited = $cited || $rule->provenance === 'classical';
+        }
+
+        // 2. The Trik table, only where the graha is genuinely afflicted.
+        foreach (['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'] as $name) {
+            $planet = $facts['planets'][$name] ?? null;
+
+            if (! $planet || ! in_array($planet['house'], [6, 8, 12], true)) {
+                continue;
+            }
+
+            if (! $this->isAfflicted($planet, $facts)) {
+                continue;
+            }
+
+            // Each facet becomes its own sentence. Joining all three with
+            // "and" produced an unreadable chain, since every facet is
+            // itself a list.
+            $lead = [
+                'physical' => 'Physically, the indications are',
+                'relations' => 'In relationships, it shows as',
+                'temperament' => 'In temperament, it shows as',
+            ];
+
+            $sentences = [];
+
+            foreach ($lead as $facet => $prefix) {
+                if ($rule = $rules->first('trik_affliction', "{$name}:{$planet['house']}:{$facet}")) {
+                    $sentences[] = $this->sentence($prefix.' '.$this->trimText($rule->text));
+                    $cited = true;
+                }
+            }
+
+            if ($sentences === []) {
+                continue;
+            }
+
+            array_unshift($sentences, $this->sentence(sprintf(
+                '%s stands afflicted in the %s bhava',
+                $planet['sanskrit'],
+                $this->ordinal($planet['house'])
+            )));
+
+            $paragraphs[] = implode(' ', $sentences);
+        }
+
+        if ($paragraphs === []) {
+            return [];
+        }
+
+        // The disclaimer leads, so it is read before the content.
+        array_unshift(
+            $paragraphs,
+            'What follows describes tendencies and vulnerabilities indicated by the chart. '
+            .'It is not a medical opinion and cannot diagnose anything. Where something here '
+            .'matches a symptom you actually have, treat that as a reason to see a doctor, '
+            .'not as a conclusion. If any of it touches your state of mind, please speak to '
+            .'someone you trust or a qualified professional.'
+        );
+
+        return [
+            'key' => 'afflictions',
+            'title' => 'Health, Relations and Temperament',
+            'subtitle' => $cited
+                ? 'Classical indications under affliction'
+                : 'Indications under affliction',
+            'paragraphs' => $paragraphs,
+        ];
+    }
+
+    /**
+     * The supplied Trik table presumes an afflicted graha, not merely
+     * one placed in a dusthana.
+     */
+    private function isAfflicted(array $planet, array $facts): bool
+    {
+        if (in_array($planet['dignity'], ['debilitated', 'enemy'], true)) {
+            return true;
+        }
+
+        foreach (['Saturn', 'Rahu', 'Ketu', 'Mars', 'Sun'] as $malefic) {
+            $other = $facts['planets'][$malefic] ?? null;
+
+            if ($other && $other['name'] !== $planet['name'] && $other['house'] === $planet['house']) {
+                return true;
+            }
+        }
+
+        return $planet['combust'] ?? false;
     }
 
     private function dashaSection(array $facts, string $seed, RuleRepository $rules): array
