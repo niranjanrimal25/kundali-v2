@@ -4,110 +4,153 @@
     <meta charset="utf-8">
     <title>{{ $kundali->name }} — Kundali Reading</title>
     <style>
-        @page { margin: 22mm 18mm 20mm 18mm; }
+        /* mPDF selects a Devanagari-capable font per text run via
+           autoScriptToLang, so no @font-face is needed here. Avoid
+           italics on body text: the italic face has no Devanagari
+           coverage and silently falls back to boxes. */
+        body { font-family: sans-serif; font-size: 10.5pt; line-height: 1.6; color: #2b2520; }
 
-        body {
-            font-family: DejaVu Serif, serif;
-            font-size: 10.5pt;
-            line-height: 1.65;
-            color: #2b2520;
-        }
+        h1 { font-size: 22pt; color: #4a2c5a; margin: 0 0 4pt; }
+        h2 { font-size: 13pt; color: #4a2c5a; margin: 14pt 0 3pt;
+             border-bottom: 0.5pt solid #e3dccd; padding-bottom: 2pt; }
 
-        .cover { text-align: center; padding-top: 38mm; }
-        .cover h1 { font-size: 26pt; color: #4a2c5a; margin: 0 0 6pt; }
-        .cover .sub { font-size: 11pt; color: #7b3f61; margin-bottom: 24pt; }
+        .sub { font-size: 10pt; color: #7b3f61; margin-bottom: 14pt; }
+        .st  { font-size: 9pt; color: #b5643f; margin-bottom: 4pt; }
+        p    { margin: 0 0 5pt; }
 
-        .facts { margin: 0 auto; width: 80%; border-collapse: collapse; }
-        .facts td { padding: 4pt 8pt; font-size: 10pt; border-bottom: 0.5pt solid #e3dccd; text-align: left; }
-        .facts td.k { color: #7b3f61; width: 42%; }
+        .facts { width: 100%; border-collapse: collapse; margin-bottom: 10pt; }
+        .facts td { padding: 3pt 6pt; font-size: 9.5pt; border-bottom: 0.4pt solid #e3dccd; }
+        .facts td.k { color: #7b3f61; width: 38%; }
 
-        .notice {
-            margin-top: 20pt; padding: 8pt 10pt; font-size: 8.5pt;
-            background: #f6f1e4; border-left: 2pt solid #b5643f; color: #5a4a3a;
-            text-align: left;
-        }
-
-        h2 {
-            font-size: 13pt; color: #4a2c5a; margin: 16pt 0 2pt;
-            border-bottom: 0.5pt solid #e3dccd; padding-bottom: 3pt;
-            page-break-after: avoid;
-        }
-        .st { font-size: 8.5pt; color: #b5643f; font-style: italic; margin-bottom: 6pt; }
-        p { margin: 0 0 7pt; text-align: justify; }
-
-        .foot {
-            font-size: 8pt; color: #8a7f74; text-align: center; margin-top: 18pt;
-            border-top: 0.5pt solid #e3dccd; padding-top: 6pt;
-        }
+        .notice { padding: 6pt 8pt; font-size: 8.5pt; background: #f6f1e4;
+                  border-left: 2pt solid #b5643f; color: #5a4a3a; }
+        .focus  { margin: 2pt 0; padding: 3pt 6pt; border-left: 2pt solid #b5643f; background: #fdf3ec; }
+        .focus b { color: #b5643f; }
+        .lagnesh { padding: 5pt 8pt; border-left: 2pt solid #4a2c5a; background: #f6f2f8; margin-bottom: 8pt; }
+        .foot { font-size: 8pt; color: #8a7f74; text-align: center; margin-top: 14pt;
+                border-top: 0.4pt solid #e3dccd; padding-top: 5pt; }
     </style>
 </head>
 <body>
 
-    {{-- Cover --}}
-    <div class="cover">
-        <h1>{{ $kundali->name }}</h1>
-        <div class="sub">Vedic Birth Chart Reading</div>
+<h1>{{ $kundali->name }}</h1>
+<div class="sub">Vedic Birth Chart Reading</div>
 
-        <table class="facts">
-            <tr><td class="k">Date of birth</td><td>{{ $kundali->birth_date->format('j F Y') }}</td></tr>
-            <tr><td class="k">Time of birth</td><td>{{ substr($kundali->birth_time, 0, 5) }} ({{ $kundali->timezone }})</td></tr>
-            <tr><td class="k">Place of birth</td><td>{{ $kundali->birth_place }}</td></tr>
-            <tr><td class="k">Coordinates</td><td>{{ number_format($kundali->latitude, 5) }}, {{ number_format($kundali->longitude, 5) }}</td></tr>
-            <tr><td class="k">Lagna</td><td>{{ $facts['lagna']['sign_name'] }} {{ $facts['lagna']['degree_formatted'] }}</td></tr>
-            <tr><td class="k">Janma Rashi</td><td>{{ $facts['moon']['sign_name'] }}</td></tr>
-            <tr><td class="k">Nakshatra</td><td>{{ $facts['moon']['nakshatra']['name'] }} (pada {{ $facts['moon']['nakshatra']['pada'] }})</td></tr>
-            <tr><td class="k">Ayanamsa</td><td>{{ $facts['meta']['ayanamsa_name'] }} {{ $facts['meta']['ayanamsa_formatted'] }}</td></tr>
-        </table>
+<table class="facts">
+    <tr><td class="k">Date of birth</td><td>{{ $kundali->birth_date->format('j F Y') }}</td></tr>
+    <tr><td class="k">Time of birth</td><td>{{ substr($kundali->birth_time, 0, 5) }} ({{ $kundali->timezone }})</td></tr>
+    <tr><td class="k">Place of birth</td><td>{{ $kundali->birth_place }}</td></tr>
+    <tr><td class="k">Lagna</td><td>{{ $facts['lagna']['sign_name'] }} {{ $facts['lagna']['degree_formatted'] }}</td></tr>
+    <tr><td class="k">Janma Rashi</td><td>{{ $facts['moon']['sign_name'] }}</td></tr>
+    <tr><td class="k">Nakshatra</td><td>{{ $facts['moon']['nakshatra']['name'] }} (pada {{ $facts['moon']['nakshatra']['pada'] }})</td></tr>
+    <tr><td class="k">Ayanamsa</td><td>{{ $facts['meta']['ayanamsa_name'] }} {{ $facts['meta']['ayanamsa_formatted'] }}</td></tr>
+</table>
 
-        <div class="notice">
-            <strong>About this reading.</strong>
-            Positions are computed with the Swiss Ephemeris using the
-            {{ $facts['meta']['ayanamsa_name'] }} ayanamsa and whole-sign bhavas.
-            Findings come from the supplied rule base.
-            Any passage touching health describes tendencies indicated by the chart. It is
-            not medical advice and cannot diagnose anything.
-        </div>
+<div class="notice">
+    <b>About this reading.</b>
+    Positions are computed with the Swiss Ephemeris using the
+    {{ $facts['meta']['ayanamsa_name'] }} ayanamsa and whole-sign bhavas.
+    Findings come from the supplied rule base. Any passage touching health describes
+    tendencies indicated by the chart. It is not medical advice and cannot diagnose anything.
+</div>
 
-        <div style="font-size:8pt;color:#8a7f74;margin-top:14pt;">
-            Generated {{ now()->format('j F Y') }}
-        </div>
+{{-- Lagna and its lord, established first --}}
+@if (! empty($report['lagnesh']))
+    @php($lg = $report['lagnesh'])
+    <h2>Lagna and its Lord</h2>
+    <div class="lagnesh">
+        <p><b>Ascendant:</b> {{ $lg['lagna']['signName'] }}
+            ({{ $lg['lagna']['signSanskrit'] }} &mdash; {{ $lg['lagna']['signNumber'] }})
+            &nbsp;&nbsp; <b>Lagnesh:</b> {{ $lg['lagnesh']['sanskrit'] }},
+            {{ $lg['lagnesh']['dignity'] }} in {{ $lg['lagnesh']['signName'] }}
+            &nbsp;&nbsp; <b>{{ $lg['afflicted'] ? 'Afflicted' : 'Not afflicted' }}</b></p>
+        <p>{{ $lg['verdict'] }}</p>
+        @if ($lg['qualities'])<p><b>Core qualities:</b> {{ $lg['qualities'] }}</p>@endif
+        @if ($lg['health'])<p><b>Bodily vulnerability:</b> {{ $lg['health'] }}</p>@endif
     </div>
+@endif
 
-    <div style="page-break-after: always;"></div>
+<h2>{{ $report['labels']['s1'] ?? '1. Chart Placement Overview' }}</h2>
+@foreach ($report['placements'] as $p)
+    <p>
+        <b>@if ($p['isLagna']){{ $report['labels']['lagna'] }} &mdash; @endif{{ $p['ordinal'] }} {{ $report['labels']['house'] }}:</b>
+        {{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }}) {{ $report['labels']['with'] }}
+        @foreach ($p['grahas'] as $g){{ $g['sanskrit'] }}@if ($g['combust'])*@endif{{ ! $loop->last ? ', ' : '' }}@endforeach
+    </p>
+@endforeach
 
-    {{-- Reading --}}
-    <h2>{{ $report['labels']['s1'] ?? '1. Chart Placement Overview' }}</h2>
-    @foreach ($report['placements'] as $p)
-        <p>
-            <strong>@if ($p['isLagna']){{ $report['labels']['lagna'] }} &mdash; @endif{{ $p['ordinal'] }} {{ $report['labels']['house'] }}:</strong>
-            {{ $p['signName'] }} ({{ $p['signSanskrit'] }} &mdash; {{ $p['signNumber'] }}) {{ $report['labels']['with'] }}
-            @foreach ($p['grahas'] as $g){{ $g['sanskrit'] }}@if ($g['combust'])*@endif{{ ! $loop->last ? ', ' : '' }}@endforeach
-        </p>
-    @endforeach
+<h2>{{ $report['labels']['s2'] ?? '2. Detailed Analysis Based On Your Rules' }}</h2>
+@foreach ($report['groups'] as $group)
+    <p><b>{{ $group['letter'] }}. {{ $group['title'] }}</b></p>
+    <div class="st">{{ $group['heading'] }}</div>
 
-    <h2>{{ $report['labels']['s2'] ?? '2. Detailed Analysis Based On Your Rules' }}</h2>
-    @foreach ($report['groups'] as $group)
-        <p><strong>{{ $group['letter'] }}. {{ $group['title'] }}</strong></p>
-        <div class="st">{{ $group['heading'] }}</div>
-        @forelse ($group['points'] as $point)
-            <p>&bull; {{ $point['text'] }}</p>
-        @empty
-            <p><em>No rule in the current rule base covers this placement.</em></p>
-        @endforelse
-    @endforeach
+    @if (! empty($group['block']))
+        @foreach ([
+            'health' => 'Primary Health Focus',
+            'mind' => 'Mind &amp; Temperament',
+            'people' => 'Key Relationships &amp; Dynamics',
+        ] as $k => $lbl)
+            @if (! empty($group['block'][$k]))
+                <div class="focus"><b>{!! $lbl !!}:</b> {{ $group['block'][$k] }}</div>
+            @endif
+        @endforeach
 
-    @if ($report['summary'] !== [])
-        <h2>{{ $report['labels']['s3'] ?? '3. Summary of Key Outcomes' }}</h2>
-        @foreach ($report['summary'] as $i => $bucket)
-            <p><strong>{{ $i + 1 }}. {{ $bucket['label'] }}</strong></p>
-            @foreach ($bucket['points'] as $point)
-                <p>&bull; {{ $point }}</p>
-            @endforeach
+        @foreach ($group['block']['notes'] as $note)
+            <p style="font-size:9pt;color:#2f6f5e;">{{ $note }}</p>
         @endforeach
     @endif
 
-    <div class="foot">
-        Positions by Swiss Ephemeris &middot; {{ $facts['meta']['ayanamsa_name'] }} ayanamsa &middot; {{ config('app.name') }}
-    </div>
+    @foreach ($group['points'] as $point)
+        <p>&bull; {{ $point['text'] }}</p>
+    @endforeach
+
+    @if ($group['points'] === [] && empty($group['block']))
+        <p>{{ $report['labels']['none'] }}</p>
+    @endif
+@endforeach
+
+@if ($report['summary'] !== [])
+    <h2>{{ $report['labels']['s3'] ?? '3. Summary of Key Outcomes' }}</h2>
+    @foreach ($report['summary'] as $i => $bucket)
+        <p><b>{{ $i + 1 }}. {{ $bucket['label'] }}</b></p>
+        @foreach ($bucket['points'] as $point)
+            <p>&bull; {{ $point }}</p>
+        @endforeach
+    @endforeach
+@endif
+
+{{-- Dasha, yogas, doshas: restored sections --}}
+@if (! empty($report['dasha']))
+    <h2>4. Current Planetary Period</h2>
+    @foreach (['mahadasha' => 'Mahadasha', 'antardasha' => 'Antardasha'] as $k => $lbl)
+        @if (! empty($report['dasha'][$k]))
+            @php($d = $report['dasha'][$k])
+            <p><b>{{ $lbl }}:</b> {{ $d['sanskrit'] }}, {{ $d['start'] }} to {{ $d['end'] }}. {{ $d['standing'] }}</p>
+        @endif
+    @endforeach
+@endif
+
+@if (! empty($report['yogas']))
+    <h2>5. Yogas</h2>
+    <p>{{ $report['yogas']['note'] }}</p>
+    @foreach ($report['yogas']['items'] as $y)
+        <p>&bull; <b>{{ $y['name'] }}</b> ({{ $y['strength'] }}). {{ $y['basis'] }}</p>
+    @endforeach
+@endif
+
+@if (! empty($report['doshas']))
+    <h2>6. Doshas and Transits</h2>
+    @foreach ($report['doshas']['items'] as $d)
+        <p>&bull; <b>{{ $d['name'] }}.</b> {{ $d['basis'] }}@if ($d['cancelled']) {{ $d['cancellation'] }} The dosha is therefore cancelled.@endif</p>
+    @endforeach
+    @if ($report['doshas']['transit'])
+        <p>&bull; <b>{{ $report['doshas']['transit']['name'] }}.</b> {{ $report['doshas']['transit']['basis'] }}</p>
+    @endif
+@endif
+
+<div class="foot">
+    Positions by Swiss Ephemeris &middot; {{ $facts['meta']['ayanamsa_name'] }} ayanamsa &middot; {{ config('app.name') }}
+</div>
+
 </body>
 </html>

@@ -52,6 +52,14 @@ class ChartPayload
             ],
             'planet' => [],
             'house' => [],
+
+            // Detector output passed through untouched. The rule engine
+            // does not evaluate against these; the timeline analyser
+            // reads them directly.
+            'dasha' => $facts['dasha'] ?? [],
+            'yogas' => $facts['yogas'] ?? [],
+            'doshas' => $facts['doshas'] ?? [],
+            'transits' => $facts['transits'] ?? [],
         ];
 
         // A planet in a Trik bhava is only read as harmful when it is

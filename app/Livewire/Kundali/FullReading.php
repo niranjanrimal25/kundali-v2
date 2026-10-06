@@ -5,11 +5,11 @@ namespace App\Livewire\Kundali;
 use App\Models\Kundali;
 use App\Services\Astrology\KundaliService;
 use App\Services\Astrology\Reading\ReadingService;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Mpdf\Mpdf;
 
 class FullReading extends Component
 {
@@ -44,33 +44,43 @@ class FullReading extends Component
     /**
      * Stream the reading as a PDF.
      *
-     * dompdf has no complex-script shaping, so Devanagari comes out as
-     * question marks however the font is configured. Rather than hand
-     * the user a broken file, a Nepali reading is exported in English
-     * and the page says so. Replacing dompdf with mPDF, which does
-     * shape Indic scripts, is the fix.
+     * mPDF rather than dompdf, because dompdf has no complex-script
+     * shaping and rendered Devanagari as question marks whatever font
+     * was supplied. mPDF performs Indic shaping, so a Nepali reading
+     * exports in Nepali.
      */
     public function downloadPdf()
     {
         abort_unless($this->kundali->user_id === auth()->id(), 403);
 
-        if ($this->locale !== 'en') {
-            session()->flash('status', 'PDF export is English only for now. Devanagari needs a PDF engine with Indic text shaping, which is a separate change.');
-        }
-
-        $report = app(ReadingService::class)->forKundali($this->kundali, 'en');
-
-        $pdf = Pdf::loadView('pdf.reading', [
+        $html = view('pdf.reading', [
             'kundali' => $this->kundali,
             'facts' => $this->facts(),
-            'report' => $report,
-            'locale' => 'en',
-        ])->setPaper('a4');
+            'report' => $this->report(),
+            'locale' => $this->locale,
+        ])->render();
+
+        $pdf = new Mpdf([
+            'format' => 'A4',
+            'margin_left' => 18,
+            'margin_right' => 18,
+            'margin_top' => 20,
+            'margin_bottom' => 18,
+            // mPDF ships Devanagari-capable fonts; autoScriptToLang and
+            // autoLangToFont pick them per run of text.
+            'autoScriptToLang' => true,
+            'autoLangToFont' => true,
+            'tempDir' => storage_path('app/mpdf'),
+            'default_font' => $this->locale === 'ne' ? 'freeserif' : 'dejavuserif',
+        ]);
+
+        $pdf->SetTitle($this->kundali->name.' — Kundali Reading');
+        $pdf->WriteHTML($html);
 
         $name = Str::slug($this->kundali->name).'-kundali-reading.pdf';
 
         return response()->streamDownload(
-            fn () => print ($pdf->output()),
+            fn () => print ($pdf->Output('', 'S')),
             $name,
             ['Content-Type' => 'application/pdf']
         );

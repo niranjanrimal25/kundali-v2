@@ -2,6 +2,8 @@
 
 namespace App\Services\Astrology\Reading;
 
+use Illuminate\Support\Carbon;
+
 /**
  * STEP 5 — Report generation.
  *
@@ -37,6 +39,7 @@ class ReportAggregator
             'none' => 'No rule in the current rule base covers this placement.',
             'lagna' => 'Ascendant / Lagna',
             'with' => 'with',
+            'and' => 'and',
         ],
         'ne' => [
             'conjunction' => '%s को युति (%s भाव)',
@@ -50,6 +53,7 @@ class ReportAggregator
             'none' => 'हालको नियम आधारमा यस स्थितिलाई समेट्ने कुनै नियम छैन।',
             'lagna' => 'लग्न',
             'with' => 'सँग',
+            'and' => 'र',
         ],
     ];
 
@@ -88,6 +92,7 @@ class ReportAggregator
         string $locale = 'en',
         array $blocks = [],
         ?array $lagnesh = null,
+        array $timeline = [],
     ): array {
         $this->blocks = $blocks;
 
@@ -100,10 +105,13 @@ class ReportAggregator
 
         return [
             'lagnesh' => $lagnesh,
+            'dasha' => $timeline['dasha'] ?? null,
+            'yogas' => $timeline['yogas'] ?? null,
+            'doshas' => $timeline['doshas'] ?? null,
             'placements' => $placements,
             'groups' => $groups,
             'summary' => $summary,
-            'markdown' => $this->markdown($placements, $groups, $summary, $lagnesh),
+            'markdown' => $this->markdown($placements, $groups, $summary, $lagnesh, $timeline),
             'labels' => [
                 's1' => $this->label('s1'),
                 's2' => $this->label('s2'),
@@ -256,7 +264,7 @@ class ReportAggregator
         return $out;
     }
 
-    private function markdown(array $placements, array $groups, array $summary, ?array $lagnesh = null): string
+    private function markdown(array $placements, array $groups, array $summary, ?array $lagnesh = null, array $timeline = []): string
     {
         $md = '';
 
@@ -335,7 +343,84 @@ class ReportAggregator
             }
         }
 
+        $md .= $this->timelineMarkdown($timeline);
+
         return $md;
+    }
+
+    /** Dasha, yogas and doshas, appended after the summary. */
+    private function timelineMarkdown(array $timeline): string
+    {
+        $md = '';
+
+        if ($dasha = $timeline['dasha'] ?? null) {
+            $md .= "\n## 4. Current Planetary Period\n\n";
+
+            foreach (['mahadasha' => 'Mahadasha', 'antardasha' => 'Antardasha'] as $key => $label) {
+                if (empty($dasha[$key])) {
+                    continue;
+                }
+
+                $p = $dasha[$key];
+
+                $md .= sprintf(
+                    "- **%s:** %s, %s to %s. %s\n",
+                    $label,
+                    $p['sanskrit'],
+                    $this->date($p['start']),
+                    $this->date($p['end']),
+                    $p['standing']
+                );
+            }
+
+            $md .= "\n";
+        }
+
+        if ($yogas = $timeline['yogas'] ?? null) {
+            $md .= "\n## 5. Yogas\n\n";
+            $md .= $yogas['note']."\n\n";
+
+            foreach ($yogas['items'] as $y) {
+                $md .= sprintf("- **%s** (%s). %s\n", $y['name'], $y['strength'], $y['basis']);
+            }
+
+            $md .= "\n";
+        }
+
+        if ($doshas = $timeline['doshas'] ?? null) {
+            $md .= "\n## 6. Doshas and Transits\n\n";
+
+            foreach ($doshas['items'] as $d) {
+                $md .= sprintf('- **%s.** %s', $d['name'], $d['basis']);
+
+                if ($d['cancelled']) {
+                    $md .= ' '.$d['cancellation'].' The dosha is therefore cancelled.';
+                }
+
+                $md .= "\n";
+            }
+
+            if ($t = $doshas['transit']) {
+                $md .= sprintf("- **%s.** %s\n", $t['name'], $t['basis']);
+            }
+
+            $md .= "\n";
+        }
+
+        return $md;
+    }
+
+    private function date(?string $date): string
+    {
+        if (! $date) {
+            return '';
+        }
+
+        try {
+            return Carbon::parse($date)->format('j M Y');
+        } catch (\Throwable) {
+            return $date;
+        }
     }
 
     private function listify(array $items): string
@@ -346,7 +431,7 @@ class ReportAggregator
 
         $last = array_pop($items);
 
-        return implode(', ', $items).' and '.$last;
+        return implode(', ', $items).' '.$this->label('and').' '.$last;
     }
 
     private function ordinal(int $n): string

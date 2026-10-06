@@ -8,9 +8,9 @@ use App\Models\Reading;
 use App\Models\User;
 use App\Services\Astrology\KundaliService;
 use App\Services\Astrology\Reading\ReadingService;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Mpdf\Mpdf;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -54,14 +54,47 @@ class ReadingPdfTest extends TestCase
     {
         $kundali = $this->kundali();
 
-        $body = Pdf::loadView('pdf.reading', [
+        $html = view('pdf.reading', [
             'kundali' => $kundali,
             'facts' => app(KundaliService::class)->facts($kundali),
             'report' => app(ReadingService::class)->forKundali($kundali),
-        ])->setPaper('a4')->output();
+            'locale' => 'en',
+        ])->render();
+
+        $mpdf = new Mpdf(['tempDir' => storage_path('app/mpdf')]);
+        $mpdf->WriteHTML($html);
+        $body = $mpdf->Output('', 'S');
 
         $this->assertStringStartsWith('%PDF-', $body);
         $this->assertGreaterThan(10_000, strlen($body));
+    }
+
+    #[Test]
+    public function a_nepali_pdf_contains_real_devanagari(): void
+    {
+        $kundali = $this->kundali();
+
+        $html = view('pdf.reading', [
+            'kundali' => $kundali,
+            'facts' => app(KundaliService::class)->facts($kundali),
+            'report' => app(ReadingService::class)->forKundali($kundali, 'ne', true),
+            'locale' => 'ne',
+        ])->render();
+
+        // dompdf produced question marks here; mPDF shapes Indic text.
+        $this->assertStringContainsString('ग्रह स्थिति सारांश', $html);
+
+        $mpdf = new Mpdf([
+            'tempDir' => storage_path('app/mpdf'),
+            'autoScriptToLang' => true,
+            'autoLangToFont' => true,
+            'default_font' => 'freeserif',
+        ]);
+        $mpdf->WriteHTML($html);
+        $body = $mpdf->Output('', 'S');
+
+        $this->assertStringStartsWith('%PDF-', $body);
+        $this->assertGreaterThan(20_000, strlen($body));
     }
 
     #[Test]

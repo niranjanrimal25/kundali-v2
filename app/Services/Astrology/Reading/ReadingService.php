@@ -22,6 +22,7 @@ class ReadingService
         private readonly RuleEngine $engine,
         private readonly IntersectionEngine $intersection,
         private readonly LagneshAnalyser $lagnesh,
+        private readonly TimelineAnalyser $timeline,
         private readonly ReportAggregator $aggregator,
     ) {}
 
@@ -62,7 +63,11 @@ class ReadingService
         // because the rest of the reading is read against them.
         $lagnesh = $this->lagnesh->analyse($payload);
 
-        return $this->aggregator->build($payload, $explicit, $locale, $blocks, $lagnesh);
+        // Dasha, yogas, doshas and the Saturn transit. The detectors
+        // always ran; this is what reads them.
+        $timeline = $this->timeline->analyse($payload);
+
+        return $this->aggregator->build($payload, $explicit, $locale, $blocks, $lagnesh, $timeline);
     }
 
     /**
